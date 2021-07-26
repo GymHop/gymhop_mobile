@@ -1,7 +1,8 @@
-import {SplashScreen} from './SplashScreen';
 import {LoginScreen} from './LoginScreen';
+import {EntryScreen} from './EntryScreen';
+
 
 export {
-  SplashScreen,
   LoginScreen,
+  EntryScreen,
 };

@@ -12,7 +12,7 @@ import {Res} from '../../resources';
 // }));
 
 const Text = styled.Text`
-  // fontFamily: 'NeoSansW1G-Regular',
+  /* fontFamily: 'NeoSansW1G-Regular', */
   font-size: 13px;
   letter-spacing: -0.24;
   color: ${props => props.white ? Res.colors.white : Res.colors.textDark};

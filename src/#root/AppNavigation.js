@@ -5,7 +5,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Keyboard, Platform} from 'react-native';
 
 import {
-  SplashScreen,
   LoginScreen,
   EntryScreen,
 } from '../screens';
@@ -15,6 +14,10 @@ const rootNavigationRef = createRef();
 
 const Stack = createStackNavigator();
 
+const RED_HEADER = {
+  backgroundColor: Res.colors.main,
+};
+
 export const AppNavigation = () => {
     return (
       <NavigationContainer ref={rootNavigationRef}>
@@ -22,17 +25,12 @@ export const AppNavigation = () => {
           headerMode="none"
           keyboardHandlingEnabled
           initialRouteName="entry">
-          <Stack.Screen name="entry" component={EntryScreen} />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="splash"
-            component={SplashScreen}
-          />
+          {/* <Stack.Screen name="entry" component={EntryScreen} options={{headerShown: false}}/> */}
           <Stack.Screen
             name="auth"
             component={LoginScreen}
             options={{
-              headerTitle: t('header.signUp'),
+              headerTitle: 'header.signUp',
               headerStyle: RED_HEADER,
               headerTitleStyle: {
                 color: Res.colors.white,
@@ -41,7 +39,7 @@ export const AppNavigation = () => {
               },
             }}
           />
-          <Stack.Screen name="main" component={EventsDrawer} />
+          {/* <Stack.Screen name="main" component={} /> */}
         </Stack.Navigator>
       </NavigationContainer>
     );

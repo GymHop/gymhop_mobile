@@ -1,5 +1,4 @@
 import React from 'react';
-// import glamorous from 'glamorous-native';
 import styled from 'styled-components/native';
 import {Res} from '../../resources';
 import {Platform} from 'react-native';
@@ -7,7 +6,7 @@ import {Platform} from 'react-native';
 const Container = styled.View`
   margin-bottom: ${Res.spaces.padding.xxs}px;
   flex-direction: row;
-  background-color: ${Res.colors.white}px;
+  background-color: ${Res.colors.white};
   border-radius: ${Res.spaces.radius.xs}px;
   padding-horizontal: ${Res.spaces.md}px;
   padding-top: ${Platform.OS === 'ios' ? Res.spaces.md : 4}px;

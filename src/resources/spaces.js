@@ -28,7 +28,7 @@ export const spaces = {
     md: 38,
   },
   radius: {
-    default: 28,
+    default: 10,
     xs: 8,
   },
   font: {

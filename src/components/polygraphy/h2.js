@@ -13,12 +13,11 @@ import {Res} from '../../resources';
 // }));
 
 const Text = styled.Text`
-  // font-family: 'NeoSansW1G-Regular',
-
-  font-size: 15px;
-  letter-spacing: -0.24;
+  /*font-family: 'NeoSansW1G-Regular',*/
+  font-size: 16px;
   color: ${props => props.white ? Res.colors.white : Res.colors.textDark};
   font-weight: ${props => props.fontWeight ? props.fontWeight : '400'};
+  line-height: 20px;
 `
 
 export const H2 = props => {

@@ -103,10 +103,10 @@ export class AuthProvider extends Component {
         this.getDefault();
         NavigationAction.reset('main');
       } else {
-        NavigationAction.reset('splash');
+        NavigationAction.reset('entry');
       }
     } catch (e) {
-      NavigationAction.reset('splash');
+      NavigationAction.reset('entry');
       // error reading value
     }
   };
@@ -245,7 +245,7 @@ export class AuthProvider extends Component {
         comments: [],
         messages: [],
       });
-      NavigationAction.reset('splash');
+      NavigationAction.reset('entry');
       this.showSuccess('Signed out');
     } catch (e) {
       this.showError('Sorry, u cant do it now');

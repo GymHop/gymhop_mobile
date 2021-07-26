@@ -19,12 +19,13 @@ import {H2} from '../polygraphy';
 const Container = styled.TouchableOpacity`
   border-radius: ${Res.spaces.radius.default};
   padding-vertical: ${props => props.small ? Res.spaces.sm : Res.spaces.padding.xs};
-  background-color: ${props => Res.colors.white};
+  background-color: ${Res.colors.main};
   align-items: center;
   justify-content: center;
 
   align-self: ${props => props.small ? 'center' : 'auto'};
   padding-horizontal: ${props => props.small ? Res.spaces.lg : 0};
+  height: 48px;
 `
 
 export const PrimaryButton = props => {
