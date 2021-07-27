@@ -1,3 +1,4 @@
 import {DefaultInput} from './DefaultInput';
+import {CodeEnter} from './CodeEnter';
 
-export {DefaultInput};
+export {DefaultInput, CodeEnter};
