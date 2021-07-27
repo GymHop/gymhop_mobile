@@ -10,19 +10,25 @@ import {Res} from '../resources';
 import {NavigationAction} from '../#root/AppNavigation';
 import {View, TouchableOpacity, Text, Image} from 'react-native';
 
-import { Measurements} from 'src/utils';
+import {Measurements} from 'src/utils';
 
 const AuthContext = createContext();
-export const AuthProvider = (props) => {
-  const api = useMemo(() => axios.create({
-    baseURL: config.apiUrl,
-    headers: {
-      Accept: 'application/json',
-    },
-  }), [config]);
-  const [token,setToken] = useState('');
-  const [loading,setLoading] = useState(false);
-  const [user,setUser] = useState(null);
+
+export const AuthProvider = props => {
+  const Api = useMemo(
+    () =>
+      axios.create({
+        baseURL: config.apiUrl,
+        headers: {
+          Accept: 'application/json',
+        },
+      }),
+    [config],
+  );
+  const [token, setToken] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [codeSent, setCodeSent] = useState(false);
 
   const clearUser = () => {
     setUser(null);
@@ -31,12 +37,10 @@ export const AuthProvider = (props) => {
 
   const getDefault = () => {
     getUser();
-  }
+  };
 
   const setAxiosHeader = () => {
-    Api.defaults.headers.common[
-      'Authorization'
-    ] = `Bearer ${state.token}`;
+    Api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   };
 
   const storeToken = async token => {
@@ -75,16 +79,18 @@ export const AuthProvider = (props) => {
   };
 
   const auth = async data => {
+    console.log('murat tishkul', data);
     setLoading(true);
-    Api.post(REQUEST.AUTH, data)
+    Api.post(REQUEST.AUTH, {user: data})
       .then(res => {
         console.log(res);
-        setUser(res.data);
+        // setUser(res.data);
         Toast.show({
           text1: 'Success',
           text2: 'Sms is send',
         });
         setLoading(false);
+        setCodeSent(true);
       })
       .catch(e => {
         setLoading(false);
@@ -100,12 +106,14 @@ export const AuthProvider = (props) => {
     setLoading(true);
     Api.post(REQUEST.LOGIN, data)
       .then(async res => {
-        storeToken(res.data.token);
-        setToken(res.data.token)
+        storeToken(res.data.data.token);
+        setToken(res.data.data.token);
         setAxiosHeader();
-        await getUser();
+        setUser(res.data);
+        // await getUser();
 
         setLoading(false);
+        console.log('MUratmurat murat murat murat', res);
 
         NavigationAction.reset('main');
       })
@@ -171,6 +179,7 @@ export const AuthProvider = (props) => {
         login: login,
         getToken: getToken,
         clearUser: clearUser,
+        codeSent: codeSent,
       }}>
       {props.children}
       {loading && (
@@ -188,7 +197,7 @@ export const AuthProvider = (props) => {
       )}
     </AuthContext.Provider>
   );
-}
+};
 
 export const withAuth = Comp => {
   return props => {

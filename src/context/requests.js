@@ -1,5 +1,5 @@
 export const REQUEST = {
-  AUTH: '/auth/login/',
+  AUTH: '/auth/send_phone_verification_code',
   LOGIN: '/auth/phone_login/',
   SIGNUP: '/auth/signup',
   // GET_USER: '/user/profile',

@@ -24,6 +24,7 @@ const LoginScreenContainer = props => {
       user={props.user}
       onAuth={handleAuth}
       onLogin={handleLogin}
+      codeSent={props.codeSent}
     />
   );
 };

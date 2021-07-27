@@ -10,14 +10,13 @@ const Container = styled.View`
   border-radius: ${Res.spaces.radius.xs}px;
   padding-horizontal: ${Res.spaces.md}px;
   padding-top: ${Platform.OS === 'ios' ? Res.spaces.md : 4}px;
-  paddingBottom: ${Platform.OS === 'ios' ? Res.spaces.md - 2 : 4}px;
-`
-
+  padding-bottom: ${Platform.OS === 'ios' ? Res.spaces.md - 2 : 4}px;
+`;
 
 const TextField = styled.TextInput`
   font-size: 16px;
   flex: 1;
-`
+`;
 
 const Icon = styled.Image``;
 
