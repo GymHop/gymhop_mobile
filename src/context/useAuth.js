@@ -1,4 +1,4 @@
-import React, {createContext, Component} from 'react';
+import React, {createContext, useMemo, useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
@@ -13,67 +13,33 @@ import {View, TouchableOpacity, Text, Image} from 'react-native';
 import { Measurements} from 'src/utils';
 
 const AuthContext = createContext();
+export const AuthProvider = (props) => {
+  const api = useMemo(() => axios.create({
+    baseURL: config.apiUrl,
+    headers: {
+      Accept: 'application/json',
+    },
+  }), [config]);
+  const [token,setToken] = useState('');
+  const [loading,setLoading] = useState(false);
+  const [user,setUser] = useState(null);
 
-export class AuthProvider extends Component {
-  state = {
-    token: '',
-    loading: false,
-    user: null,
-    emailVerifySend: false,
-    events: [],
-    places: [],
-    libraries: [],
-    eventsLoading: false,
-    placesLoading: false,
-    savedEvents: [],
-    savedLibrary: [],
-    comments: [],
-    messages: [],
-    rewards: [],
-    successModal: false,
-    cheduleEvents: [],
-    isEventModal: false,
+  const clearUser = () => {
+    setUser(null);
+    setLoading(false);
   };
-  Api;
 
-  constructor(props) {
-    super(props);
-    this.Api = axios.create({
-      baseURL: config.apiUrl,
-      headers: {
-        Accept: 'application/json',
-      },
-    });
-    // this.Api.interceptors.request.use(config => {
-    //   console.log(config);
-    //   return config;
-    // });
+  const getDefault = () => {
+    getUser();
   }
 
-  clearUser = () => {
-    this.setState({
-      user: null,
-      loading: false,
-    });
-  };
-
-  getDefault() {
-    this.getUser();
-  }
-
-  setLoading = loading => {
-    this.setState({
-      loading,
-    });
-  };
-
-  setAxiosHeader = () => {
-    this.Api.defaults.headers.common[
+  const setAxiosHeader = () => {
+    Api.defaults.headers.common[
       'Authorization'
-    ] = `Bearer ${this.state.token}`;
+    ] = `Bearer ${state.token}`;
   };
 
-  storeToken = async token => {
+  const storeToken = async token => {
     try {
       await AsyncStorage.setItem('@token', token);
     } catch (e) {
@@ -81,7 +47,7 @@ export class AuthProvider extends Component {
     }
   };
 
-  removeToken = async () => {
+  const removeToken = async () => {
     try {
       await AsyncStorage.removeItem('@token');
     } catch (e) {
@@ -89,18 +55,15 @@ export class AuthProvider extends Component {
     }
   };
 
-  getToken = async () => {
+  const getToken = async () => {
     try {
-      this.getLanguage();
       const value = await AsyncStorage.getItem('@token');
       console.log('TOKEN', value);
       if (value !== null) {
         // value previously stored
-        this.setState({
-          token: value,
-        });
-        this.setAxiosHeader();
-        this.getDefault();
+        setToken(value);
+        setAxiosHeader();
+        getDefault();
         NavigationAction.reset('main');
       } else {
         NavigationAction.reset('entry');
@@ -111,22 +74,20 @@ export class AuthProvider extends Component {
     }
   };
 
-  auth = async data => {
-    this.setLoading(true);
-    this.Api.post(REQUEST.AUTH, data)
+  const auth = async data => {
+    setLoading(true);
+    Api.post(REQUEST.AUTH, data)
       .then(res => {
         console.log(res);
-        this.setState({
-          user: res.data,
-        });
+        setUser(res.data);
         Toast.show({
           text1: 'Success',
           text2: 'Sms is send',
         });
-        this.setLoading(false);
+        setLoading(false);
       })
       .catch(e => {
-        this.setLoading(false);
+        setLoading(false);
         console.log(e);
         Toast.show({
           text1: 'Error',
@@ -135,83 +96,42 @@ export class AuthProvider extends Component {
       });
   };
 
-  login = data => {
-    this.setLoading(true);
-    this.Api.post(REQUEST.LOGIN, data)
+  const login = data => {
+    setLoading(true);
+    Api.post(REQUEST.LOGIN, data)
       .then(async res => {
-        this.storeToken(res.data.token);
-        this.setState({
-          token: res.data.token,
-        });
-        this.setAxiosHeader();
-        await this.getUser();
+        storeToken(res.data.token);
+        setToken(res.data.token)
+        setAxiosHeader();
+        await getUser();
 
-        this.setLoading(false);
+        setLoading(false);
 
         NavigationAction.reset('main');
       })
       .catch(e => {
         console.log(e);
-        this.setLoading(false);
-        this.showError('Wrong Code');
+        setLoading(false);
+        showError('Wrong Code');
       });
   };
 
-  getUser = async () => {
-    this.setLoading(true);
-    return this.Api.get(REQUEST.GET_USER)
+  const getUser = async () => {
+    setLoading(true);
+    return Api.get(REQUEST.GET_USER)
       .then(res => {
-        this.setLoading(false);
-        this.setState({
-          user: res.data.user,
-        });
+        setLoading(false);
+        setUser(res.data.user);
         return res.data.user;
       })
       .catch(e => {
-        this.setLoading(false);
-        this.showError(e);
+        setLoading(false);
+        showError(e);
         return e;
       });
   };
 
-  updateUser = data => {
-    this.setLoading(true);
-    this.Api.patch(REQUEST.UPDATE_USER, data)
-      .then(res => {
-        this.setLoading(false);
-        this.getUser();
-        Toast.show({
-          text1: 'Success',
-          text2: 'User updated',
-        });
-      })
-      .catch(e => {
-        console.log(e);
-        this.setLoading(false);
-
-        Toast.show({
-          type: 'error',
-          text1: 'Error',
-          text2: 'Something goes wrong',
-        });
-      });
-  };
-
-  verifyEmail = () => {
-    this.setLoading(true);
-    this.Api.get(REQUEST.VERIFY_EMAIL)
-      .then(res => {
-        this.setLoading(false);
-        this.showSuccess('Email send');
-      })
-      .catch(e => {
-        console.warn(e);
-        this.setLoading(false);
-        this.showError(e);
-      });
-  };
-
-  showError = error => {
+  const showError = error => {
     console.log('error:', error);
     Toast.show({
       type: 'error',
@@ -220,106 +140,54 @@ export class AuthProvider extends Component {
     });
   };
 
-  showSuccess = text => {
+  const showSuccess = text => {
     Toast.show({
       text1: 'Success',
       text2: text,
     });
   };
 
-  signOut = async () => {
-    try {
-      this.removeToken();
-      this.setState({
-        token: '',
-        loading: false,
-        user: null,
-        emailVerifySend: false,
-        events: [],
-        places: [],
-        libraries: [],
-        eventsLoading: false,
-        placesLoading: false,
-        savedEvents: [],
-        savedLibrary: [],
-        comments: [],
-        messages: [],
-      });
-      NavigationAction.reset('entry');
-      this.showSuccess('Signed out');
-    } catch (e) {
-      this.showError('Sorry, u cant do it now');
-    }
-  };
-
-
-
-  uploadImage = data => {
-    this.uploadLoading(true);
-    this.Api.post(REQUEST.UPLOAD_IMAGE, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data; ',
-      },
-    })
+  const sendRequest = data => {
+    setLoading(true);
+    Api.post(REQUEST.SEND_REQUEST, data)
       .then(res => {
-        this.uploadLoading(false);
-        this.getUser();
-        console.log(res);
-      })
-      .catch(e => {
-        this.showError(e);
-        this.uploadLoading(false);
-      });
-  };
-
-  sendRequest = data => {
-    this.setLoading(true);
-    this.Api.post(REQUEST.SEND_REQUEST, data)
-      .then(res => {
-        this.setLoading(false);
+        setLoading(false);
         NavigationAction.navigate('RequestStatus');
       })
       .catch(e => {
-        this.showError(e);
-        this.setLoading(false);
+        showError(e);
+        setLoading(false);
       });
   };
 
-  render() {
-    return (
-      <AuthContext.Provider
-        value={{
-          token: this.state.token,
-          user: this.state.user,
-          loading: this.state.loading,
-          getUser: this.getUser,
-          auth: this.auth,
-          login: this.login,
-          getToken: this.getToken,
-          updateUser: this.updateUser,
-          verifyEmail: this.verifyEmail,
-          signOut: this.signOut,
-          uploadImage: this.uploadImage,
-          sendRequest: this.sendRequest,
-          clearUser: this.clearUser,
-        }}>
-        {this.props.children}
-        {this.state.loading && (
-          <Modal transparent={true}>
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: 'rgba(0,0,0,0.5)',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <ActivityIndicator size={'small'} color={Res.colors.main} />
-            </View>
-          </Modal>
-        )}
-      </AuthContext.Provider>
-    );
-  }
+  return (
+    <AuthContext.Provider
+      value={{
+        token: token,
+        user: user,
+        loading: loading,
+        getUser: getUser,
+        auth: auth,
+        login: login,
+        getToken: getToken,
+        clearUser: clearUser,
+      }}>
+      {props.children}
+      {loading && (
+        <Modal transparent={true}>
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <ActivityIndicator size={'small'} color={Res.colors.main} />
+          </View>
+        </Modal>
+      )}
+    </AuthContext.Provider>
+  );
 }
 
 export const withAuth = Comp => {

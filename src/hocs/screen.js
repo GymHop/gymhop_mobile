@@ -20,12 +20,12 @@ export const screen = (ScreenComponent, navigationOptions) => {
     popToTop: options => navigation.popToTop({immediate: options.immediate}),
   });
 
-  return class KeyboardAware extends React.PureComponent {
-    displayName = `Screen(${
+  return function KeyboardAware(props){
+    const displayName = `Screen(${
       ScreenComponent.displayName || ScreenComponent.name
     })`;
 
-    navigationOptions =
+    let navigationOption =
       typeof navigationOptions === 'function'
         ? navigationOptionsContainer =>
             navigationOptions({
@@ -36,26 +36,24 @@ export const screen = (ScreenComponent, navigationOptions) => {
             })
         : navigationOptions;
 
-    render() {
-      return (
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          {/* <KeyboardAvoidingView behavior="padding" style={{flex: 1}}> */}
-          <>
-            {!navigationOptions.noHeader && (
-              <Header
-                navigationOptions={navigationOptions}
-                {...this.props}
-                drawer={this.props.drawer}
-              />
-            )}
-            <ScreenComponent
-              {...this.props}
-              navigation={enhanceNavigationProp(this.props.navigation)}
+    return (
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        {/* <KeyboardAvoidingView behavior="padding" style={{flex: 1}}> */}
+        <>
+          {!navigationOption?.noHeader && (
+            <Header
+              navigationOptions={navigationOption}
+              {...props}
+              drawer={props.drawer}
             />
-          </>
-          {/* </KeyboardAvoidingView> */}
-        </TouchableWithoutFeedback>
-      );
-    }
+          )}
+          <ScreenComponent
+            {...props}
+            navigation={enhanceNavigationProp(props.navigation)}
+          />
+        </>
+        {/* </KeyboardAvoidingView> */}
+      </TouchableWithoutFeedback>
+    );
   };
 };
