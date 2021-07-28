@@ -4,7 +4,12 @@ import {CommonActions, NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Keyboard, Platform} from 'react-native';
 import {View, Text} from 'react-native';
-import {LoginScreen, EntryScreen} from '../screens';
+import {
+  LoginScreen,
+  EntryScreen,
+  TemporaryNavScreen,
+  TempScreen,
+} from '../screens';
 import {Res} from '../resources';
 
 const rootNavigationRef = createRef();
@@ -67,6 +72,11 @@ export const AppNavigation = () => {
         headerMode="none"
         keyboardHandlingEnabled
         initialRouteName="entry">
+        <Stack.Screen
+          name="temporarv"
+          component={TempScreen}
+          options={{headerShown: false}}
+        />
         {/* <Stack.Screen name="entry" component={EntryScreen} options={{headerShown: false}}/> */}
         <Stack.Screen
           name="auth"
