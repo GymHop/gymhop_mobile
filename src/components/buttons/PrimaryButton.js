@@ -2,8 +2,8 @@ import React from 'react';
 // import glamorous from 'glamorous-native';
 import styled from 'styled-components/native';
 
-import {Res} from '../../resources';
-import {H2} from '../polygraphy';
+import { Res } from '../../resources';
+import { H2 } from '../polygraphy';
 
 // const Container = glamorous.touchableOpacity(props => ({
 //   borderRadius: Res.spaces.radius.default,
@@ -22,16 +22,16 @@ const Container = styled.TouchableOpacity`
   background-color: ${Res.colors.main};
   align-items: center;
   justify-content: center;
-
   align-self: ${props => props.small ? 'center' : 'auto'};
   padding-horizontal: ${props => props.small ? Res.spaces.lg : 0};
   height: 48px;
+  width: 100%;
 `
 
 export const PrimaryButton = props => {
   return (
     <Container small={props.small} {...props}>
-      <H2 style={props.textStyle} text={props.text} />
+      <H2 style={props.textStyle} text={props.text} uppercase={props.uppercase} />
     </Container>
   );
 };
