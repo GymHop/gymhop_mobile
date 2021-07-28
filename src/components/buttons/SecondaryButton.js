@@ -9,7 +9,7 @@ import { H2 } from '../polygraphy';
 const Container = styled.TouchableOpacity`
   border-radius: 19px;
   padding-vertical: ${props => props.small ? Res.spaces.sm : Res.spaces.padding.xs};
-  background-color: ${Res.colors.secondaryGreen};
+  background-color: ${Res.colors.primaryGreen};
   align-items: center;
   justify-content: center;
   align-self: center;

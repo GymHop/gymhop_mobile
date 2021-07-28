@@ -3,7 +3,15 @@ export const colors = {
   secondary: '#12295B',
   third: '#2C429A',
 
-  secondaryGreen: '#00C288',
+  primaryGreen: '#00C288',
+  secondaryGreen: '#00CF58',
+  altGreen: '#D4F8E5',
+
+  gold: '#F1CC52',
+
+  bgGrey: '#F5F5F5',
+  textGrey: '#727272',
+  iconGrey: '#454545',
 
 
   textDark: '#000000',
@@ -13,3 +21,4 @@ export const colors = {
   black: '#000',
 
 };
+
