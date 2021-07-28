@@ -1,7 +1,7 @@
 import React from 'react';
 // import glamorous from 'glamorous-native';
 import styled from 'styled-components/native';
-import {Res} from '../../resources';
+import { Res } from '../../resources';
 
 // const Text = glamorous.text(props => ({
 //   fontFamily: 'NeoSansW1G-Regular',
@@ -18,11 +18,12 @@ const Text = styled.Text`
   color: ${props => props.white ? Res.colors.white : Res.colors.textDark};
   font-weight: ${props => props.fontWeight ? props.fontWeight : '400'};
   line-height: 20px;
+  text-transform: ${props => props.uppercase ? 'uppercase' : 'none'};
 `
 
 export const H2 = props => {
   return (
-    <Text fontWeight={props.fontWeight} white={props.white} {...props}>
+    <Text fontWeight={props.fontWeight} white={props.white} uppercase={props.uppercase} {...props}>
       {props.text}
     </Text>
   );
