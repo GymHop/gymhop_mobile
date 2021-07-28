@@ -1,11 +1,11 @@
 import styled from 'styled-components/native';
-import React, {useState} from 'react';
-import {TextInputMask} from 'react-native-masked-text';
+import React, { useState } from 'react';
+import { TextInputMask } from 'react-native-masked-text';
 import PhoneInput from 'react-native-phone-number-input';
 import Toast from 'react-native-toast-message';
-import {ImageBackground} from 'react-native';
-import {Res} from '../../../resources';
-import {Measurements} from '../../../utils';
+import { ImageBackground } from 'react-native';
+import { Res } from '../../../resources';
+import { Measurements } from '../../../utils';
 import {
   DefaultInput,
   PrimaryButton,
@@ -21,8 +21,8 @@ import {
   Platform,
   TouchableOpacity,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {View} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { View } from 'react-native';
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
   /* background-color: ${Res.colors.main}; */
@@ -52,17 +52,16 @@ const PhoneInputContainer = styled.View`
 const Header = styled.View`
   ${Platform.OS === 'ios'
     ? Measurements.statusBarHeight &&
-      `
+    `
         height:
-          ${
-            Measurements.statusBarHeight + Measurements.navigationBarHeight + 10
-          }px;
+          ${Measurements.statusBarHeight + Measurements.navigationBarHeight + 10
+    }px;
         /* background-color: ${Res.colors.main}; */
         justify-content: flex-end;
         padding-bottom: ${Res.spaces.md}px;
       `
     : Measurements.navigationBarHeight &&
-      `height: ${Measurements.navigationBarHeight}px;`}
+    `height: ${Measurements.navigationBarHeight}px;`}
 `;
 
 export const LoginScreenView = props => {
@@ -73,11 +72,11 @@ export const LoginScreenView = props => {
 
   return (
     <ImageBackground
-      style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
+      style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}
       source={require('../../../assets/images/LoginBackground.jpeg')}>
       <Container behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <Header>
-          <Row style={{display: 'flex'}}>
+          <Row style={{ display: 'flex' }}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <H2 white text={'Back'} />
             </TouchableOpacity>
@@ -102,7 +101,7 @@ export const LoginScreenView = props => {
                 <H2
                   white
                   text="Log in with Phone Number"
-                  style={{marginBottom: 10}}
+                  style={{ marginBottom: 10 }}
                 />
                 <PhoneInput
                   // ref={phoneInput}
@@ -136,7 +135,7 @@ export const LoginScreenView = props => {
                     paddingHorizontal: Platform.OS === 'ios' ? 0 : 4,
                     paddingVertical: Platform.OS === 'ios' ? 0 : 0,
                   }}
-                  style={{borderColor: '#42DF90', background: 'transparent'}}
+                  style={{ borderColor: '#42DF90', background: 'transparent' }}
                 />
               </PhoneInputContainer>
 
@@ -161,7 +160,7 @@ export const LoginScreenView = props => {
                     }
                   }}
                   small
-                  style={{width: '100%'}}
+                  style={{ width: '100%' }}
                   text={'Log In'}
                 />
                 {/* {props.user && <Timer time={60} />} */}
@@ -191,7 +190,7 @@ export const LoginScreenView = props => {
                 white
                 text={'SMS Verification Sent'}
               />
-              <View style={{justifyContent: 'flex-start'}}>
+              <View style={{ justifyContent: 'flex-start' }}>
                 <H2 white text="Enter 6 digit code" />
                 <CodeEnter
                   onCode={code => {
@@ -228,7 +227,7 @@ export const LoginScreenView = props => {
                     }
                   }}
                   small
-                  style={{width: '100%'}}
+                  style={{ width: '100%' }}
                   text={'CONTINUE'}
                 />
                 {/* {props.user && <Timer time={60} />} */}
