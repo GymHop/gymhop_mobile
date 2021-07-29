@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
-import {Button, View, Text} from 'react-native';
-import {Res} from '../../../resources';
-import {Measurements} from '../../../utils';
+import { Button, View, Text } from 'react-native';
+import { Res } from '../../../resources';
+import { Measurements } from '../../../utils';
 const StyledText = styled.Text``;
 const Container = styled.View`
   flex: 1;
@@ -20,11 +21,15 @@ export const TempNavScreenView = props => {
   function navigateToLogin() {
     navigation.navigate('auth');
   }
+  function navigateToButtons() {
+    navigation.navigate('buttons');
+  }
 
   return (
     <Container>
       <StyledText>{'TempNavScreen'}</StyledText>
       <Button title="Go to Login Screen" onPress={() => navigateToLogin()} />
+      <Button title="Go to Buttons Screen" onPress={() => navigateToButtons()} />
     </Container>
   );
 };
