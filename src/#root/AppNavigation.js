@@ -8,7 +8,7 @@ import {
   LoginScreen,
   EntryScreen,
   TemporaryNavScreen,
-  TempScreen,
+  TempScreen, MapScreen
 } from '../screens';
 import {Res} from '../resources';
 
@@ -75,6 +75,11 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="temporarv"
           component={TempScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="onBoardingMap"
+          component={MapScreen}
           options={{headerShown: false}}
         />
         {/* <Stack.Screen name="entry" component={EntryScreen} options={{headerShown: false}}/> */}
