@@ -17,7 +17,9 @@ import {
   ScrollView,
   Text,
   Dimensions,
+  Image,
   ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Res} from '../../../resources';
@@ -54,10 +56,60 @@ export const OnboardSliderView = () => {
             setSliderPage(event);
           }}>
           <View style={{width, height}}>
-            <View style={styles.wrapper}>
-              <Text style={styles.header}>Welcome to</Text>
-              <Text style={styles.paragraph}>....something like that</Text>
-            </View>
+            <ImageBackground
+              style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
+              source={require('../../../assets/images/Onboarding1Backgroundcopy.jpg')}>
+              <View style={styles.wrapper}>
+                <Text style={styles.header}>Welcome to</Text>
+                <Image
+                  style={styles.ghLogo}
+                  source={require('../../../assets/images/logos/GHLogo.png')}
+                />
+                <Image
+                  style={{
+                    position: 'absolute',
+                    width: 43,
+                    height: 43,
+                    left: 64,
+                    top: 244,
+                  }}
+                  source={require('../../../assets/icons/mapMarkerStandard.png')}
+                />
+                <Image
+                  style={{
+                    position: 'absolute',
+                    width: 70,
+                    height: 70,
+                    left: 107,
+                    top: 287,
+                  }}
+                  source={require('../../../assets/icons/mapMarkerStandard.png')}
+                />
+                <Image
+                  style={{
+                    position: 'absolute',
+                    width: 92,
+                    height: 92,
+                    left: 217,
+                    top: 307,
+                  }}
+                  source={require('../../../assets/icons/mapMarkerStandard.png')}
+                />
+                <Image
+                  style={{
+                    position: 'absolute',
+                    width: 47,
+                    height: 47,
+                    left: 278,
+                    top: 244,
+                  }}
+                  source={require('../../../assets/icons/mapMarkerStandard.png')}
+                />
+                <Text style={styles.paragraph}>
+                  Mobile access to all your favorite gyms
+                </Text>
+              </View>
+            </ImageBackground>
           </View>
           <ImageBackground
             style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
@@ -106,6 +158,32 @@ export const OnboardSliderView = () => {
               key={index}
             />
           ))}
+          <TouchableOpacity
+            style={{
+              position: 'absolute',
+
+              width: 46,
+              height: 46,
+              right: 15,
+            }}>
+            <Image
+              style={{
+                width: 46,
+                height: 46,
+              }}
+              source={require('../../../assets/images/Rectangle3.png')}
+            />
+            <Image
+              style={{
+                position: 'absolute',
+                width: 21.33,
+                height: 21.33,
+                top: 12.3,
+                right: 12.3,
+              }}
+              source={require('../../../assets/icons/arrow.png')}
+            />
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </>
@@ -113,22 +191,30 @@ export const OnboardSliderView = () => {
 };
 
 const styles = StyleSheet.create({
+  ghLogo: {
+    height: 62,
+    width: 372,
+  },
   wrapper: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 30,
   },
   header: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 27,
+    fontWeight: '500',
+    marginTop: 47,
   },
   paragraph: {
-    fontSize: 17,
+    fontSize: 30,
+    fontWeight: '700',
+    color: 'white',
+    textAlign: 'center',
+    position: 'absolute',
+    top: 500,
   },
   paginationWrapper: {
     position: 'absolute',
-    bottom: 200,
+    bottom: 80,
     left: 0,
     right: 0,
     justifyContent: 'center',
@@ -136,9 +222,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   paginationDots: {
-    height: 10,
-    width: 10,
-    borderRadius: 10 / 2,
-    marginLeft: 10,
+    height: 13,
+    width: 13,
+    borderRadius: 13 / 2,
+    marginLeft: 23,
   },
 });
