@@ -8,7 +8,7 @@ import {
   LoginScreen,
   EntryScreen,
   TemporaryNavScreen,
-  TempScreen, MapScreen
+  TempScreen, OnboardingMapScreen1, OnboardingMapScreen2
 } from '../screens';
 import {Res} from '../resources';
 
@@ -78,8 +78,13 @@ export const AppNavigation = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="onBoardingMap"
-          component={MapScreen}
+          name="onBoardingMap1"
+          component={OnboardingMapScreen1}
+          options={{headerShown: false}}
+        />
+          <Stack.Screen
+          name="onBoardingMap2"
+          component={OnboardingMapScreen2}
           options={{headerShown: false}}
         />
         {/* <Stack.Screen name="entry" component={EntryScreen} options={{headerShown: false}}/> */}

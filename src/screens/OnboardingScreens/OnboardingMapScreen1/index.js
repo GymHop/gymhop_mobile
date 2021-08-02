@@ -1,17 +1,17 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 
-import {screen} from '../../hocs/screen';
+import {screen} from '../../../hocs/screen';
 
-import MapScreenContainer from './containers/MapScreenContainer';
+import OnboardingMapScreen1Container from './containers/OnboardingMapScreen1Container';
 
-export const MapScreen = screen(
+export const OnboardingMapScreen1 = screen(
   props => {
     const navigation = useNavigation();
     // const handleLogin = () => {
     //   navigation.navigate('main');
     // };
-    return <MapScreenContainer />;
+    return <OnboardingMapScreen1Container />;
   },
   {
     noHeader: true,

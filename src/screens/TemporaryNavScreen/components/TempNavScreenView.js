@@ -21,7 +21,7 @@ export const TempNavScreenView = props => {
     navigation.navigate('auth');
   }
   function navigateToMap() {
-    navigation.navigate('onBoardingMap');
+    navigation.navigate('onBoardingMap1');
   }
   return (
     <Container>

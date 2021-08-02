@@ -2,9 +2,11 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
 import {Button, View, Text, ImageBackground, Platform} from 'react-native';
-import {Res} from '../../../resources';
-import {Measurements} from '../../../utils';
-import MapIMG from '../../../assets/images/MapOnboardingStatic.jpg'
+import {Res} from '../../../../resources';
+import {Measurements} from '../../../../utils';
+import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg'
+import PrimaryButton from '../../../../components/buttons/PrimaryButton'
+
 const StyledText = styled.Text``;
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -37,7 +39,7 @@ width: 400px;
 height: null;
 `;
 
-export const MapScreenView = props => {
+export const OnboardingMapScreen2View = props => {
 return (
   <BackgroundImageStyle 
     source={MapIMG}>
