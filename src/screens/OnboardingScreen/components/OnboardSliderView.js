@@ -21,6 +21,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+import OnboardingOneContainer from '../containers/OnboardingOneContainer';
 import {useNavigation} from '@react-navigation/native';
 import {Res} from '../../../resources';
 
@@ -58,20 +59,7 @@ export const OnboardSliderView = () => {
           }}
           ref={node => (this.scroll = node)}>
           <View style={{width, height}}>
-            <ImageBackground
-              style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
-              source={require('../../../assets/images/onboard1backgroundwithpins.png')}>
-              <View style={styles.wrapper}>
-                <Text style={styles.header}>Welcome to</Text>
-                <Image
-                  style={styles.ghLogo}
-                  source={require('../../../assets/images/logos/GHLogo.png')}
-                />
-                <Text style={styles.paragraph}>
-                  Mobile access to all your favorite gyms
-                </Text>
-              </View>
-            </ImageBackground>
+            <OnboardingOneContainer />
           </View>
           <ImageBackground
             style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
