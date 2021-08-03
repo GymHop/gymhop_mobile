@@ -11,7 +11,7 @@ export const OnboardingMapScreen2 = screen(
     // const handleLogin = () => {
     //   navigation.navigate('main');
     // };
-    return <OnboardingMapScreenContainer2 />;
+    return <OnboardingMapScreen2Container />;
   },
   {
     noHeader: true,

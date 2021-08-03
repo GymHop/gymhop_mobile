@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
 import {Button, View, Text, ImageBackground, Platform} from 'react-native';
@@ -41,12 +41,28 @@ width: 400px;
 height: null;
 `;
 
+
 export const OnboardingMapScreen1View = props => {
+  const navigation = useNavigation();
+  function navigateToMap2() {
+  navigation.navigate('onBoardingMap2');
+}
 return (
   <BackgroundImageStyle 
     source={MapIMG}>
       <Container behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <TierTile tier={"Standard Tier"} text={"A network of indendent walk-in-andworkout gyms."}/>
+        <TierTile 
+          tier={"Standard Tier"}
+          text={"A network of indendent walk-in-and-workout gyms."}
+          textContainerStyling={
+            'display: flex; width: 223px; height: 42px;   align-items: center; justify-content: center; top: 15px'
+          }
+          tierTitleContainerStyling={"position: absolute; display: flex; width: 217px; height: 30px; left: 55px; top: 10px;"}
+          containerHeight={123}  
+          containerWidth={345}
+          />
+          <Button title="Go to Map 2" 
+          onPress={() => navigateToMap2()}/>
       </Container>
   </BackgroundImageStyle>
 
