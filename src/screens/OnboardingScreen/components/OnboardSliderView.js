@@ -99,7 +99,7 @@ export const OnboardSliderView = () => {
           </View>
         </ScrollView>
         <View style={styles.paginationWrapper}>
-          {Array.from(Array(5).keys()).map((key, index) => (
+          {Array.from(Array(4).keys()).map((key, index) => (
             <View
               style={[
                 styles.paginationDots,
