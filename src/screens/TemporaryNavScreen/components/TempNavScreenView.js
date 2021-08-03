@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
-import {Button, View, Text} from 'react-native';
-import {Res} from '../../../resources';
-import {Measurements} from '../../../utils';
+import { Button, View, Text } from 'react-native';
+import { Res } from '../../../resources';
+import { Measurements } from '../../../utils';
 const StyledText = styled.Text``;
 const Container = styled.View`
   flex: 1;
@@ -27,6 +27,9 @@ export const TempNavScreenView = props => {
   function navigateToSlider() {
     navigation.navigate('onboardslider');
   }
+  function navigateToO3() {
+    navigation.navigate('onboard3');
+  }
 
   return (
     <Container>
@@ -37,6 +40,7 @@ export const TempNavScreenView = props => {
         onPress={() => navigateToButtons()}
       />
       <Button title="Go to Slider Screen" onPress={() => navigateToSlider()} />
+      <Button title="Go to Onboarding3" onPress={() => navigateToO3()} />
     </Container>
   );
 };
