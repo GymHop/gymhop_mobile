@@ -6,6 +6,7 @@ import {Res} from '../../../../resources';
 import {Measurements} from '../../../../utils';
 import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg'
 import {TierTile} from '../../../../components'
+import { GymTile } from '../../../../components/onboardingComponents';
 
 const StyledText = styled.Text``;
 const Container = styled.KeyboardAvoidingView`
@@ -61,8 +62,9 @@ return (
           containerHeight={123}  
           containerWidth={345}
           />
-          <Button title="Go to Map 2" 
-          onPress={() => navigateToMap2()}/>
+          <GymTile />
+          {/* <Button title="Go to Map 2" 
+          onPress={() => navigateToMap2()}/> */}
       </Container>
   </BackgroundImageStyle>
 

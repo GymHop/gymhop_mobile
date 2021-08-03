@@ -31,17 +31,24 @@ const StyledText = styled.Text`
   color: #FFFFFF
 `
 const StyledTextContainer = styled.View`
-    ${props => props.textContainerStyling}
+  ${props => props.textContainerStyling}
 `
 
 const StyledTierTitle = styled.Text`
-    fontFamily: System;
-    fontStyle: normal;
-    fontWeight: bold;
-    fontSize: 24px; 
-    lineHeight: 30px;
-    textAlign: center;
-    color: #FFFFFF;
+  fontFamily: System;
+  fontStyle: normal;
+  fontWeight: bold;
+  fontSize: 24px; 
+  lineHeight: 30px;
+  textAlign: center;
+  color: #FFFFFF;
+  ${props => props.tierTileStyling}
+`
+const StyledImage = styled.Image`
+  width: 38.48px;
+  height: 44px;
+  right: 85.84px;
+  bottom: 15px;
 `
 
 const StyledTierTitleContainer = styled.View`
@@ -52,7 +59,10 @@ export const TierTile = props => {
   return(
   <Container style={({width: Number(props.containerWidth), height: Number(props.containerHeight)})}>
     <StyledTierTitleContainer {...props}>
-      <StyledTierTitle>{props.tier}</StyledTierTitle>
+      {props.PremiumBadge && (
+        <StyledImage source={props.PremiumBadge} />
+      )}
+      <StyledTierTitle {...props}>{props.tier}</StyledTierTitle>
     </StyledTierTitleContainer>
     <StyledTextContainer    
       style={{flex: 1, flexWrap: 'wrap'}} {...  props}>

@@ -5,7 +5,8 @@ import {Button, View, Text, ImageBackground, Platform} from 'react-native';
 import {Res} from '../../../../resources';
 import {Measurements} from '../../../../utils';
 import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg'
-import PrimaryButton from '../../../../components/buttons/PrimaryButton'
+import {TierTile} from '../../../../components'
+import PremiumBadge from '../../../../assets/icons/premiumBadge.png'
 
 const StyledText = styled.Text``;
 const Container = styled.KeyboardAvoidingView`
@@ -44,7 +45,18 @@ return (
   <BackgroundImageStyle 
     source={MapIMG}>
       <Container behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-
+      <TierTile 
+          tier={"Premium Tier"}
+          text={"Premium facilities with luxury amenities + access to all Standard Tier gyms"}
+          textContainerStyling={
+            'display: flex; width: 319px; height: 42px;   align-items: center; justify-content: center; top: 5px'
+          }
+          tierTileStyling={"right: 60; bottom: 7"}
+          tierTitleContainerStyling={"display: flex; flexDirection: row; width: 217px; height: 30px; left: 55px; top: 10px;"}
+          containerHeight={152}  
+          containerWidth={344}
+          PremiumBadge={PremiumBadge}
+          />
       </Container>
   </BackgroundImageStyle>
 
