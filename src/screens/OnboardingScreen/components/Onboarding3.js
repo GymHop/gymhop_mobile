@@ -167,7 +167,7 @@ export const Onboarding3 = () => {
 
                   <PrimaryButton text={'Share Location'} uppercase />
                 </View>
-                <CheckinButton />
+
 
 
                 {/* <View style={{ backgroundColor: 'white' }}>
