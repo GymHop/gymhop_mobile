@@ -60,52 +60,12 @@ export const OnboardSliderView = () => {
           <View style={{width, height}}>
             <ImageBackground
               style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
-              source={require('../../../assets/images/Onboarding1Backgroundcopy.jpg')}>
+              source={require('../../../assets/images/onboard1backgroundwithpins.png')}>
               <View style={styles.wrapper}>
                 <Text style={styles.header}>Welcome to</Text>
                 <Image
                   style={styles.ghLogo}
                   source={require('../../../assets/images/logos/GHLogo.png')}
-                />
-                <Image
-                  style={{
-                    position: 'absolute',
-                    width: 43,
-                    height: 43,
-                    left: 64,
-                    top: 244,
-                  }}
-                  source={require('../../../assets/icons/mapMarkerStandard.png')}
-                />
-                <Image
-                  style={{
-                    position: 'absolute',
-                    width: 70,
-                    height: 70,
-                    left: 107,
-                    top: 287,
-                  }}
-                  source={require('../../../assets/icons/mapMarkerStandard.png')}
-                />
-                <Image
-                  style={{
-                    position: 'absolute',
-                    width: 92,
-                    height: 92,
-                    left: 217,
-                    top: 307,
-                  }}
-                  source={require('../../../assets/icons/mapMarkerStandard.png')}
-                />
-                <Image
-                  style={{
-                    position: 'absolute',
-                    width: 47,
-                    height: 47,
-                    left: 278,
-                    top: 244,
-                  }}
-                  source={require('../../../assets/icons/mapMarkerStandard.png')}
                 />
                 <Text style={styles.paragraph}>
                   Mobile access to all your favorite gyms
