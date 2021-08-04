@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import styled from 'styled-components/native';
-import { Button, View, Text } from 'react-native';
+import { Button, View, Text, StyleSheet } from 'react-native';
 import { Res } from '../../../resources';
 import { Measurements } from '../../../utils';
 import { PrimaryButton } from '../../../components';
 import { PrimaryButtonTransparent } from '../../../components/buttons';
+import { CheckinButton, SecondaryButton } from '../../../components/buttons/SecondaryButton';
 const StyledText = styled.Text``;
 const Container = styled.View`
   flex: 1;
@@ -22,6 +23,7 @@ export const ButtonVisualizer = props => {
   return (
     <Container>
       <StyledText>{'Buttons'}</StyledText>
+      <Text style={styles.tryFont}>Please work</Text>
 
       <PrimaryButton text={'Primary Button Green'} uppercase ></PrimaryButton>
 
@@ -29,6 +31,25 @@ export const ButtonVisualizer = props => {
 
       <PrimaryButtonTransparent text={'Primary Transparent'} uppercase ></PrimaryButtonTransparent>
 
+      <View style={{ padding: 10 }}></View>
+
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <CheckinButton />
+      </View>
+
+
+      <View style={{ padding: 10 }}></View>
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <SecondaryButton text={'Secondary Button'} />
+      </View>
     </Container>
   );
 };
+
+
+const styles = StyleSheet.create({
+  tryFont: {
+    fontFamily: "PlusJakartaSans-Bold"
+
+  }
+})

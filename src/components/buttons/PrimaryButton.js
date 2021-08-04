@@ -35,7 +35,7 @@ export const PrimaryButton = props => {
       end={{ x: 1, y: 1 }}
       style={styles.linearGradient}>
       <Container small={props.small} {...props}>
-        <H2 style={props.textStyle} text={props.text} uppercase={props.uppercase} />
+        <H2 style={{ fontFamily: "PlusJakartaSans-Regular" }} text={props.text} uppercase={props.uppercase} />
       </Container>
     </LinearGradient>
   );
