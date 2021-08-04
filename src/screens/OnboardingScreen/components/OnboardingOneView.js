@@ -9,6 +9,7 @@ import {
   H3,
   H1,
 } from '../../../components';
+import LinearGradientOnboardContainer from '../containers/LinearGradientOnboardContainer';
 import {View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
 
 export const OnboradingOneView = () => {
@@ -25,6 +26,7 @@ export const OnboradingOneView = () => {
         <Text style={styles.paragraph}>
           Mobile access to all your favorite gyms
         </Text>
+        <LinearGradientOnboardContainer />
       </View>
     </ImageBackground>
   );
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
     width: 372,
   },
   wrapper: {
-    justifyContent: 'center',
+    flex: 1,
     alignItems: 'center',
   },
   header: {
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     position: 'absolute',
     top: 500,
+    zIndex: 1,
   },
   paginationWrapper: {
     position: 'absolute',
