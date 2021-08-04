@@ -30,7 +30,7 @@ const StyledImage = styled.Image`
 `;
 
 const StyledTitle = styled.Text`
-  top: 0px
+  top: 0px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -134,6 +134,12 @@ const StyledBadgeContainer = styled.View`
   background-color: rgba(4, 4, 4, 0.6);
 `;
 
+const styles = StyleSheet.create({
+  fontText: {
+    fontFamily: 'PlusJakartaSans-Regular'
+  },
+}); 
+
 export const GymTile = props => {
   return(
   <Container>
@@ -146,10 +152,10 @@ export const GymTile = props => {
         <StyledImage source={props.image} {...props}/>
     </ImageContainer>
     <StyledBottomContainer>
-      <StyledTitle>{props.title}</StyledTitle>
+      <StyledTitle style={styles.fontFamily}>{props.title}</StyledTitle>
       <AddressContainer>
         <StyledLocationPin source={LocationPin}/>
-        <StyledAddress>{props.address}</StyledAddress>
+        <StyledAddress style={styles.fontFamily}>{props.address}</StyledAddress>
       </AddressContainer>
       <StyledLineContainer>
           <Svg height="100" width="228" style={{top:53}}>
@@ -157,10 +163,10 @@ export const GymTile = props => {
           </Svg>
       </StyledLineContainer> 
       <StyledBottomLineContainer>
-        <StyledOpenClosed>{props.openClosed}</StyledOpenClosed>
-        <StyledDistance>{props.distance}</StyledDistance>
+        <StyledOpenClosed style={styles.fontFamily}>{props.openClosed}</StyledOpenClosed>
+        <StyledDistance style={styles.fontFamily}>{props.distance}</StyledDistance>
         <StyledStar source={Star}></StyledStar>
-        <StyledRating>{props.rating}</StyledRating>
+        <StyledRating style={styles.fontFamily}>{props.rating}</StyledRating>
       </StyledBottomLineContainer>
     </StyledBottomContainer>
   </Container>

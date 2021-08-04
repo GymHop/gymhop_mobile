@@ -20,7 +20,8 @@ const Container = styled.View`
   width: null;
   borderRadius: 8px;
   border: 2px solid rgba(4, 196, 157, 1)
-`
+`;
+
 const StyledText = styled.Text`
   fontFamily: System;
   fontWeight: normal;
@@ -29,10 +30,11 @@ const StyledText = styled.Text`
   lineHeight: 21.09px;
   textAlign: center;
   color: #FFFFFF
-`
+`;
+
 const StyledTextContainer = styled.View`
   ${props => props.textContainerStyling}
-`
+`;
 
 const StyledTierTitle = styled.Text`
   fontFamily: System;
@@ -43,17 +45,28 @@ const StyledTierTitle = styled.Text`
   textAlign: center;
   color: #FFFFFF;
   ${props => props.tierTileStyling}
-`
+`;
+
 const StyledImage = styled.Image`
   width: 38.48px;
   height: 44px;
   right: 85.84px;
   bottom: 15px;
-`
+`;
 
 const StyledTierTitleContainer = styled.View`
     ${props => props.tierTitleContainerStyling}
-`
+`;
+
+const styles = StyleSheet.create({
+  fontTitle: {
+    fontFamily: 'PlusJakartaSans-Regular'
+  },
+  fontText: {
+    fontFamily: 'Roboto-Black'
+  }
+}); 
+
 
 export const TierTile = props => {
   return(
@@ -62,11 +75,11 @@ export const TierTile = props => {
       {props.PremiumBadge && (
         <StyledImage source={props.PremiumBadge} />
       )}
-      <StyledTierTitle {...props}>{props.tier}</StyledTierTitle>
+      <StyledTierTitle style={styles.fontTitle} {...props}>{props.tier}</StyledTierTitle>
     </StyledTierTitleContainer>
     <StyledTextContainer    
       style={{flex: 1, flexWrap: 'wrap'}} {...  props}>
-      <StyledText>{props.text}</StyledText>
+      <StyledText style={styles.fontText}>{props.text}</StyledText>
     </StyledTextContainer>
   </Container>
 
