@@ -36,7 +36,7 @@ export const PrimaryButtonTransparent = props => {
 
     <Container small={props.small} {...props}>
 
-      <Text fontWeight={props.fontWeight} white={props.white} uppercase={props.uppercase} {...props}>
+      <Text style={{ fontFamily: 'PlusJakartaSans-Regular' }} fontWeight={props.fontWeight} white={props.white} uppercase={props.uppercase} {...props}>
         {props.text}
       </Text>
     </Container>

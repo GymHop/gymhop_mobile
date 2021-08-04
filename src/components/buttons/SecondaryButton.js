@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     paddingLeft: 10,
+    fontFamily: "PlusJakartaSans-Regular"
   }
 })
 
@@ -63,7 +64,7 @@ export const SecondaryButton = props => {
       end={{ x: 1, y: 1 }}
       style={styles.linearGradient}>
       <Container small={props.small} {...props}>
-        <H2 style={props.textStyle} text={props.text} white />
+        <H2 style={{ fontFamily: "PlusJakartaSans-Regular" }} text={props.text} white />
       </Container>
     </LinearGradient>
   );
