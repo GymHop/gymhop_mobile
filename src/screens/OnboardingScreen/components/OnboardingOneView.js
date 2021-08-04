@@ -9,6 +9,7 @@ import {
   H3,
   H1,
 } from '../../../components';
+import LinearGradient from 'react-native-linear-gradient';
 import {View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
 
 export const OnboradingOneView = () => {
@@ -25,6 +26,16 @@ export const OnboradingOneView = () => {
         <Text style={styles.paragraph}>
           Mobile access to all your favorite gyms
         </Text>
+        <LinearGradient
+          colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 1)']}
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: 354,
+            zIndex: 0,
+            bottom: 0,
+          }}
+        />
       </View>
     </ImageBackground>
   );
@@ -36,7 +47,7 @@ const styles = StyleSheet.create({
     width: 372,
   },
   wrapper: {
-    justifyContent: 'center',
+    flex: 1,
     alignItems: 'center',
   },
   header: {
@@ -51,6 +62,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     position: 'absolute',
     top: 500,
+    zIndex: 1,
   },
   paginationWrapper: {
     position: 'absolute',
