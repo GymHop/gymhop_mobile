@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   DefaultInput,
   PrimaryButton,
@@ -21,12 +21,14 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+import OnboardingOneContainer from '../containers/OnboardingOneContainer';
 import {useNavigation} from '@react-navigation/native';
 import {Res} from '../../../resources';
 
 export const OnboardSliderView = () => {
   const [sliderState, setSliderState] = useState({currentPage: 0});
   const {width, height} = Dimensions.get('window');
+  const scrollViewRef = useRef(0);
 
   const setSliderPage = event => {
     const {currentPage} = sliderState;
@@ -54,62 +56,10 @@ export const OnboardSliderView = () => {
           showsHorizontalScrollIndicator={false}
           onScroll={event => {
             setSliderPage(event);
-          }}>
+          }}
+          ref={node => (this.scroll = node)}>
           <View style={{width, height}}>
-            <ImageBackground
-              style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
-              source={require('../../../assets/images/Onboarding1Backgroundcopy.jpg')}>
-              <View style={styles.wrapper}>
-                <Text style={styles.header}>Welcome to</Text>
-                <Image
-                  style={styles.ghLogo}
-                  source={require('../../../assets/images/logos/GHLogo.png')}
-                />
-                <Image
-                  style={{
-                    position: 'absolute',
-                    width: 43,
-                    height: 43,
-                    left: 64,
-                    top: 244,
-                  }}
-                  source={require('../../../assets/icons/mapMarkerStandard.png')}
-                />
-                <Image
-                  style={{
-                    position: 'absolute',
-                    width: 70,
-                    height: 70,
-                    left: 107,
-                    top: 287,
-                  }}
-                  source={require('../../../assets/icons/mapMarkerStandard.png')}
-                />
-                <Image
-                  style={{
-                    position: 'absolute',
-                    width: 92,
-                    height: 92,
-                    left: 217,
-                    top: 307,
-                  }}
-                  source={require('../../../assets/icons/mapMarkerStandard.png')}
-                />
-                <Image
-                  style={{
-                    position: 'absolute',
-                    width: 47,
-                    height: 47,
-                    left: 278,
-                    top: 244,
-                  }}
-                  source={require('../../../assets/icons/mapMarkerStandard.png')}
-                />
-                <Text style={styles.paragraph}>
-                  Mobile access to all your favorite gyms
-                </Text>
-              </View>
-            </ImageBackground>
+            <OnboardingOneContainer />
           </View>
           <ImageBackground
             style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
@@ -159,9 +109,12 @@ export const OnboardSliderView = () => {
             />
           ))}
           <TouchableOpacity
+            onPress={() => {
+              scrollViewRef.current += 1;
+              this.scroll.scrollTo({x: width * scrollViewRef.current});
+            }}
             style={{
               position: 'absolute',
-
               width: 46,
               height: 46,
               right: 15,
