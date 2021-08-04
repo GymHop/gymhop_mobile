@@ -53,6 +53,18 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>PlusJakartaSans-Bold.ttf</string>
+		<string>PlusJakartaSans-BoldItalic.ttf</string>
+		<string>PlusJakartaSans-ExtraBold.ttf</string>
+		<string>PlusJakartaSans-ExtraBoldItalic.ttf</string>
+		<string>PlusJakartaSans-ExtraLight.ttf</string>
+		<string>PlusJakartaSans-ExtraLightItalic.ttf</string>
+		<string>PlusJakartaSans-Italic.ttf</string>
+		<string>PlusJakartaSans-Light.ttf</string>
+		<string>PlusJakartaSans-LightItalic.ttf</string>
+		<string>PlusJakartaSans-Medium.ttf</string>
+		<string>PlusJakartaSans-MediumItalic.ttf</string>
+		<string>PlusJakartaSans-Regular.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
@@ -69,21 +81,6 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
-		<string>PlusJakartaSans-Italic[wght].ttf</string>
-		<string>PlusJakartaSans[wght].ttf</string>
-		<string>Roboto-Black.ttf</string>
-		<string>Roboto-BlackItalic.ttf</string>
-		<string>Roboto-Bold.ttf</string>
-		<string>Roboto-BoldItalic.ttf</string>
-		<string>Roboto-Italic.ttf</string>
-		<string>Roboto-Light.ttf</string>
-		<string>Roboto-LightItalic.ttf</string>
-		<string>Roboto-Medium.ttf</string>
-		<string>Roboto-MediumItalic.ttf</string>
-		<string>Roboto-Regular.ttf</string>
-		<string>Roboto-Thin.ttf</string>
-		<string>Roboto-ThinItalic.ttf</string>
-		<string>PlusJakartaSans.ttf</string>
 	</array>
 </dict>
 </plist>

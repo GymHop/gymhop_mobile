@@ -1,16 +1,19 @@
 import 'react-native-gesture-handler';
-import React, {createRef, useEffect, useState} from 'react';
-import {CommonActions, NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Keyboard, Platform} from 'react-native';
-import {View, Text} from 'react-native';
+import React, { createRef, useEffect, useState } from 'react';
+import { CommonActions, NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Keyboard, Platform } from 'react-native';
+import { View, Text } from 'react-native';
 import {
   LoginScreen,
   EntryScreen,
   TemporaryNavScreen,
-  TempScreen, OnboardingMapScreen1, OnboardingMapScreen2
+  TempScreen, OnboardingMapScreen1, OnboardingMapScreen2,
+  OndoardSliderScreen,
 } from '../screens';
-import {Res} from '../resources';
+import { Res } from '../resources';
+import { ButtonVisualizer } from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
+import { Onboarding3 } from '../screens/OnboardingScreen/components/Onboarding3';
 
 const rootNavigationRef = createRef();
 
@@ -75,7 +78,7 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="temporarv"
           component={TempScreen}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="onBoardingMap1"
@@ -100,6 +103,21 @@ export const AppNavigation = () => {
               fontSize: Res.spaces.font.h1,
             },
           }}
+        />
+        <Stack.Screen
+          name="buttons"
+          component={ButtonVisualizer}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="onboardslider"
+          component={OndoardSliderScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="onboard3"
+          component={Onboarding3}
+          options={{ headerShown: false }}
         />
         <Stack.Screen name="main" component={Main} />
       </Stack.Navigator>
