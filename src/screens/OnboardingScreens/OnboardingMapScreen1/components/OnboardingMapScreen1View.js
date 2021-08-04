@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
-import {Button, View, Text, ImageBackground, Platform} from 'react-native';
+import {Button, View, Text, ImageBackground, Image, Platform} from 'react-native';
 import {Res} from '../../../../resources';
 import {Measurements} from '../../../../utils';
 import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg'
 import {TierTile} from '../../../../components'
-import { GymTile } from '../../../../components/onboardingComponents';
-
+import {GymTile} from '../../../../components/onboardingComponents';
+import {GymIcon} from '../../../../components/onboardingComponents';
+import JimboImg from '../../../../assets/images/gymPhotos/JimbosInterior.jpg';
+import Ellipse from '../../../../assets/icons/Ellipse.png'
+import Polygon from '../../../../assets/icons/Polygon.png'
 const StyledText = styled.Text``;
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -38,10 +41,22 @@ const PhoneInputContainer = styled.View`
 
 const BackgroundImageStyle = styled.ImageBackground`
 flex: 1; 
-width: 400px; 
-height: null;
+width: 80%; 
+height: 100%;
+top: 0px;
+`;
+const GymIconContainer = styled.View`
+  top: 25px
 `;
 
+const GymTileContainer = styled.View`
+  top: 15px
+`;
+
+const MapContainer = styled.View`
+ width: 500px;
+ height: 845px;
+`;
 
 export const OnboardingMapScreen1View = props => {
   const navigation = useNavigation();
@@ -49,24 +64,38 @@ export const OnboardingMapScreen1View = props => {
   navigation.navigate('onBoardingMap2');
 }
 return (
+  <MapContainer>
   <BackgroundImageStyle 
     source={MapIMG}>
       <Container behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <TierTile 
-          tier={"Standard Tier"}
-          text={"A network of indendent walk-in-and-workout gyms."}
+          tier={'Standard Tier'}
+          text={'A network of indendent walk-in-and-workout gyms.'}
           textContainerStyling={
             'display: flex; width: 223px; height: 42px;   align-items: center; justify-content: center; top: 15px'
           }
-          tierTitleContainerStyling={"position: absolute; display: flex; width: 217px; height: 30px; left: 55px; top: 10px;"}
+          tierTitleContainerStyling={'position: absolute; display: flex; width: 217px; height: 30px; left: 55px; top: 10px;'}
           containerHeight={123}  
           containerWidth={345}
           />
-          <GymTile />
-          {/* <Button title="Go to Map 2" 
-          onPress={() => navigateToMap2()}/> */}
+          <GymIconContainer>
+            <GymIcon ellipse={Ellipse} polygon={Polygon} />
+          </GymIconContainer>
+          <GymTileContainer>
+          <GymTile  
+            image={JimboImg} 
+            imageStyle={ 'bottom: 25; height: 125px; width: 245px;'}
+            title={'Jimbos Gym'} 
+            address={'213 Fitness Way, Brooklyn NY'}
+            openClosed={'Open'}
+            distance={'6.7mi away'}
+            rating={'4.5'}/>
+          </GymTileContainer>
+          <Button title="Go to Map 2" 
+          onPress={() => navigateToMap2()}/>
       </Container>
   </BackgroundImageStyle>
+  </MapContainer>
 
  
   

@@ -7,6 +7,11 @@ import {Measurements} from '../../../../utils';
 import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg'
 import {TierTile} from '../../../../components'
 import PremiumBadge from '../../../../assets/icons/premiumBadge.png'
+import {GymTile} from '../../../../components/onboardingComponents';
+import {GymIcon} from '../../../../components/onboardingComponents';
+import PlanetLiftImg from '../../../../assets/images/gymPhotos/planetlift.png';
+import PremEllipse from '../../../../assets/icons/premellipse.png'
+import PremPolygon from '../../../../assets/icons/prempolygon.png'
 
 const StyledText = styled.Text``;
 const Container = styled.KeyboardAvoidingView`
@@ -40,6 +45,16 @@ width: 400px;
 height: null;
 `;
 
+const GymIconContainer = styled.View`
+  top: 300px;
+  left: 115px;
+`;
+
+const GymTileContainer = styled.View`
+  top: 280px;
+  left: 50px;
+`;
+
 export const OnboardingMapScreen2View = props => {
 return (
   <BackgroundImageStyle 
@@ -57,6 +72,20 @@ return (
           containerWidth={344}
           PremiumBadge={PremiumBadge}
           />
+          <GymIconContainer>
+            <GymIcon ellipse={PremEllipse} polygon={PremPolygon} />
+          </GymIconContainer>
+          <GymTileContainer>
+            <GymTile  
+              image={PlanetLiftImg} 
+              PremiumBadge={PremiumBadge}
+              imageStyle={'bottom: 66px; width: 245px;'}
+              title={'Planet Lift'} 
+              address={'142 Western Ave, Brooklyn NY'}
+              openClosed={'Open'}
+              distance={'7.2mi away'}
+              rating={'4.5'}/>
+          </GymTileContainer>
       </Container>
   </BackgroundImageStyle>
 
