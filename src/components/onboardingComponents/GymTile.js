@@ -6,6 +6,7 @@ import { H2 } from '../polygraphy';
 import LocationPin from "../../assets/icons/locationPinBasic.png"
 import Star from "../../assets/icons/star_24px.png"
 import {Svg, Line } from 'react-native-svg';
+
 const Container = styled.View`
   borderBottomLeftRadius: 14px;
   borderBottomRightRadius: 14px;
@@ -56,7 +57,8 @@ const StyledLineContainer = styled.View`
 width: 228px;
 height: 1px;
 bottom: 40px;
-`
+`;
+
 const StyledBottomLineContainer = styled.View`
   display: flex;
   flex-direction: row;
