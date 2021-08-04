@@ -52,47 +52,11 @@ const StyledAddress = styled.Text`
   color: #727272;
 `;
 
-const StyledLine = styled.View`
-  width: 228px;
-  height: 10px;
-  top: 13px;
-  borderColor: 'rgba(196, 196, 196, 1)'; 
-  borderWidth: 1px; 
-  borderStyle: dashed;
-  position: relative;
- 
-`;
-
 const StyledLineContainer = styled.View`
 width: 228px;
 height: 1px;
 bottom: 40px;
 `
-
-const Mask1 = styled.View`
-  width: 228px;
-  height: 20px;
-  background-color: rgba(255, 252, 248, 1);
-  top: 58px;
-  z-index:2
-`;
-const Mask2 = styled.View`
-height: 10px;
-width: 10px;
-background-color: rgba(255, 252, 248, 1);
-top: 35px;
-left: 220px;
-z-index: 2;
-`;
-;const Mask3 = styled.View`
-  height: 10px;
-  width: 10px;
-  background-color: rgba(255, 252, 248, 1);
-  top: 25px;
-  right: 5px;
-  z-index: 2;
-`;
-
 const StyledBottomLineContainer = styled.View`
   display: flex;
   flex-direction: row;
@@ -186,13 +150,8 @@ export const GymTile = props => {
         <StyledAddress>{props.address}</StyledAddress>
       </AddressContainer>
       <StyledLineContainer>
-        {/* <Mask1/>
-        <Mask2/>
-        <Mask3/>
-        <StyledLine 
-          style={{strokeWidth: "10", strokeDasharray: "62, 15"}}/> */}
-          <Svg height="1" width="228">
-              <Line x1="0" y1="0" x2="100" y2="100" stroke="red" strokeWidth="2" />
+          <Svg height="100" width="228" style={{top:53}}>
+              <Line strokeDasharray='8, 10' x1="0" y1="0" x2="228" y2="0" stroke="rgba(196, 196, 196, 1)" strokeWidth="2" />
           </Svg>
       </StyledLineContainer> 
       <StyledBottomLineContainer>
