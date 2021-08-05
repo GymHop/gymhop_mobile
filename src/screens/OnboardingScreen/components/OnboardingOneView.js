@@ -9,7 +9,7 @@ import {
   H3,
   H1,
 } from '../../../components';
-import LinearGradientOnboardContainer from '../containers/LinearGradientOnboardContainer';
+import LinearGradientOnboard from '../../../components/onboardingComponents/LinearGradientOnboard';
 import {View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
 
 export const OnboradingOneView = () => {
@@ -26,7 +26,7 @@ export const OnboradingOneView = () => {
         <Text style={styles.paragraph}>
           Mobile access to all your favorite gyms
         </Text>
-        <LinearGradientOnboardContainer />
+        <LinearGradientOnboard />
       </View>
     </ImageBackground>
   );
