@@ -17,3 +17,4 @@ If you have yarn -
 3. Run "yarn install" to install dependencies in top directory
 4. Run "yarn start" to start the metro bundler
 5. Run "yarn android" in top directory to start the project
+

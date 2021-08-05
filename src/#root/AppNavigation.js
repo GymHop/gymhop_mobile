@@ -8,9 +8,8 @@ import {
   LoginScreen,
   EntryScreen,
   TemporaryNavScreen,
-  TempScreen,
+  TempScreen, OnboardingMapScreen1, OnboardingMapScreen2,
   OndoardSliderScreen,
-
 } from '../screens';
 import { Res } from '../resources';
 import { ButtonVisualizer } from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
@@ -80,6 +79,16 @@ export const AppNavigation = () => {
           name="temporarv"
           component={TempScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="onBoardingMap1"
+          component={OnboardingMapScreen1}
+          options={{headerShown: false}}
+        />
+          <Stack.Screen
+          name="onBoardingMap2"
+          component={OnboardingMapScreen2}
+          options={{headerShown: false}}
         />
         {/* <Stack.Screen name="entry" component={EntryScreen} options={{headerShown: false}}/> */}
         <Stack.Screen
