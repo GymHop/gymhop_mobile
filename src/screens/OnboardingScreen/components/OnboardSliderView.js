@@ -22,6 +22,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import OnboardingOneContainer from '../containers/OnboardingOneContainer';
+import OnboardingMapScreen1Container from '../../OnboardingScreens/OnboardingMapScreen1/containers/OnboardingMapScreen1Container';
+import OnboardingMapScreen2Container from '../../OnboardingScreens/OnboardingMapScreen2/containers/OnboardingMapScreen2Container';
 import {useNavigation} from '@react-navigation/native';
 import {Res} from '../../../resources';
 
@@ -61,26 +63,15 @@ export const OnboardSliderView = () => {
           <View style={{width, height}}>
             <OnboardingOneContainer />
           </View>
-          <ImageBackground
-            style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
-            source={require('../../../assets/images/MapOnboardingStatic.jpg')}>
-            <View style={{width, height}}>
-              <View style={styles.wrapper}>
-                <Text style={styles.header}>Onboard map 1 screen</Text>
-                <Text style={styles.paragraph}>stuff</Text>
-              </View>
-            </View>
-          </ImageBackground>
-          <ImageBackground
-            style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
-            source={require('../../../assets/images/MapOnboardingStatic.jpg')}>
-            <View style={{width, height}}>
-              <View style={styles.wrapper}>
-                <Text style={styles.header}>Onboard map 2 screen</Text>
-                <Text style={styles.paragraph}>stuff</Text>
-              </View>
-            </View>
-          </ImageBackground>
+
+          <View style={{width, height}}>
+            <OnboardingMapScreen1Container />
+          </View>
+
+          <View style={{width, height}}>
+            <OnboardingMapScreen2Container />
+          </View>
+
           <ImageBackground
             style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
             source={require('../../../assets/images/OverheadOnboarding3.jpg')}>
