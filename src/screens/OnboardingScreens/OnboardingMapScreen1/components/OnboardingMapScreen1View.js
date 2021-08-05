@@ -11,6 +11,7 @@ import {GymIcon} from '../../../../components/onboardingComponents';
 import JimboImg from '../../../../assets/images/gymPhotos/JimbosInterior.jpg';
 import Ellipse from '../../../../assets/icons/Ellipse.png'
 import Polygon from '../../../../assets/icons/Polygon.png'
+import { LinearGradientOnboard } from '../../../../components/onboardingComponents'
 const StyledText = styled.Text``;
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -20,6 +21,7 @@ const Container = styled.KeyboardAvoidingView`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 `;
 
 const Row = styled.View`
@@ -92,6 +94,7 @@ return (
             rating={'4.5'}/>
           </GymTileContainer>
       </Container>
+      <LinearGradientOnboard />
   </BackgroundImageStyle>
   </MapContainer>
 

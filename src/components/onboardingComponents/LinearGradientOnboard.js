@@ -1,7 +1,7 @@
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
-const LinearGradientOnboard = props => {
+export const LinearGradientOnboard = props => {
   return (
     <LinearGradient
       colors={['rgba(22, 22, 22, 0)', 'rgba(22, 22, 22, 1)']}
@@ -16,4 +16,4 @@ const LinearGradientOnboard = props => {
   );
 };
 
-export default LinearGradientOnboard;
+

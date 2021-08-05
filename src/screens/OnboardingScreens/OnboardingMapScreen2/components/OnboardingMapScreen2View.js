@@ -12,6 +12,7 @@ import {GymIcon} from '../../../../components/onboardingComponents';
 import PlanetLiftImg from '../../../../assets/images/gymPhotos/planetlift.png';
 import PremEllipse from '../../../../assets/icons/premellipse.png'
 import PremPolygon from '../../../../assets/icons/prempolygon.png'
+import { LinearGradientOnboard } from '../../../../components/onboardingComponents'
 
 const StyledText = styled.Text``;
 const Container = styled.KeyboardAvoidingView`
@@ -20,6 +21,7 @@ const Container = styled.KeyboardAvoidingView`
   padding-horizontal: ${Res.spaces.md}px;
   padding-bottom: ${Measurements.safeAreaBottomInset}px;
   display: flex;
+  z-index: 3;
 `;
 
 const Row = styled.View`
@@ -87,6 +89,7 @@ return (
               rating={'4.5'}/>
           </GymTileContainer>
       </Container>
+      <LinearGradientOnboard />
   </BackgroundImageStyle>
 
  
