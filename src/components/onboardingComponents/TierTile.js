@@ -59,11 +59,8 @@ const StyledTierTitleContainer = styled.View`
 `;
 
 const styles = StyleSheet.create({
-  fontTitle: {
-    fontFamily: 'PlusJakartaSans-Regular'
-  },
   fontText: {
-    fontFamily: 'Roboto-Black'
+    fontFamily: 'PlusJakartaSans-Regular'
   }
 }); 
 
@@ -75,7 +72,7 @@ export const TierTile = props => {
       {props.PremiumBadge && (
         <StyledImage source={props.PremiumBadge} />
       )}
-      <StyledTierTitle style={styles.fontTitle} {...props}>{props.tier}</StyledTierTitle>
+      <StyledTierTitle style={styles.fontText} {...props}>{props.tier}</StyledTierTitle>
     </StyledTierTitleContainer>
     <StyledTextContainer    
       style={{flex: 1, flexWrap: 'wrap'}} {...  props}>

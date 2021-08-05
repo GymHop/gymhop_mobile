@@ -91,8 +91,6 @@ return (
             distance={'6.7mi away'}
             rating={'4.5'}/>
           </GymTileContainer>
-          <Button title="Go to Map 2" 
-          onPress={() => navigateToMap2()}/>
       </Container>
   </BackgroundImageStyle>
   </MapContainer>
