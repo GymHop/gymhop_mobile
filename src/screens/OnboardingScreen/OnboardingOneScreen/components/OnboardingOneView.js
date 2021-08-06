@@ -9,19 +9,19 @@ import {
   H3,
   H1,
 } from '../../../components';
-import {LinearGradientOnboard} from '../../../components/onboardingComponents/LinearGradientOnboard';
+import {LinearGradientOnboard} from '../../../../components/onboardingComponents/LinearGradientOnboard';
 import {View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
 
 export const OnboradingOneView = () => {
   return (
     <ImageBackground
       style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
-      source={require('../../../assets/images/onboard1backgroundwithpins.png')}>
+      source={require('../../../../assets/images/onboard1backgroundwithpins.png')}>
       <View style={styles.wrapper}>
         <Text style={styles.header}>Welcome to</Text>
         <Image
           style={styles.ghLogo}
-          source={require('../../../assets/images/logos/GHLogo.png')}
+          source={require('../../../../assets/images/logos/GHLogo.png')}
         />
         <Text style={styles.paragraph}>
           Mobile access to all your favorite gyms

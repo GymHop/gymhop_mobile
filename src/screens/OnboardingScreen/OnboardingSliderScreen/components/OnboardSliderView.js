@@ -8,7 +8,7 @@ import {
   H2,
   H3,
   H1,
-} from '../../../components';
+} from '../../../../components';
 import {
   View,
   StatusBar,
@@ -21,11 +21,11 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import OnboardingOneContainer from '../containers/OnboardingOneContainer';
-import OnboardingMapScreen1Container from '../OnboardingMapScreen1/containers/OnboardingMapScreen1Container';
-import OnboardingMapScreen2Container from '../OnboardingMapScreen2/containers/OnboardingMapScreen2Container';
+import OnboardingOneContainer from '../../OnboardingOneScreen/containers/OnboardingOneContainer';
+import OnboardingMapScreen1Container from '../../OnboardingMapScreen1/containers/OnboardingMapScreen1Container';
+import OnboardingMapScreen2Container from '../../OnboardingMapScreen2/containers/OnboardingMapScreen2Container';
 import {useNavigation} from '@react-navigation/native';
-import {Res} from '../../../resources';
+import {Res} from '../../../../resources';
 
 export const OnboardSliderView = () => {
   const [sliderState, setSliderState] = useState({currentPage: 0});
@@ -74,7 +74,7 @@ export const OnboardSliderView = () => {
 
           <ImageBackground
             style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
-            source={require('../../../assets/images/OverheadOnboarding3.jpg')}>
+            source={require('../../../../assets/images/OverheadOnboarding3.jpg')}>
             <View style={{width, height}}>
               <View style={styles.wrapper}>
                 <Text style={styles.header}>Onboarding3</Text>
@@ -115,7 +115,7 @@ export const OnboardSliderView = () => {
                 width: 46,
                 height: 46,
               }}
-              source={require('../../../assets/images/Rectangle3.png')}
+              source={require('../../../../assets/images/Rectangle3.png')}
             />
             <Image
               style={{
@@ -125,7 +125,7 @@ export const OnboardSliderView = () => {
                 top: 12.3,
                 right: 12.3,
               }}
-              source={require('../../../assets/icons/arrow.png')}
+              source={require('../../../../assets/icons/arrow.png')}
             />
           </TouchableOpacity>
         </View>
