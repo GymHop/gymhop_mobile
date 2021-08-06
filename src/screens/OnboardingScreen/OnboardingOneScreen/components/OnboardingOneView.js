@@ -8,7 +8,7 @@ import {
   H2,
   H3,
   H1,
-} from '../../../components';
+} from '../../../../components';
 import {LinearGradientOnboard} from '../../../../components/onboardingComponents/LinearGradientOnboard';
 import {View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
 
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     fontSize: 27,
     fontWeight: '500',
     marginTop: 47,
+    fontFamily: 'PlusJakartaSans-Regular',
   },
   paragraph: {
     fontSize: 30,
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 500,
     zIndex: 1,
+    fontFamily: 'PlusJakartaSans-Regular',
   },
   paginationWrapper: {
     position: 'absolute',
