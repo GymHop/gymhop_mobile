@@ -22,8 +22,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import OnboardingOneContainer from '../containers/OnboardingOneContainer';
-import OnboardingMapScreen1Container from '../../OnboardingScreens/OnboardingMapScreen1/containers/OnboardingMapScreen1Container';
-import OnboardingMapScreen2Container from '../../OnboardingScreens/OnboardingMapScreen2/containers/OnboardingMapScreen2Container';
+import OnboardingMapScreen1Container from '../OnboardingMapScreen1/containers/OnboardingMapScreen1Container';
+import OnboardingMapScreen2Container from '../OnboardingMapScreen2/containers/OnboardingMapScreen2Container';
 import {useNavigation} from '@react-navigation/native';
 import {Res} from '../../../resources';
 

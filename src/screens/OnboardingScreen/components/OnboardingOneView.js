@@ -9,7 +9,7 @@ import {
   H3,
   H1,
 } from '../../../components';
-import LinearGradientOnboard from '../../../components/onboardingComponents/LinearGradientOnboard';
+import {LinearGradientOnboard} from '../../../components/onboardingComponents/LinearGradientOnboard';
 import {View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
 
 export const OnboradingOneView = () => {
