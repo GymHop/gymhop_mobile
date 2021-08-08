@@ -36,6 +36,10 @@ export const TempNavScreenView = props => {
   function navigateToSlider() {
     navigation.navigate('onboardslider');
   }
+
+  function navigateToMap1() {
+    navigation.navigate('map1');
+  }
   // function navigateToO3() {
   //   navigation.navigate('onboard3');
   // }
@@ -50,6 +54,10 @@ export const TempNavScreenView = props => {
       <Button
         title="Go to Buttons Screen"
         onPress={() => navigateToButtons()}
+      />
+      <Button
+        title="Go to Map1 Screen"
+        onPress={() => navigateToMap1()}
       />
       <Button title="Go to Slider Screen" onPress={() => navigateToSlider()} />
       {/* <Button title="Go to Onboarding3" onPress={() => navigateToO3()} /> */}

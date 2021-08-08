@@ -61,10 +61,6 @@ const MapContainer = styled.View`
 `;
 
 export const OnboardingMapScreen1View = props => {
-  const navigation = useNavigation();
-  function navigateToMap2() {
-  navigation.navigate('onBoardingMap2');
-}
 return (
   <MapContainer>
   <BackgroundImageStyle 
