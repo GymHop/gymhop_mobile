@@ -23,6 +23,7 @@
 		7E09E03D828949379F404334 /* PlusJakartaSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 158CD9A6BE404174930133E1 /* PlusJakartaSans-ExtraLightItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		83BB178EB17FCC674E4BD685 /* libPods-GymHop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B34B5E003BB821DC1D62C77E /* libPods-GymHop.a */; };
+		8C99E30F26BC8899001D8096 /* geolocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C99E30E26BC8899001D8096 /* geolocation.swift */; };
 		AB50CA3658514DDEA1639EB2 /* PlusJakartaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F06298C4E84441938D413B5C /* PlusJakartaSans-Light.ttf */; };
 		B466EEFC435F4B0CBB532170 /* PlusJakartaSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6670D92E29874C1AB6D27092 /* PlusJakartaSans-MediumItalic.ttf */; };
 		FEECA765AC194265AC2CE025 /* PlusJakartaSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E76B6BF3B4D34B98A9138CE2 /* PlusJakartaSans-ExtraLight.ttf */; };
@@ -71,6 +72,8 @@
 		7A07B147C164432FA6BDBA92 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GymHop/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		888BD3CB18E442089E379798 /* Pods-GymHop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymHop.release.xcconfig"; path = "Target Support Files/Pods-GymHop/Pods-GymHop.release.xcconfig"; sourceTree = "<group>"; };
+		8C99E30D26BC8899001D8096 /* GymHop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GymHop-Bridging-Header.h"; sourceTree = "<group>"; };
+		8C99E30E26BC8899001D8096 /* geolocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = geolocation.swift; sourceTree = "<group>"; };
 		ACC0A0EB2FA6C07DFFDCE7E8 /* Pods-GymHop-GymHopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymHop-GymHopTests.debug.xcconfig"; path = "Target Support Files/Pods-GymHop-GymHopTests/Pods-GymHop-GymHopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF10181D4D844A1FA2AB808B /* PlusJakartaSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Regular.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Regular.ttf"; sourceTree = "<group>"; };
 		B3431A294AEC4118AAA51F56 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				8C99E30E26BC8899001D8096 /* geolocation.swift */,
+				8C99E30D26BC8899001D8096 /* GymHop-Bridging-Header.h */,
 			);
 			name = GymHop;
 			sourceTree = "<group>";
@@ -283,7 +288,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -500,6 +505,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				8C99E30F26BC8899001D8096 /* geolocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +594,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "us.gymhop.gymhop-mobile";
 				PRODUCT_NAME = GymHop;
+				SWIFT_OBJC_BRIDGING_HEADER = "GymHop-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -614,6 +621,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "us.gymhop.gymhop-mobile";
 				PRODUCT_NAME = GymHop;
+				SWIFT_OBJC_BRIDGING_HEADER = "GymHop-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

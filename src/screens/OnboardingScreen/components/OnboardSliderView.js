@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import {
   DefaultInput,
   PrimaryButton,
@@ -22,17 +22,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import OnboardingOneContainer from '../containers/OnboardingOneContainer';
-import {useNavigation} from '@react-navigation/native';
-import {Res} from '../../../resources';
+import { useNavigation } from '@react-navigation/native';
+import { Res } from '../../../resources';
 
 export const OnboardSliderView = () => {
-  const [sliderState, setSliderState] = useState({currentPage: 0});
-  const {width, height} = Dimensions.get('window');
+  const [sliderState, setSliderState] = useState({ currentPage: 0 });
+  const { width, height } = Dimensions.get('window');
   const scrollViewRef = useRef(0);
 
   const setSliderPage = event => {
-    const {currentPage} = sliderState;
-    const {x} = event.nativeEvent.contentOffset;
+    const { currentPage } = sliderState;
+    const { x } = event.nativeEvent.contentOffset;
     const indexOfNextScreen = Math.floor(x / width);
     if (indexOfNextScreen !== currentPage) {
       setSliderState({
@@ -42,14 +42,14 @@ export const OnboardSliderView = () => {
     }
   };
 
-  const {currentPage: pageIndex} = sliderState;
+  const { currentPage: pageIndex } = sliderState;
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <ScrollView
-          style={{flex: 1}}
+          style={{ flex: 1 }}
           horizontal={true}
           scrollEventThrottle={16}
           pagingEnabled={true}
@@ -58,13 +58,13 @@ export const OnboardSliderView = () => {
             setSliderPage(event);
           }}
           ref={node => (this.scroll = node)}>
-          <View style={{width, height}}>
+          <View style={{ width, height }}>
             <OnboardingOneContainer />
           </View>
           <ImageBackground
-            style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
+            style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}
             source={require('../../../assets/images/MapOnboardingStatic.jpg')}>
-            <View style={{width, height}}>
+            <View style={{ width, height }}>
               <View style={styles.wrapper}>
                 <Text style={styles.header}>Onboard map 1 screen</Text>
                 <Text style={styles.paragraph}>stuff</Text>
@@ -72,9 +72,9 @@ export const OnboardSliderView = () => {
             </View>
           </ImageBackground>
           <ImageBackground
-            style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
+            style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}
             source={require('../../../assets/images/MapOnboardingStatic.jpg')}>
-            <View style={{width, height}}>
+            <View style={{ width, height }}>
               <View style={styles.wrapper}>
                 <Text style={styles.header}>Onboard map 2 screen</Text>
                 <Text style={styles.paragraph}>stuff</Text>
@@ -82,16 +82,16 @@ export const OnboardSliderView = () => {
             </View>
           </ImageBackground>
           <ImageBackground
-            style={{flex: 1, resizeMode: 'cover', width: null, height: null}}
+            style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}
             source={require('../../../assets/images/OverheadOnboarding3.jpg')}>
-            <View style={{width, height}}>
+            <View style={{ width, height }}>
               <View style={styles.wrapper}>
                 <Text style={styles.header}>Onboarding3</Text>
                 <Text style={styles.paragraph}>... let's see what gyms</Text>
               </View>
             </View>
           </ImageBackground>
-          <View style={{width, height}}>
+          <View style={{ width, height }}>
             <View style={styles.wrapper}>
               <Text style={styles.header}>Onboarding_map</Text>
               <Text style={styles.paragraph}>... get started</Text>
@@ -103,7 +103,7 @@ export const OnboardSliderView = () => {
             <View
               style={[
                 styles.paginationDots,
-                {backgroundColor: pageIndex === index ? 'white' : '#00C29E'},
+                { backgroundColor: pageIndex === index ? 'white' : '#00C29E' },
               ]}
               key={index}
             />
@@ -111,7 +111,7 @@ export const OnboardSliderView = () => {
           <TouchableOpacity
             onPress={() => {
               scrollViewRef.current += 1;
-              this.scroll.scrollTo({x: width * scrollViewRef.current});
+              this.scroll.scrollTo({ x: width * scrollViewRef.current });
             }}
             style={{
               position: 'absolute',
