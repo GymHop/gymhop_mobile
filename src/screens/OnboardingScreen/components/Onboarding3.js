@@ -1,15 +1,10 @@
+/* eslint-disable prettier/prettier */
 import { Platform, PermissionsAndroid } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import {
-  DefaultInput,
   PrimaryButton,
-  Timer,
-  CodeEnter,
-  H2,
-  H3,
-  H1,
 } from '../../../components';
 import {
   View,
@@ -29,7 +24,14 @@ import { Res } from '../../../resources';
 
 export const Onboarding3 = () => {
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+
+  // if user clicks RIGHT ARROW BUTTON -OR- 
+  // if user swipes to next
+  // setShowModal(true)
+
+
+  // IF user has granted permissions, go to next onboarding screen
 
 
 
@@ -40,7 +42,7 @@ export const Onboarding3 = () => {
       Geolocation.requestAuthorization('always');
     } else {
       const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         console.log('PERMISSION GRANTED');
@@ -50,33 +52,33 @@ export const Onboarding3 = () => {
     }
   };
 
-  Geolocation.getCurrentPosition(
-    (position) => {
-      console.log(position);
-    },
-    (error) => {
-      // See error code charts below.
-      console.log(error.code, error.message);
-    },
-    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-  );
-
   return (
     <>
       <ImageBackground
         style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}
         source={require('../../../assets/images/OverheadOnboarding3.jpg')}>
-        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-
-
+        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, }}>
           <View style={styles.blackModal}>
-            <Text style={{ fontFamily: 'PlusJakartaSans-Bold', fontSize: 26, color: 'white', textAlign: 'center' }}>
+            <Text
+              style={{
+                fontFamily: 'PlusJakartaSans-Bold',
+                fontSize: 26,
+                color: 'white',
+                textAlign: 'center',
+              }}>
               Let's see what gyms are close to you!
             </Text>
-            <Image
+            <Image style={{ marginTop: 30, marginBottom: 20 }}
               source={require('../../../assets/icons/locationServices.png')}
             />
-            <Text style={{ color: 'white', fontSize: 18, textAlign: 'center' }}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 18,
+                fontWeight: '500',
+                textAlign: 'center',
+                marginBottom: 25,
+              }}>
               Location services are required to find gyms near you and allow
               for proximity-based check-ins.
             </Text>
@@ -90,17 +92,18 @@ export const Onboarding3 = () => {
           </View>
 
           {showModal && (
-            <View style={{ backgroundColor: 'white' }}>
-              <Text>Location Required</Text>
-              <Text>
-                In order to get the best of your GymHop experience, location
-                services are required to easily find and check-in to gyms.{' '}
-              </Text>
-              <PrimaryButton text={'Share Location'} uppercase />
-            </View>)}
+            <View style={{ width: '100%', height: '100%', backgroundColor: 'rgba(41,41,41,.55)', position: 'absolute' }}>
+              <View style={styles.whiteModal}>
+                <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', fontFamily: 'PlusJakartaSans-Bold', }}>Location Required</Text>
+                <Text style={{ textAlign: 'center', fontSize: 16, margin: 15, fontFamily: 'PlusJakartaSans-Regular', padding: 2 }}>
+                  In order to get the best of your GymHop experience, location
+                  services are required to easily find and check-in to gyms.
+                </Text>
+                <PrimaryButton text={'Share Location'} uppercase />
+              </View>
+            </View>
+          )}
         </View>
-
-
       </ImageBackground>
     </>
   );
@@ -116,7 +119,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '90%',
-    padding: 15,
+    paddingRight: 15,
+    paddingLeft: 15,
+    paddingTop: 25,
+    paddingBottom: 30,
+    borderRadius: 10,
 
   },
+  whiteModal: {
+    backgroundColor: 'white',
+    position: 'absolute',
+    borderRadius: 10,
+    width: '90%',
+    paddingTop: 20,
+    paddingBottom: 23,
+    paddingLeft: 15,
+    paddingRight: 15,
+    top: '47%',
+    alignSelf: 'center'
+
+
+
+  }
 });
