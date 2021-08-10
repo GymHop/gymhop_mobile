@@ -13,7 +13,7 @@ import {
 } from '../screens';
 import {Res} from '../resources';
 import {ButtonVisualizer} from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
-import {Onboarding3} from '../screens/OnboardingScreen/components/Onboarding3';
+// import {Onboarding3} from '../screens/OnboardingScreen/components/Onboarding3';
 
 const rootNavigationRef = createRef();
 
@@ -119,11 +119,11 @@ export const AppNavigation = () => {
           component={OndoardSliderScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="onboard3"
           component={Onboarding3}
           options={{headerShown: false}}
-        />
+        /> */}
         <Stack.Screen name="main" component={Main} />
       </Stack.Navigator>
     </NavigationContainer>
