@@ -21,9 +21,9 @@ export const Map1ScreenView = props => {
   return (
     <Container>
       <Map 
-      latitude={40.709318}
-      longitude={-73.990686}
-      latitudeDelta={0.058}
+      latitudeState={40.709318}
+      longitudeState={-73.990686}
+      latitudeDelta={0.068}
       longitudeDelta={0.033}>
       </Map>
     </Container>
