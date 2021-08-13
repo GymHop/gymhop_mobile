@@ -11,15 +11,8 @@ height: 54px;
 width: 54px
 `
 export const MarkerComponent = props => {
-  // const [tier, setTier] = useState(false)
-  // useEffectuseEffect(() => {
-  //   if (props.tier === 'standard') {
-  //     setTier(true)
-  //   }
-  // }, []);
-
   const locationPinHandler = async () => {
-
+    props.setRegion(props.coordinate)
 
   }
 
