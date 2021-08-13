@@ -1,6 +1,7 @@
 import {H1, H2, H3, H4} from './polygraphy';
 import {PrimaryButton} from './buttons';
 import {TierTile} from './onboardingComponents'
+import {GymTile} from './onboardingComponents'
 import {
   Header,
 } from './interface';
@@ -15,5 +16,6 @@ export {
   Header,
   DefaultInput,
   CodeEnter,
-  TierTile
+  TierTile, 
+  GymTile,
 };
