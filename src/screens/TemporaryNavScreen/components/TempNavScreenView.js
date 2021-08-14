@@ -22,11 +22,11 @@ export const TempNavScreenView = props => {
     navigation.navigate('auth');
   }
 
-  function navigateToMap1() {
+  function navigateToOnboardMap1() {
     navigation.navigate('onBoardingMap1');
   }
 
-  function navigateToMap2() {
+  function navigateToOnboardMap2() {
     navigation.navigate('onBoardingMap2');
   }
 
@@ -40,16 +40,27 @@ export const TempNavScreenView = props => {
     navigation.navigate('loggedOut');
   }
 
+  function navigateToMap1() {
+    navigation.navigate('map1');
+  }
+  // function navigateToO3() {
+  //   navigation.navigate('onboard3');
+  // }
+
 
   return (
     <Container>
       <StyledText>{'TempNavScreen'}</StyledText>
       <Button title="Go to Login Screen" onPress={() => navigateToLogin()} />
-      <Button title="Go to Map1" onPress={() => navigateToMap1()} />
-      <Button title="Go to Map2" onPress={() => navigateToMap2()} />
+      <Button title="Go to OnboardMap1" onPress={() => navigateToOnboardMap1()} />
+      <Button title="Go to OnboardMap2" onPress={() => navigateToOnboardMap2()} />
       <Button
         title="Go to Buttons Screen"
         onPress={() => navigateToButtons()}
+      />
+      <Button
+        title="Go to Map1 Screen"
+        onPress={() => navigateToMap1()}
       />
       <Button title="Go to Slider Screen" onPress={() => navigateToSlider()} />
       <Button title="Go to Logged Out" onPress={() => navigateToLoggedOut()} />

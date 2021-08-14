@@ -22,10 +22,10 @@ const App = () => {
     <AuthProvider>
       <>
         <ErrorBoundary>
+        <QueryClientProvider client={queryClient}>
           <AppNavigation>
-            <QueryClientProvider client={queryClient}>
-            </QueryClientProvider>
           </AppNavigation>
+          </QueryClientProvider>
         </ErrorBoundary>
         <Toast ref={ref => Toast.setRef(ref)} />
       </>

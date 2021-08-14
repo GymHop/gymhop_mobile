@@ -43,7 +43,7 @@ const PhoneInputContainer = styled.View`
 
 const BackgroundImageStyle = styled.ImageBackground`
 flex: 1; 
-width: 400px; 
+width: null; 
 height: null;
 `;
 
