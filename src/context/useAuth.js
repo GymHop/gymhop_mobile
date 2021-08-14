@@ -12,7 +12,7 @@ import {View, TouchableOpacity, Text, Image} from 'react-native';
 
 import {Measurements} from 'src/utils';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = props => {
   const Api = useMemo(

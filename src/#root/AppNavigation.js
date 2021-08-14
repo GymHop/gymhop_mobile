@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
-import React, {createRef, useEffect, useState} from 'react';
-import {CommonActions, NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Keyboard, Platform} from 'react-native';
-import {View, Text} from 'react-native';
+import React, { createRef, useEffect, useState } from 'react';
+import { CommonActions, NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Keyboard, Platform } from 'react-native';
+import { View, Text } from 'react-native';
 import {
   LoginScreen,
   EntryScreen,
@@ -13,8 +13,9 @@ import {
   OnboardingMapScreen2,
   OndoardSliderScreen,
 } from '../screens';
-import {Res} from '../resources';
-import {ButtonVisualizer} from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
+import { Res } from '../resources';
+import { ButtonVisualizer } from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
+import { OnboardingLoggedOutScreen } from '../screens/OnboardingScreen/OnboardingLoggedOutScreen';
 
 const rootNavigationRef = createRef();
 
@@ -79,17 +80,17 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="temporarv"
           component={TempScreen}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="onBoardingMap1"
           component={OnboardingMapScreen1}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="onBoardingMap2"
           component={OnboardingMapScreen2}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         {/* <Stack.Screen name="entry" component={EntryScreen} options={{headerShown: false}}/> */}
         <Stack.Screen
@@ -108,12 +109,17 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="buttons"
           component={ButtonVisualizer}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="loggedOut"
+          component={OnboardingLoggedOutScreen}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="onboardslider"
           component={OndoardSliderScreen}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
 
         <Stack.Screen name="main" component={Main} />
