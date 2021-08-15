@@ -54,7 +54,7 @@ export const OnboardingThreeView = () => {
     if (Platform.OS === 'ios') {
       console.log('ios');
       const iosGranted = await Geolocation.requestAuthorization('always');
-      console.log(iosGranted)
+      console.log(iosGranted);
       Geolocation.getCurrentPosition(
         (position) => {
           console.log(position);
