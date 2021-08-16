@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { Res } from '../../resources';
 import { H2 } from '../polygraphy';
-import LocationPin from "../../assets/icons/locationPinBasic.png"
+import LocationPin from "../../assets/icons/locationpin.png"
 import Star from "../../assets/icons/star_24px.png"
 import {Svg, Line } from 'react-native-svg';
 
@@ -111,7 +111,6 @@ const StyledBottomContainer = styled.View`
 `;
 
 const StyledLocationPin = styled.Image`
-  background: #DADADA;
   height: 14.29px;
   width: 10px
   right: 10px
