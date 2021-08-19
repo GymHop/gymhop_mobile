@@ -4,9 +4,7 @@ import {Platform } from 'react-native';
 import { Res } from '../../../../resources';
 import { Measurements } from '../../../../utils';
 import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg'
-import { TierTile } from '../../../../components'
-import { GymTile } from '../../../../components/onboardingComponents';
-import { GymIcon } from '../../../../components/onboardingComponents';
+import { TierTile, GymIcon, GymTile } from '../../../../components'
 import { LinearGradientOnboard } from '../../../../components/onboardingComponents'
 
 const Container = styled.KeyboardAvoidingView`

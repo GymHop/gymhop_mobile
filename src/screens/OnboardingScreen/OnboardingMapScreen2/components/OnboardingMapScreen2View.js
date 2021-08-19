@@ -4,10 +4,8 @@ import { Platform } from 'react-native';
 import { Res } from '../../../../resources';
 import { Measurements } from '../../../../utils';
 import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg'
-import { TierTile } from '../../../../components'
+import { TierTile, GymIcon, GymTile } from '../../../../components'
 import PremiumBadge from '../../../../assets/icons/premiumBadge.png'
-import { GymTile } from '../../../../components/onboardingComponents';
-import { GymIcon } from '../../../../components/onboardingComponents';
 import { LinearGradientOnboard } from '../../../../components/onboardingComponents'
 
 
