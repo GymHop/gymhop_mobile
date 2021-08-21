@@ -16,55 +16,42 @@ import {
   Dimensions,
   Image,
   ImageBackground,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Res } from '../../../resources';
 
 
 export const OnboardingThreeView = () => {
-
+  const navigation = useNavigation();
   const [showModal, setShowModal] = useState(false);
 
-  // if user clicks RIGHT ARROW BUTTON -OR- 
-  // if user swipes to next
-  // setShowModal(true)
-
-
-  // IF user has granted permissions, go to next onboarding screen
-
-  useEffect(() => {
-    Geolocation.getCurrentPosition((position) => {
-      console.log(position);
-    },
-      (error) => {
-        // See error code charts below.
-        console.log(error.code, error.message);
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 })
-
-  }, [])
 
 
 
-
+  function navigateToLoggedOut() {
+    navigation.navigate('auth');
+  }
 
   const askLocation = async (e) => {
-    console.log('AHHHHHHHHHHHHHHHHH')
+    console.log('asking location permission')
     if (Platform.OS === 'ios') {
-      console.log('ios');
       const iosGranted = await Geolocation.requestAuthorization('always');
-      console.log(iosGranted);
-      Geolocation.getCurrentPosition(
-        (position) => {
-          console.log(position);
-        },
-        (error) => {
-          // See error code charts below.
-          console.log(error.code, error.message);
-        },
-        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-      );
+      console.log(iosGranted)
+      if (iosGranted === 'granted') {
+        Geolocation.getCurrentPosition(
+          (position) => {
+            console.log(position);
+          },
+          (error) => {
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );
+        navigateToLoggedOut();
+      } else if (iosGranted === 'denied') {
+        setShowModal(true);
+      }
     } else {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -81,20 +68,29 @@ export const OnboardingThreeView = () => {
           },
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         );
+        navigateToLoggedOut();
       } else {
         console.log('PERMISSION DENIED');
+        setShowModal(true);
       }
     }
   };
 
+  const detectPress = (e) => {
+    console.log(e.target.name)
+  }
+
 
 
   return (
-    <>
+    <TouchableWithoutFeedback onPressOut={() => setShowModal(true)}>
+      <View onScroll={() => console.log('HALLEFOIAOIJFOI')}style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}>
       <ImageBackground
         style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}
         source={require('../../../../assets/images/OverheadOnboarding3.jpg')}>
-        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, }}>
+        <View style={{ 
+          // justifyContent: 'center', 
+          alignItems: 'center', flex: 1, }}>
           <View style={styles.blackModal}>
             <Text
               style={{
@@ -124,6 +120,7 @@ export const OnboardingThreeView = () => {
                 onPress={askLocation}
                 text={'Share Location'}
                 uppercase
+                value={'BUTTON'}
               />
             </View>
           </View>
@@ -136,13 +133,14 @@ export const OnboardingThreeView = () => {
                   In order to get the best of your GymHop experience, location
                   services are required to easily find and check-in to gyms.
                 </Text>
-                <PrimaryButton text={'Share Location'} uppercase />
+                  <PrimaryButton onPress={askLocation} text={'Share Location'} uppercase />
               </View>
             </View>
           )}
         </View>
       </ImageBackground>
-    </>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -161,7 +159,7 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     paddingBottom: 30,
     borderRadius: 10,
-
+    top: '18%',
   },
   whiteModal: {
     backgroundColor: 'white',
@@ -172,7 +170,7 @@ const styles = StyleSheet.create({
     paddingBottom: 23,
     paddingLeft: 15,
     paddingRight: 15,
-    top: '47%',
+    top: '35%',
     alignSelf: 'center'
 
 

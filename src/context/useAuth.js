@@ -68,12 +68,12 @@ export const AuthProvider = props => {
         setToken(value);
         setAxiosHeader();
         getDefault();
-        NavigationAction.reset('main');
+        NavigationAction.reset('map1');
       } else {
-        NavigationAction.reset('entry');
+        NavigationAction.reset('loggedOut');
       }
     } catch (e) {
-      NavigationAction.reset('entry');
+      NavigationAction.reset('loggedOut');
       // error reading value
     }
   };
@@ -115,7 +115,7 @@ export const AuthProvider = props => {
         setLoading(false);
         console.log('MUratmurat murat murat murat', res);
 
-        NavigationAction.reset('main');
+        NavigationAction.reset('map1');
       })
       .catch(e => {
         console.log(e);

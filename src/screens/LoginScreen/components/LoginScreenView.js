@@ -139,30 +139,30 @@ export const LoginScreenView = props => {
                 />
               </PhoneInputContainer>
 
+              <PrimaryButton
+                onPress={() => {
+                  if (phone.length > 9) {
+                    props.onAuth({
+                      phone,
+                    });
+                  } else {
+                    Toast.show({
+                      type: 'error',
+                      text1: 'Error',
+                    });
+                  }
+                }}
+                small
+                style={{ width: '100%' }}
+                text={'Log In'}
+              />
               <Row
                 style={{
                   justifyContent: !props.user ? 'center' : 'space-between',
-                  flexDirection: 'column',
+                  flexDirection: 'column', width: '100%',
                 }}>
                 {/* {props.user && <Timer style={{opacity: 0}} time={60} />} */}
 
-                <PrimaryButton
-                  onPress={() => {
-                    if (phone.length > 9) {
-                      props.onAuth({
-                        phone,
-                      });
-                    } else {
-                      Toast.show({
-                        type: 'error',
-                        text1: 'Error',
-                      });
-                    }
-                  }}
-                  small
-                  style={{ width: '100%' }}
-                  text={'Log In'}
-                />
                 {/* {props.user && <Timer time={60} />} */}
                 <H2
                   white

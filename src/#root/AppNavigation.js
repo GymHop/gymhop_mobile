@@ -14,6 +14,7 @@ import {
 import { Res } from '../resources';
 import { ButtonVisualizer } from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
 import { OnboardingLoggedOutScreen } from '../screens/OnboardingScreen/OnboardingLoggedOutScreen';
+import { Launch } from '../screens/TemporaryNavScreen/components/Launch';
 
 const rootNavigationRef = createRef();
 
@@ -112,6 +113,11 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="buttons"
           component={ButtonVisualizer}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="launch"
+          component={Launch}
           options={{ headerShown: false }}
         />
         <Stack.Screen
