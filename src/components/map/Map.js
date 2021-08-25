@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import { MarkerComponent } from './MarkerComponent';
 import { useQuery } from 'react-query'
 import { QueryClient, QueryClientProvider } from "react-query";
+import { getDistance } from 'geolib';
 import axios from 'axios'
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +26,7 @@ width: 54px
 
 export const Map = props => {
   const [markers, setMarkers] = useState([])
+  const [onFocus, setOnFocus] = useState(false)
   const { data, error, loading } = useQuery(
     'gyms',
     async () => {
@@ -39,7 +41,6 @@ export const Map = props => {
     if (data) setMarkers(data);
     
   }, [data, loading, error])
-  
 
   return (
     <View style={styles.container}>
@@ -69,6 +70,8 @@ export const Map = props => {
               latitudeDelta: props.latitudeDelta,
               longitudeDelta: props.longitudeDelta,
             }}
+            longitude={props.longitude}
+            latitude={props.latitude}
             burough={marker.burough}
             city={marker.city}
             logo_url={marker.logo_url}
@@ -76,8 +79,9 @@ export const Map = props => {
             region={props.region}
             latitudeDelta={props.latitudeDelta}
             longitudeDelta={props.longitudeDelta}
-            openClosed={marker.openClosed}
-            rating={marker.rating}
+            openClosed={'open'}
+            rating={'5.0'}
+            distance={'6.7mi away'}
           />
         )))}
       </MapView>

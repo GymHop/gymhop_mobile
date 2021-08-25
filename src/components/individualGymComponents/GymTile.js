@@ -22,10 +22,13 @@ const Container = styled.View`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 `;
 
-const ImageContainer = styled.View``;
+const ImageContainer = styled.View`
+`;
 
 const StyledImage = styled.Image`
- ${props => props.imageStyle}
+ ${props => props.tier === 'premium' ? 
+ 'bottom: 66px; height: 80px; width: 245px;' 
+ : 'bottom: 25; height: 125px; width: 245px;'}
   borderTopLeftRadius: 14px;
   borderTopRightRadius: 14px;
 `;
