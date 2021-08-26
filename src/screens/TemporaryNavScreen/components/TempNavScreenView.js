@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
-import { Button, View, Text } from 'react-native';
-import { Res } from '../../../resources';
-import { Measurements } from '../../../utils';
+import {Button, View, Text} from 'react-native';
+import {Res} from '../../../resources';
+import {Measurements} from '../../../utils';
 const StyledText = styled.Text``;
 const Container = styled.View`
   flex: 1;
@@ -36,6 +36,12 @@ export const TempNavScreenView = props => {
   function navigateToSlider() {
     navigation.navigate('onboardslider');
   }
+  function navigateToCheckIn() {
+    navigation.navigate('checkin');
+  }
+  function navigateToUserProfile() {
+    navigation.navigate('userprofile');
+  }
 
   function navigateToMap1() {
     navigation.navigate('map1');
@@ -44,22 +50,32 @@ export const TempNavScreenView = props => {
   //   navigation.navigate('onboard3');
   // }
 
-
   return (
     <Container>
       <StyledText>{'TempNavScreen'}</StyledText>
       <Button title="Go to Login Screen" onPress={() => navigateToLogin()} />
-      <Button title="Go to OnboardMap1" onPress={() => navigateToOnboardMap1()} />
-      <Button title="Go to OnboardMap2" onPress={() => navigateToOnboardMap2()} />
+      <Button
+        title="Go to OnboardMap1"
+        onPress={() => navigateToOnboardMap1()}
+      />
+      <Button
+        title="Go to OnboardMap2"
+        onPress={() => navigateToOnboardMap2()}
+      />
       <Button
         title="Go to Buttons Screen"
         onPress={() => navigateToButtons()}
       />
-      <Button
-        title="Go to Map1 Screen"
-        onPress={() => navigateToMap1()}
-      />
+      <Button title="Go to Map1 Screen" onPress={() => navigateToMap1()} />
       <Button title="Go to Slider Screen" onPress={() => navigateToSlider()} />
+      <Button
+        title="Go to CheckIn Screen"
+        onPress={() => navigateToCheckIn()}
+      />
+      <Button
+        title="Go to UserProfile Screen"
+        onPress={() => navigateToUserProfile()}
+      />
       {/* <Button title="Go to Onboarding3" onPress={() => navigateToO3()} /> */}
     </Container>
   );

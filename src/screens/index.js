@@ -6,7 +6,8 @@ import {OnboardingMapScreen2} from './OnboardingScreen/OnboardingMapScreen2';
 import {OndoardSliderScreen} from './OnboardingScreen/OnboardingSliderScreen';
 import {OnboardingOneScreen} from './OnboardingScreen/OnboardingOneScreen';
 import {Map1Screen} from './MapHomeScreen';
-
+import {CheckInScreen} from './CheckInScreen';
+import {UserProfileScreen} from './UserProfileScreen';
 
 export {
   LoginScreen,
@@ -14,7 +15,9 @@ export {
   TempScreen,
   OndoardSliderScreen,
   OnboardingOneScreen,
-  OnboardingMapScreen1, 
+  OnboardingMapScreen1,
   OnboardingMapScreen2,
-  Map1Screen
+  Map1Screen,
+  CheckInScreen,
+  UserProfileScreen,
 };

@@ -8,8 +8,13 @@ import {
   LoginScreen,
   EntryScreen,
   TemporaryNavScreen,
-  TempScreen, OnboardingMapScreen1, OnboardingMapScreen2,
-  OndoardSliderScreen, Map1Screen
+  TempScreen,
+  OnboardingMapScreen1,
+  OnboardingMapScreen2,
+  OndoardSliderScreen,
+  Map1Screen,
+  CheckInScreen,
+  UserProfileScreen,
 } from '../screens';
 import {Res} from '../resources';
 import {ButtonVisualizer} from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
@@ -70,7 +75,6 @@ const Main = () => {
 export const AppNavigation = () => {
   return (
     <NavigationContainer ref={rootNavigationRef}>
-    
       <Stack.Navigator
         headerMode="none"
         keyboardHandlingEnabled
@@ -80,10 +84,10 @@ export const AppNavigation = () => {
           component={TempScreen}
           options={{headerShown: false}}
         />
-          <Stack.Screen
-        name="map1"
-        component={Map1Screen}
-        options={{headerShown: false}}
+        <Stack.Screen
+          name="map1"
+          component={Map1Screen}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="onBoardingMap1"
@@ -117,6 +121,16 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="onboardslider"
           component={OndoardSliderScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="checkin"
+          component={CheckInScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="userprofile"
+          component={UserProfileScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen name="main" component={Main} />
