@@ -30,7 +30,7 @@ export const OnboardingThreeView = () => {
 
 
   function navigateToLoggedOut() {
-    navigation.navigate('auth');
+    navigation.navigate('signup');
   }
 
   const askLocation = async (e) => {
@@ -84,61 +84,62 @@ export const OnboardingThreeView = () => {
 
   return (
     <TouchableWithoutFeedback onPressOut={() => setShowModal(true)}>
-      <View onScroll={() => console.log('HALLEFOIAOIJFOI')}style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}>
-      <ImageBackground
-        style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}
-        source={require('../../../../assets/images/OverheadOnboarding3.jpg')}>
-        <View style={{ 
-          // justifyContent: 'center', 
-          alignItems: 'center', flex: 1, }}>
-          <View style={styles.blackModal}>
-            <Text
-              style={{
-                fontFamily: 'PlusJakartaSans-Bold',
-                fontSize: 26,
-                color: 'white',
-                textAlign: 'center',
-              }}>
-              Let's see what gyms are close to you!
-            </Text>
-            <Image style={{ marginTop: 30, marginBottom: 20 }}
-              source={require('../../../../assets/icons/locationServices.png')}
-            />
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 18,
-                fontWeight: '500',
-                textAlign: 'center',
-                marginBottom: 25,
-              }}>
-              Location services are required to find gyms near you and allow
-              for proximity-based check-ins.
-            </Text>
-            <View style={{ width: '100%' }} >
-              <PrimaryButton
-                onPress={askLocation}
-                text={'Share Location'}
-                uppercase
-                value={'BUTTON'}
+      <View onScroll={() => console.log('HALLEFOIAOIJFOI')} style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}>
+        <ImageBackground
+          style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}
+          source={require('../../../../assets/images/OverheadOnboarding3.jpg')}>
+          <View style={{
+            // justifyContent: 'center', 
+            alignItems: 'center', flex: 1,
+          }}>
+            <View style={styles.blackModal}>
+              <Text
+                style={{
+                  fontFamily: 'PlusJakartaSans-Bold',
+                  fontSize: 26,
+                  color: 'white',
+                  textAlign: 'center',
+                }}>
+                Let's see what gyms are close to you!
+              </Text>
+              <Image style={{ marginTop: 30, marginBottom: 20 }}
+                source={require('../../../../assets/icons/locationServices.png')}
               />
-            </View>
-          </View>
-
-          {showModal && (
-            <View style={{ width: '100%', height: '100%', backgroundColor: 'rgba(41,41,41,.55)', position: 'absolute' }}>
-              <View style={styles.whiteModal}>
-                <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', fontFamily: 'PlusJakartaSans-Bold', }}>Location Required</Text>
-                <Text style={{ textAlign: 'center', fontSize: 16, margin: 15, fontFamily: 'PlusJakartaSans-Regular', padding: 2 }}>
-                  In order to get the best of your GymHop experience, location
-                  services are required to easily find and check-in to gyms.
-                </Text>
-                  <PrimaryButton onPress={askLocation} text={'Share Location'} uppercase />
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 18,
+                  fontWeight: '500',
+                  textAlign: 'center',
+                  marginBottom: 25,
+                }}>
+                Location services are required to find gyms near you and allow
+                for proximity-based check-ins.
+              </Text>
+              <View style={{ width: '100%' }} >
+                <PrimaryButton
+                  onPress={askLocation}
+                  text={'Share Location'}
+                  uppercase
+                  value={'BUTTON'}
+                />
               </View>
             </View>
-          )}
-        </View>
-      </ImageBackground>
+
+            {showModal && (
+              <View style={{ width: '100%', height: '100%', backgroundColor: 'rgba(41,41,41,.55)', position: 'absolute' }}>
+                <View style={styles.whiteModal}>
+                  <Text style={{ fontSize: 24, fontWeight: '700', textAlign: 'center', fontFamily: 'PlusJakartaSans-Bold', }}>Location Required</Text>
+                  <Text style={{ textAlign: 'center', fontSize: 16, margin: 15, fontFamily: 'PlusJakartaSans-Regular', padding: 2 }}>
+                    In order to get the best of your GymHop experience, location
+                    services are required to easily find and check-in to gyms.
+                  </Text>
+                  <PrimaryButton onPress={askLocation} text={'Share Location'} uppercase />
+                </View>
+              </View>
+            )}
+          </View>
+        </ImageBackground>
       </View>
     </TouchableWithoutFeedback>
   );
