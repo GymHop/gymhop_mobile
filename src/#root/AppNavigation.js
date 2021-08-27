@@ -72,6 +72,7 @@ const Main = () => {
 export const AppNavigation = () => {
   return (
     <NavigationContainer ref={rootNavigationRef}>
+    
       <Stack.Navigator
         headerMode="none"
         keyboardHandlingEnabled

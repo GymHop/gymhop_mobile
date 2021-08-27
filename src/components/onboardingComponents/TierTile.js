@@ -19,7 +19,7 @@ const Container = styled.View`
   height: null;
   width: null;
   borderRadius: 8px;
-  border: 2px solid rgba(4, 196, 157, 1)
+  border: 2px solid ${Res.colors.primaryGreen};
 `;
 
 const StyledText = styled.Text`
@@ -29,7 +29,7 @@ const StyledText = styled.Text`
   fontSize: 18px;
   lineHeight: 21.09px;
   textAlign: center;
-  color: #FFFFFF
+  color: ${Res.colors.white};
 `;
 
 const StyledTextContainer = styled.View`
@@ -43,7 +43,7 @@ const StyledTierTitle = styled.Text`
   fontSize: 24px; 
   lineHeight: 30px;
   textAlign: center;
-  color: #FFFFFF;
+  color: ${Res.colors.white};
   ${props => props.tierTileStyling}
 `;
 

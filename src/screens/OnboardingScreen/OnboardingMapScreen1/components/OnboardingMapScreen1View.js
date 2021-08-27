@@ -1,51 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React from 'react';
 import styled from 'styled-components/native';
-import {
-  Button,
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  Platform,
-} from 'react-native';
+import {Platform} from 'react-native';
 import {Res} from '../../../../resources';
 import {Measurements} from '../../../../utils';
 import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg';
-import {TierTile} from '../../../../components';
-import {GymTile} from '../../../../components/onboardingComponents';
-import {GymIcon} from '../../../../components/onboardingComponents';
-import JimboImg from '../../../../assets/images/gymPhotos/JimbosInterior.jpg';
-import Ellipse from '../../../../assets/icons/Ellipse.png';
-import Polygon from '../../../../assets/icons/Polygon.png';
+import {TierTile, GymIcon, GymTile} from '../../../../components';
 import {LinearGradientOnboard} from '../../../../components/onboardingComponents';
-const StyledText = styled.Text``;
+
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
-  /* background-color: ${Res.colors.main}; */
   padding-horizontal: ${Res.spaces.md}px;
   padding-bottom: ${Measurements.safeAreaBottomInset}px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
-`;
-
-const Row = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Wrap = styled.View`
-  flex: 1;
-  padding-top: ${Res.spaces.md}px;
-  justify-content: space-between;
-  padding-bottom: 50px;
-`;
-
-const PhoneInputContainer = styled.View`
-  flex-direction: column;
 `;
 
 const BackgroundImageStyle = styled.ImageBackground`
@@ -85,14 +54,22 @@ export const OnboardingMapScreen1View = props => {
           containerWidth={345}
         />
         <GymIconContainer>
-          <GymIcon ellipse={Ellipse} polygon={Polygon} />
+          <GymIcon
+            tier={'standard'}
+            logo_url={
+              'https://res.cloudinary.com/gymhop/image/upload/v1628618553/Gym%20Photos/GymIcon_x3jowf.jpg'
+            }
+          />
         </GymIconContainer>
         <GymTileContainer>
           <GymTile
-            image={JimboImg}
+            main_photo_url={
+              'https://res.cloudinary.com/gymhop/image/upload/v1628618078/Gym%20Photos/JimbosInterior_fs6ozm.jpg'
+            }
+            tier={'standard'}
             imageStyle={'bottom: 25; height: 125px; width: 245px;'}
-            title={'Jimbos Gym'}
-            address={'213 Fitness Way, Brooklyn NY'}
+            name={'Jimbos Gym'}
+            address1={'213 Fitness Way, Brooklyn NY'}
             openClosed={'Open'}
             distance={'6.7mi away'}
             rating={'4.5'}

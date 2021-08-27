@@ -76,6 +76,8 @@ export const Map = props => {
             region={props.region}
             latitudeDelta={props.latitudeDelta}
             longitudeDelta={props.longitudeDelta}
+            openClosed={marker.openClosed}
+            rating={marker.rating}
           />
         )))}
       </MapView>
