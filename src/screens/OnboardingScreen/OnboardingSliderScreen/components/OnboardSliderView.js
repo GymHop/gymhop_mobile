@@ -27,7 +27,7 @@ import OnboardingMapScreen2Container from '../../OnboardingMapScreen2/containers
 import {useNavigation} from '@react-navigation/native';
 import {Res} from '../../../../resources';
 import OnboardingThreeContainer from '../../OnboardingThreeScreen/containers/OnboardingThreeContainer';
-import { LoginScreen } from '../../../LoginScreen';
+import {LoginScreen} from '../../../LoginScreen';
 import LoginScreenContainer from '../../../LoginScreen/containers/LoginScreenContainer';
 
 export const OnboardSliderView = () => {
@@ -52,78 +52,78 @@ export const OnboardSliderView = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={{flex: 1}}>
-        <ScrollView
-          style={{flex: 1}}
-          horizontal={true}
-          scrollEventThrottle={16}
-          pagingEnabled={true}
-          showsHorizontalScrollIndicator={false}
-          onScroll={event => {
-            setSliderPage(event);
+      {/* <SafeAreaView style={{flex: 1}}> */}
+      <ScrollView
+        style={{flex: 1}}
+        horizontal={true}
+        scrollEventThrottle={16}
+        pagingEnabled={true}
+        showsHorizontalScrollIndicator={false}
+        onScroll={event => {
+          setSliderPage(event);
+        }}
+        ref={node => (this.scroll = node)}>
+        <View style={{width, height}}>
+          <OnboardingOneContainer />
+        </View>
+
+        <View style={{width, height}}>
+          <OnboardingMapScreen1Container />
+        </View>
+
+        <View style={{width, height}}>
+          <OnboardingMapScreen2Container />
+        </View>
+
+        <View style={{width, height}}>
+          <OnboardingThreeContainer />
+        </View>
+
+        {/* <View style={{width, height}}> */}
+        {/* <LoginScreenContainer style={styles.wrapper} /> */}
+        {/* </View> */}
+      </ScrollView>
+      <View style={styles.paginationWrapper}>
+        {Array.from(Array(5).keys()).map((key, index) => (
+          <View
+            style={[
+              styles.paginationDots,
+              {backgroundColor: pageIndex === index ? 'white' : '#00C29E'},
+            ]}
+            key={index}
+          />
+        ))}
+        <TouchableOpacity
+          onPress={() => {
+            scrollViewRef.current += 1;
+            this.scroll.scrollTo({x: width * scrollViewRef.current});
           }}
-          ref={node => (this.scroll = node)}>
-          <View style={{width, height}}>
-            <OnboardingOneContainer />
-          </View>
-
-          <View style={{width, height}}>
-            <OnboardingMapScreen1Container />
-          </View>
-
-          <View style={{width, height}}>
-            <OnboardingMapScreen2Container />
-          </View>
-
-          <View style={{width, height}}>
-            <OnboardingThreeContainer />
-          </View>
-
-          {/* <View style={{width, height}}> */}
-            {/* <LoginScreenContainer style={styles.wrapper} /> */}
-          {/* </View> */}
-        </ScrollView>
-        <View style={styles.paginationWrapper}>
-          {Array.from(Array(5).keys()).map((key, index) => (
-            <View
-              style={[
-                styles.paginationDots,
-                {backgroundColor: pageIndex === index ? 'white' : '#00C29E'},
-              ]}
-              key={index}
-            />
-          ))}
-          <TouchableOpacity
-            onPress={() => {
-              scrollViewRef.current += 1;
-              this.scroll.scrollTo({x: width * scrollViewRef.current});
-            }}
+          style={{
+            position: 'absolute',
+            width: 46,
+            height: 46,
+            right: 15,
+          }}>
+          <Image
             style={{
-              position: 'absolute',
               width: 46,
               height: 46,
-              right: 15,
-            }}>
-            <Image
-              style={{
-                width: 46,
-                height: 46,
-              }}
-              source={require('../../../../assets/images/Rectangle3.png')}
-            />
-            <Image
-              style={{
-                position: 'absolute',
-                width: 21.33,
-                height: 21.33,
-                top: 12.3,
-                right: 12.3,
-              }}
-              source={require('../../../../assets/icons/arrow.png')}
-            />
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+            }}
+            source={require('../../../../assets/images/Rectangle3.png')}
+          />
+          <Image
+            style={{
+              position: 'absolute',
+              width: 21.33,
+              height: 21.33,
+              top: 12.3,
+              right: 12.3,
+            }}
+            source={require('../../../../assets/icons/arrow.png')}
+          />
+        </TouchableOpacity>
+      </View>
+      {/* </SafeAreaView> */}
     </>
   );
 };

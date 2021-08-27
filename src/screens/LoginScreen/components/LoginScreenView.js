@@ -122,20 +122,20 @@ export const LoginScreenView = props => {
                     fontSize: '16px',
                     width: '100%',
                     borderColor: '#42DF90',
-                    background: 'transparent',
+                    backgroundColor: 'transparent',
                   }}
                   textContainerStyle={{
                     borderRadius: Res.spaces.radius.xs,
                     borderColor: '#42DF90',
-                    background: 'transparent',
+                    backgroundColor: 'transparent',
                   }}
                   textInputStyle={{
                     borderColor: '#42DF90',
-                    background: 'transparent',
+                    backgroundColor: 'transparent',
                     paddingHorizontal: Platform.OS === 'ios' ? 0 : 4,
                     paddingVertical: Platform.OS === 'ios' ? 0 : 0,
                   }}
-                  style={{ borderColor: '#42DF90', background: 'transparent' }}
+                  style={{ borderColor: '#42DF90', backgroundColor: 'transparent' }}
                 />
               </PhoneInputContainer>
 
@@ -174,7 +174,7 @@ export const LoginScreenView = props => {
             <View
               style={{
                 flex: 1,
-                paddingTop: `${Res.spaces.md}`,
+                // paddingTop: `${Res.spaces.md}`,
                 justifyContent: 'space-around',
                 paddingBottom: 50,
               }}>

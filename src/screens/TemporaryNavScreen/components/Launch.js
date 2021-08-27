@@ -60,7 +60,7 @@ export const Launch = props => {
 
   return (
     <>
-      {loading ? <Splash /> : null}
+      {/* {loading ? <Splash /> : null} */}
       {firstLaunch ? <OnboardSliderContainer /> : <OnboardingLoggedOutScreen />}
     </>
   );

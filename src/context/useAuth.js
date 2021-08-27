@@ -109,7 +109,7 @@ export const AuthProvider = props => {
         storeToken(res.data.data.token);
         setToken(res.data.data.token);
         setAxiosHeader();
-        setUser(res.data);
+        await setUser(res.data);
         // await getUser();
 
         setLoading(false);
