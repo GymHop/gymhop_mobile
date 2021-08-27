@@ -140,12 +140,15 @@ export const AuthProvider = props => {
   };
 
   const showError = error => {
-    console.log('error:', error);
-    Toast.show({
-      type: 'error',
-      text1: 'Error',
-      text2: error.response.data.error || error,
-    });
+    if (AsyncStorage.getItem('priorLaunch')){
+      return;
+    } else {
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: error.response.data.error || error,
+      });
+    }
   };
 
   const showSuccess = text => {
