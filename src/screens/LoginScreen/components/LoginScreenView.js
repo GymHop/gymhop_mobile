@@ -69,7 +69,6 @@ export const LoginScreenView = props => {
   const navigation = useNavigation();
   const [phone, setPhone] = useState('');
 
-  console.log(props.codeSent);
 
   return (
     <ImageBackground
@@ -101,7 +100,7 @@ export const LoginScreenView = props => {
                 />
                 <H2
                   white
-                  text="Log in with Phone Number"
+                  text="Log in with your phone number"
                   style={{marginBottom: 10}}
                 />
                 <PhoneInput
@@ -123,17 +122,16 @@ export const LoginScreenView = props => {
                     fontSize: '16px',
                     width: '100%',
                     borderColor: '#42DF90',
-                    backgroundColor: 'transparent',
+                    backgroundColor: 'white',
                   }}
                   textContainerStyle={{
                     borderRadius: Res.spaces.radius.xs,
                     borderColor: '#42DF90',
-                    backgroundColor: 'transparent',
+                    backgroundColor: 'white',
                   }}
                   textInputStyle={{
                     borderColor: '#42DF90',
                     backgroundColor: 'transparent',
-                    color: 'white',
                     paddingHorizontal: Platform.OS === 'ios' ? 0 : 4,
                     paddingVertical: Platform.OS === 'ios' ? 0 : 0,
                   }}
