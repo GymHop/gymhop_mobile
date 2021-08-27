@@ -1,18 +1,24 @@
 import 'react-native-gesture-handler';
-import React, {createRef, useEffect, useState} from 'react';
+
 import {CommonActions, NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Keyboard, Platform} from 'react-native';
-import {View, Text} from 'react-native';
 import {
-  LoginScreen,
   EntryScreen,
+  LoginScreen,
+  Map1Screen,
+  OnboardingMapScreen1,
+  OnboardingMapScreen2,
+  OndoardSliderScreen,
+  TempScreen,
   TemporaryNavScreen,
-  TempScreen, OnboardingMapScreen1, OnboardingMapScreen2,
-  OndoardSliderScreen, Map1Screen
 } from '../screens';
-import {Res} from '../resources';
+import {Image, Text, View} from 'react-native';
+import {Keyboard, Platform, TouchableOpacity} from 'react-native';
+import React, {createRef, useEffect, useState} from 'react';
+
 import {ButtonVisualizer} from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
+import {Res} from '../resources';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const rootNavigationRef = createRef();
 
@@ -67,10 +73,20 @@ const Main = () => {
     </View>
   );
 };
+
+const Drawer = createDrawerNavigator();
+
+function DrawerRoutes() {
+  return (
+    <Drawer.Navigator initialRouteName="maps1">
+      <Drawer.Screen name="maps1" component={Map1Screen} />
+    </Drawer.Navigator>
+  );
+}
+
 export const AppNavigation = () => {
   return (
     <NavigationContainer ref={rootNavigationRef}>
-    
       <Stack.Navigator
         headerMode="none"
         keyboardHandlingEnabled
@@ -80,10 +96,10 @@ export const AppNavigation = () => {
           component={TempScreen}
           options={{headerShown: false}}
         />
-          <Stack.Screen
-        name="map1"
-        component={Map1Screen}
-        options={{headerShown: false}}
+        <Stack.Screen
+          name="map1"
+          component={DrawerRoutes}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="onBoardingMap1"

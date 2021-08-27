@@ -6,25 +6,23 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import {QueryClient, QueryClientProvider} from 'react-query';
 
-import Toast from 'react-native-toast-message';
 import {AppNavigation} from './AppNavigation';
 import {AuthProvider} from '../context/useAuth';
 import ErrorBoundary from '../context/useError';
+import React from 'react';
+import Toast from 'react-native-toast-message';
 
 const queryClient = new QueryClient();
 
 const App = () => {
-
   return (
     <AuthProvider>
       <>
         <ErrorBoundary>
-        <QueryClientProvider client={queryClient}>
-          <AppNavigation>
-          </AppNavigation>
+          <QueryClientProvider client={queryClient}>
+            <AppNavigation></AppNavigation>
           </QueryClientProvider>
         </ErrorBoundary>
         <Toast ref={ref => Toast.setRef(ref)} />
