@@ -17,3 +17,16 @@ export const LoginScreen = screen(
     noHeader: true,
   },
 );
+
+export const SignupScreen = screen(
+  props => {
+    const navigation = useNavigation();
+    const handleLogin = () => {
+      navigation.navigate('map1');
+    };
+    return <LoginScreenContainer onLogin={handleLogin} signup={true} />;
+  },
+  {
+    noHeader: true,
+  },
+);

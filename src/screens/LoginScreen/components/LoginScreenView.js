@@ -68,6 +68,7 @@ const Header = styled.View`
 export const LoginScreenView = props => {
   const navigation = useNavigation();
   const [phone, setPhone] = useState('');
+  let signup = props.signup;
 
   console.log(props.codeSent);
 
@@ -97,11 +98,11 @@ export const LoginScreenView = props => {
                     marginTop: 30,
                   }}
                   white
-                  text={'Log In'}
+                  text={signup ? 'Create an Account' : 'Log In'}
                 />
                 <H2
                   white
-                  text="Log in with Phone Number"
+                  text={signup ? "Register with Phone Number" : "Log in with Phone Number"}
                   style={{marginBottom: 10}}
                 />
                 <PhoneInput
@@ -160,7 +161,7 @@ export const LoginScreenView = props => {
                   }}
                   small
                   style={{width: '100%'}}
-                  text={'Log In'}
+                  text={signup ? 'SEND SMS VERIFICATION' : 'Log In'}
                 />
                 <Row
                   style={{
