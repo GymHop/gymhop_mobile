@@ -12,7 +12,7 @@ import {View, TouchableOpacity, Text, Image} from 'react-native';
 
 import {Measurements} from 'src/utils';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = props => {
   const Api = useMemo(
@@ -68,12 +68,12 @@ export const AuthProvider = props => {
         setToken(value);
         setAxiosHeader();
         getDefault();
-        NavigationAction.reset('main');
+        NavigationAction.reset('map1');
       } else {
-        NavigationAction.reset('entry');
+        NavigationAction.reset('loggedOut');
       }
     } catch (e) {
-      NavigationAction.reset('entry');
+      NavigationAction.reset('loggedOut');
       // error reading value
     }
   };
@@ -109,13 +109,13 @@ export const AuthProvider = props => {
         storeToken(res.data.data.token);
         setToken(res.data.data.token);
         setAxiosHeader();
-        setUser(res.data);
+        await setUser(res.data);
         // await getUser();
 
         setLoading(false);
         console.log('MUratmurat murat murat murat', res);
 
-        NavigationAction.reset('main');
+        NavigationAction.reset('map1');
       })
       .catch(e => {
         console.log(e);
@@ -140,12 +140,15 @@ export const AuthProvider = props => {
   };
 
   const showError = error => {
-    console.log('error:', error);
-    Toast.show({
-      type: 'error',
-      text1: 'Error',
-      text2: error.response.data.error || error,
-    });
+    if (AsyncStorage.getItem('priorLaunch')){
+      return;
+    } else {
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: error.response.data.error || error,
+      });
+    }
   };
 
   const showSuccess = text => {

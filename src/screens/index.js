@@ -4,9 +4,9 @@ import {TempScreen} from './TemporaryNavScreen';
 import {OnboardingMapScreen1} from './OnboardingScreen/OnboardingMapScreen1';
 import {OnboardingMapScreen2} from './OnboardingScreen/OnboardingMapScreen2';
 import {OndoardSliderScreen} from './OnboardingScreen/OnboardingSliderScreen';
+import {OnboardThreeScreen} from './OnboardingScreen/OnboardingThreeScreen';
 import {OnboardingOneScreen} from './OnboardingScreen/OnboardingOneScreen';
 import {Map1Screen} from './MapHomeScreen';
-
 
 export {
   LoginScreen,
@@ -14,7 +14,8 @@ export {
   TempScreen,
   OndoardSliderScreen,
   OnboardingOneScreen,
-  OnboardingMapScreen1, 
+  OnboardingMapScreen1,
   OnboardingMapScreen2,
-  Map1Screen
+  OnboardThreeScreen,
+  Map1Screen,
 };

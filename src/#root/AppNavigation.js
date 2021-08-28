@@ -8,11 +8,17 @@ import {
   LoginScreen,
   EntryScreen,
   TemporaryNavScreen,
-  TempScreen, OnboardingMapScreen1, OnboardingMapScreen2,
-  OndoardSliderScreen, Map1Screen
+  TempScreen,
+  OnboardingMapScreen1,
+  OnboardingMapScreen2,
+  OndoardSliderScreen,
+  Map1Screen,
 } from '../screens';
 import {Res} from '../resources';
 import {ButtonVisualizer} from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
+import {OnboardingLoggedOutScreen} from '../screens/OnboardingScreen/OnboardingLoggedOutScreen';
+import {Launch} from '../screens/TemporaryNavScreen/components/Launch';
+import {SignupScreen} from '../screens/LoginScreen';
 
 const rootNavigationRef = createRef();
 
@@ -70,7 +76,6 @@ const Main = () => {
 export const AppNavigation = () => {
   return (
     <NavigationContainer ref={rootNavigationRef}>
-    
       <Stack.Navigator
         headerMode="none"
         keyboardHandlingEnabled
@@ -80,10 +85,10 @@ export const AppNavigation = () => {
           component={TempScreen}
           options={{headerShown: false}}
         />
-          <Stack.Screen
-        name="map1"
-        component={Map1Screen}
-        options={{headerShown: false}}
+        <Stack.Screen
+          name="map1"
+          component={Map1Screen}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="onBoardingMap1"
@@ -109,9 +114,20 @@ export const AppNavigation = () => {
             },
           }}
         />
+        <Stack.Screen name="signup" component={SignupScreen} />
         <Stack.Screen
           name="buttons"
           component={ButtonVisualizer}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="launch"
+          component={Launch}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="loggedOut"
+          component={OnboardingLoggedOutScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
