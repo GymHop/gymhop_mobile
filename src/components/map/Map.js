@@ -5,8 +5,9 @@ import styled from 'styled-components/native';
 import { MarkerComponent } from './MarkerComponent';
 import { useQuery } from 'react-query'
 import { QueryClient, QueryClientProvider } from "react-query";
-import { getDistance } from 'geolib';
+import * as geolib from 'geolib';
 import axios from 'axios'
+import { ScreenStackHeaderLeftView } from 'react-native-screens';
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
@@ -25,8 +26,13 @@ width: 54px
 `
 
 export const Map = props => {
+  const propsLatitude = props.latitude
+  const propsLongitude = props.longitude
   const [markers, setMarkers] = useState([])
   const [onFocus, setOnFocus] = useState(false)
+  const [left, setLeft] = useState(false)
+  const [right, setRight] = useState(false)
+
   const { data, error, loading } = useQuery(
     'gyms',
     async () => {
@@ -39,8 +45,55 @@ export const Map = props => {
     if (loading) return 'null';
     if (error) return `Error! ${error.message}`;
     if (data) setMarkers(data);
-    
+
   }, [data, loading, error])
+
+  useEffect(() => {
+    setRight(false)
+    setLeft(false)
+    const nearestGyms = geolib.orderByDistance({ propsLatitude, propsLongitude }, markers.map((mark) => {
+      const markLat = mark.latitude
+      const markLong = mark.longitude
+      const markObj = {latitude: markLat, longitude: markLong}
+      return markObj
+    }))
+    nearestGyms.forEach((gym, i) => {
+      let gymLat = gym.latitude
+      let gymLong = gym.longitude
+      let coordinates = {latitude: gymLat, longitude: gymLong,
+        latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta}
+      if ((gymLong !== propsLongitude) && (gymLat !== propsLatitude)) {
+        const bearing = geolib.getCompassDirection({latitude:propsLatitude, longitude: propsLongitude },{latitude: gymLat, longitude: gymLong})
+        if (!left && bearing.includes('W')) {
+          setLeft(coordinates)
+        }
+        if (!right && bearing.includes('E')) {
+          setRight(coordinates)
+        }
+        if (!right && !left && bearing === "N" || bearing === "S") {
+          setRight(coordinates)
+          setLeft(coordinates)
+
+        }
+      }
+    })
+  }, [propsLatitude, propsLongitude])
+
+  useEffect(() => {
+
+    const nearestGym = geolib.findNearest({ propsLatitude, propsLongitude }, markers.map((mark) => {
+      const markLat = mark.latitude
+      const markLong = mark.longitude
+      const markObj = {latitude: markLat, longitude: markLong}
+      return markObj
+    }))
+    if (nearestGym !== undefined) {
+      props.setRegion({
+        latitude: nearestGym.latitude, longitude: nearestGym.longitude,
+        latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta
+      })
+    }
+  }, [markers])
 
   return (
     <View style={styles.container}>
@@ -64,14 +117,14 @@ export const Map = props => {
             tier={marker.tier}
             website_url={marker.website_url}
             zip_code={marker.zip_code}
-            coordinate={{ 
-              latitude: marker.latitude, 
-              longitude: marker.longitude, 
+            coordinate={{
+              latitude: marker.latitude,
+              longitude: marker.longitude,
               latitudeDelta: props.latitudeDelta,
               longitudeDelta: props.longitudeDelta,
             }}
-            longitude={props.longitude}
-            latitude={props.latitude}
+            longitude={propsLongitude}
+            latitude={propsLatitude}
             burough={marker.burough}
             city={marker.city}
             logo_url={marker.logo_url}
@@ -82,7 +135,9 @@ export const Map = props => {
             openClosed={'open'}
             rating={'5.0'}
             distance={'6.7mi away'}
-          />
+            right={right}
+            left={left}
+          /> 
         )))}
       </MapView>
     </View>

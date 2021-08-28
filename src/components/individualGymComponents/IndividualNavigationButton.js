@@ -1,40 +1,67 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
-
-import { Res } from '../../resources';
-import { H2 } from '../polygraphy';
-import PremEllipse from '../../assets/icons/premellipse.png'
-import PremPolygon from '../../assets/icons/prempolygon.png'
-import Ellipse from '../../assets/icons/Ellipse.png'
-import Polygon from '../../assets/icons/Polygon.png'
-import GymImage from '../../assets/images/gymPhotos/GymIcon.jpg'
+import LeftArrow from '../../assets/icons/arrowleft.png'
+import RightArrow from '../../assets/icons/arrowright.png'
 const Container = styled.View`
 `
-const NavButton = styled.View`
+const StyledLeftNavButton = styled.TouchableOpacity`
 background: rgba(61, 61, 61, 0.3);
-radius: 20px;
-height: 38px;
-width: 71px;
+border-radius: 20px;
+height: 71px;
+width: 38px;
+position: absolute;
+z-index: 5;
+`
+const StyledRightNavButton = styled.TouchableOpacity`
+background: rgba(61, 61, 61, 0.3);
+border-radius: 20px;
+height: 71px;
+width: 38px;
+position: absolute;
+z-index: 10;
+`
+const StyledLeftImage = styled.Image`
+left: 8px;
+top: 12px;
+`
+const StyledRightImage = styled.Image`
+left: 12px;
+top: 14px;
 `
 
 export const IndividualNavigationButton = props => {
-  const rightPointer = async (e) => {
-
+  const pointer = async (e) => {
+  const propsLatitudeDelta = props.latitudeDelta
+  const propsLongitudeDelta = props.longitudeDelta
+   if(props.left){
+   const longitude = props.left.longitude
+   const latitude = props.left.latitude
+       props.setRegion({latitude: latitude, longitude: longitude, latitudeDelta: propsLatitudeDelta, longitudeDelta: propsLongitudeDelta})
+   }
+   if(props.right){
+    const longitude = props.left.longitude
+    const latitude = props.left.latitude
+    props.setRegion({latitude: latitude, longitude: longitude, latitudeDelta: propsLatitudeDelta, longitudeDelta: propsLongitudeDelta})
+   }
   }
-  const leftPointer = async (e) => {
 
-  }
   return (
-    <>
-      {props.left && (
-        <Container onClick={leftPointer}>
+    <View onPress={pointer}>
+      {props.direction === 'left' && (
+        <Container onPress={pointer}>
+          <StyledLeftNavButton onPress={pointer}>
+          <StyledLeftImage  onPress={pointer} source={LeftArrow}/>
+          </StyledLeftNavButton>
         </Container>
       )}
-      {props.right && (
-        <Container onClick={rightPointer}>
+      {props.direction === 'right' && (
+        <Container>
+          <StyledRightNavButton  onPress={pointer}>
+          <StyledRightImage source={RightArrow}/>
+          </StyledRightNavButton>
         </Container>
       )}
-    </>
+    </View>
   )
 }

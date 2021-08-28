@@ -21,7 +21,6 @@ const BackgroundImageStyle = styled.ImageBackground`
 flex: 1; 
 width: 80%; 
 height: 100%;
-top: 0px;
 `;
 const GymIconContainer = styled.View`
   top: 25px
