@@ -43,10 +43,13 @@ const StyledName= styled.Text`
   letter-spacing: 0.24;
 `;
 
-const AddressContainer = styled.View`
+
+const AddressWrap = styled.View`
+  top: 6px;
+  left: 20px;
   display: flex;
   flex-direction: row;
-  top: 6px
+  justify-content: space-between;
 `;
 
 const StyledAddress = styled.Text`
@@ -54,6 +57,7 @@ const StyledAddress = styled.Text`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  right: 5px;
   color: ${Res.colors.textGrey};
 `;
 
@@ -139,8 +143,8 @@ const StyledBadgeContainer = styled.View`
 
 const styles = StyleSheet.create({
   fontText: {
-    fontFamily: 'PlusJakartaSans-Regular'
-  },
+    fontFamily: 'PlusJakartaSans-Regular',
+    }
 }); 
 
 export const GymTile = props => {
@@ -156,10 +160,12 @@ export const GymTile = props => {
     </ImageContainer>
     <StyledBottomContainer>
       <StyledName style={styles.fontFamily}>{props.name}</StyledName>
-      <AddressContainer>
+      <AddressWrap>
         <StyledLocationPin source={LocationPin}/>
+        <View style={{flexDirection:'row', flex: 1, flexWrap: 'wrap'}}>
         <StyledAddress style={styles.fontFamily}>{props.address1}</StyledAddress>
-      </AddressContainer>
+        </View>
+      </AddressWrap>
       <StyledLineContainer>
           <Svg height="100" width="228" style={{top:53}}>
               <Line strokeDasharray='8, 10' x1="0" y1="0" x2="228" y2="0" stroke={Res.colors.textGrey} strokeWidth="2" />

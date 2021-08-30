@@ -24,14 +24,10 @@ left: 260px;
 bottom: 120px;
 `
 
+
 export const SwipeableComponent = props => {
   return (
     <FocusedStyledLocationPinContainer>
-      <StyledGymIconContainer>
-        <GymIcon
-          tier={props.tier}
-          logo_url={'https://res.cloudinary.com/gymhop/image/upload/v1628618553/Gym%20Photos/GymIcon_x3jowf.jpg'} />
-      </StyledGymIconContainer>
       <IndividualContainer>
         <StyledLeftWrapper>
           <IndividualNavigationButton

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import { Button, View, Text, ImageBackground, Image, Platform, StyleSheet } from 'react-native';
+import MapView from 'react-native-maps';
+import { View, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import { MarkerComponent } from './MarkerComponent';
 import { useQuery } from 'react-query'
-import { QueryClient, QueryClientProvider } from "react-query";
 import * as geolib from 'geolib';
 import axios from 'axios'
-import { SwipeableComponent } from './SwipeableComponent'
-import { ScreenStackHeaderLeftView } from 'react-native-screens';
+import { GymTile, IndividualNavigationButton } from '../individualGymComponents';
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
@@ -21,15 +19,20 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   }
 });
-const StyledLocationPin = styled.Image`
-height: 54px; 
-width: 54px
+const StyledLeftWrapper = styled.View`
+right: 50px;
+top: 15px;
 `
 
-const SwipeableContainer = styled.View`
-bottom: 200px;
-background-color:green;
-height: 0px;
+const StyledRightWrapper = styled.View`
+left: 260px;
+bottom: 120px;
+`
+const FocusedStyledLocationPinContainer = styled.View`
+bottom: 125px;
+`
+const IndividualContainer = styled.View`
+bottom: 75px;
 `
 
 export const Map = props => {
@@ -158,34 +161,53 @@ export const Map = props => {
         )))}
       </MapView>
       {currentMarker && (
-        <SwipeableContainer>
-          <SwipeableComponent
-            address1={currentMarker.address1}
-            amenities={currentMarker.amenities}
-            main_photo_url={currentMarker.main_photo_url}
-            name={currentMarker.name}
-            photo_urls={currentMarker.photo_urls}
-            state_code={currentMarker.state_code}
-            tier={currentMarker.tier}
-            website_url={currentMarker.website_url}
-            zip_code={currentMarker.zip_code}
-            coordinate={currentMarker.coordinate}
-            longitude={currentMarker.propsLongitude}
-            latitude={currentMarker.propsLatitude}
-            burough={currentMarker.burough}
-            city={currentMarker.city}
-            logo_url={currentMarker.logo_url}
-            setRegion={props.setRegion}
-            region={currentMarker.region}
-            latitudeDelta={currentMarker.latitudeDelta}
-            longitudeDelta={currentMarker.longitudeDelta}
-            openClosed={currentMarker.openClosed}
-            rating={currentMarker.rating}
-            distance={currentMarker.distance}
-            right={right}
-            region={props.region}
-            left={left} />
-        </SwipeableContainer>
+      <FocusedStyledLocationPinContainer>
+        <IndividualContainer>
+          <StyledLeftWrapper>
+            <IndividualNavigationButton
+              direction={'left'}
+              left={left}
+              latitudeDelta={currentMarker.latitudeDelta}
+              longitudeDelta={currentMarker.longitudeDelta}
+              setRegion={props.setRegion}
+              region={props.region}
+            />
+          </StyledLeftWrapper>
+          <GymTile
+             address1={currentMarker.address1}
+             amenities={currentMarker.amenities}
+             main_photo_url={currentMarker.main_photo_url}
+             name={currentMarker.name}
+             photo_urls={currentMarker.photo_urls}
+             state_code={currentMarker.state_code}
+             tier={currentMarker.tier}
+             website_url={currentMarker.website_url}
+             zip_code={currentMarker.zip_code}
+             coordinate={currentMarker.coordinate}
+             longitude={currentMarker.propsLongitude}
+             latitude={currentMarker.propsLatitude}
+             burough={currentMarker.burough}
+             city={currentMarker.city}
+             logo_url={currentMarker.logo_url}
+             setRegion={props.setRegion}
+             region={currentMarker.region}
+             latitudeDelta={currentMarker.latitudeDelta}
+             longitudeDelta={currentMarker.longitudeDelta}
+             openClosed={currentMarker.openClosed}
+             rating={currentMarker.rating}
+             distance={currentMarker.distance}
+             region={props.region}
+          />
+          <StyledRightWrapper>
+            <IndividualNavigationButton
+              direction={'right'}
+              latitudeDelta={currentMarker.latitudeDelta}
+             longitudeDelta={currentMarker.longitudeDelta}
+              setRegion={props.setRegion}
+              right={right} />
+          </StyledRightWrapper>
+        </IndividualContainer>
+      </FocusedStyledLocationPinContainer>
       )}
     </View>
   )

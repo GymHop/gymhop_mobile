@@ -5,10 +5,15 @@ import PremIcon from '../../assets/icons/mapMarkerPremium.png';
 import StanIcon from '../../assets/icons/mapMarkerStandard.png';
 import styled from 'styled-components/native';
 import { SwipeableComponent } from './SwipeableComponent'
+import { GymIcon, GymTile, IndividualNavigationButton } from '../individualGymComponents';
 const StyledLocationPin = styled.Image`
 height: 54px; 
 width: 54px;
 position: relative;
+`
+const StyledGymIconContainer = styled.View`
+left: 0px;
+top: 0px;
 `
 
 export const MarkerComponent = props => {
@@ -18,7 +23,8 @@ export const MarkerComponent = props => {
     if (props.coordinate.latitude !== props.latitude ||
       props.coordinate.longitude !== props.longitude) {
       setOnShow(true)
-      props.setRegion(props.coordinate)}
+      props.setRegion(props.coordinate)
+    }
   }
 
   useEffect(() => {
@@ -49,16 +55,16 @@ export const MarkerComponent = props => {
         rating: props.rating,
         distance: props.distance,
         right: props.right,
-        left: props.left })
+        left: props.left
+      })
     } else {
       setOnShow(false)
     }
 
   }, [props.longitude, props.latitude])
-
   return (
-    !onShow &&
-     (<Marker 
+    !onShow ?
+      (<Marker
         coordinate={props.coordinate}
         keyboardShouldPersistTaps='always'
         onPress={locationPinHandler}>
@@ -69,7 +75,18 @@ export const MarkerComponent = props => {
           (<StyledLocationPin
             source={PremIcon}
             resizeMode="contain" />
-          )}  
+          )} 
+        </Marker>):
+      (<Marker
+        coordinate={props.coordinate}
+        keyboardShouldPersistTaps='always'>
+        <StyledGymIconContainer>
+          <GymIcon
+            tier={props.tier}
+            logo_url={'https://res.cloudinary.com/gymhop/image/upload/v1628618553/Gym%20Photos/GymIcon_x3jowf.jpg'} />
+        </StyledGymIconContainer>
       </Marker>)
+          
+          
   )
 }
