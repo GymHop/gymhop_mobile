@@ -60,26 +60,6 @@ export const Map = props => {
     if (currentMarker) {
       const currentLatitude = currentMarker.coordinate.latitude
       const currentLongitude = currentMarker.coordinate.longitude
-      // const nearestGyms = []
-
-      // for(gym in markers){
-      //   if((markers[gym]['latitude'] !== currentMarker.coordinate.latitude) && (markers[gym]['longitude'] !== currentMarker.coordinate.longitude)){
-      //     nearestGyms.push(markers[gym])
-      //   } 
-      // }
-      // const nearestGym = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude}, nearestGyms.map((mark) => {
-      //   const markLat = mark.latitude
-      //   const markLong = mark.longitude
-      //     const markObj = { latitude: markLat, longitude: markLong }
-
-      //     return markObj
-      // }))
-
-
-      // setLeft(nearestGym)
-      // setRight(nearestGym)
-
-
       setRight('')
       setLeft('')
       const nearestGyms = geolib.orderByDistance({ latitude: currentLatitude, longitude: currentLongitude }, markers.map((mark) => {
@@ -108,8 +88,8 @@ export const Map = props => {
         }
       }
       )
-      const nearestWest = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude}, westGyms)
-      const nearestEast = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude}, eastGyms)
+      const nearestWest = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude }, westGyms)
+      const nearestEast = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude }, eastGyms)
       setLeft(nearestWest)
       setRight(nearestEast)
     }
