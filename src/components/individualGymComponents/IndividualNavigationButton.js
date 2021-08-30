@@ -36,22 +36,25 @@ export const IndividualNavigationButton = props => {
   const propsLongitudeDelta = props.longitudeDelta
    if(props.left){
    const longitude = props.left.longitude
-   const latitude = props.left.latitude
-       props.setRegion({latitude: latitude, longitude: longitude, latitudeDelta: propsLatitudeDelta, longitudeDelta: propsLongitudeDelta})
-   }
+   const latitude = props.left.latitude 
+  props.setRegion({latitude: latitude, longitude: longitude, latitudeDelta: propsLatitudeDelta, longitudeDelta: propsLongitudeDelta})
+}
+  
+  
    if(props.right){
-    const longitude = props.left.longitude
-    const latitude = props.left.latitude
+    const longitude = props.right.longitude
+    const latitude = props.right.latitude
     props.setRegion({latitude: latitude, longitude: longitude, latitudeDelta: propsLatitudeDelta, longitudeDelta: propsLongitudeDelta})
    }
   }
 
+
   return (
     <View onPress={pointer}>
       {props.direction === 'left' && (
-        <Container onPress={pointer}>
+        <Container >
           <StyledLeftNavButton onPress={pointer}>
-          <StyledLeftImage  onPress={pointer} source={LeftArrow}/>
+          <StyledLeftImage  source={LeftArrow}/>
           </StyledLeftNavButton>
         </Container>
       )}

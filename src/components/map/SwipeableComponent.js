@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native';
 import { GymIcon, GymTile, IndividualNavigationButton } from '../individualGymComponents';
+import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 
 const FocusedStyledLocationPinContainer = styled.View`
-top: 175px;
-left: 8px;
 `
 const IndividualContainer = styled.View`
 bottom: 75px;
@@ -12,7 +11,7 @@ bottom: 75px;
 `
 const StyledGymIconContainer = styled.View`
 left: 60px;
-bottom: 60px;
+bottom: 230px;
 `
 
 const StyledLeftWrapper = styled.View`
@@ -41,6 +40,7 @@ export const SwipeableComponent = props => {
             longitudeDelta={props.longitudeDelta}
             latitudeDelta={props.latitudeDelta}
             setRegion={props.setRegion}
+            region={props.region}
           />
         </StyledLeftWrapper>
         <GymTile

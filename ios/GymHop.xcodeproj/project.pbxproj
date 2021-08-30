@@ -37,6 +37,13 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = GymHop;
 		};
+		B611FDB226D9F78E0011FC12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B611FDAE26D9F78C0011FC12 /* AirMaps.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
+			remoteInfo = AirMaps;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +85,7 @@
 		AF10181D4D844A1FA2AB808B /* PlusJakartaSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Regular.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Regular.ttf"; sourceTree = "<group>"; };
 		B3431A294AEC4118AAA51F56 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		B34B5E003BB821DC1D62C77E /* libPods-GymHop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GymHop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B611FDAE26D9F78C0011FC12 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		C52F751AE4D945A8829F4DAD /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		CAD4FDD46EB142D6BA64D808 /* PlusJakartaSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Medium.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Medium.ttf"; sourceTree = "<group>"; };
 		DC538AEE0DE84D1F9F5D2789 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
@@ -200,6 +208,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B611FDAE26D9F78C0011FC12 /* AirMaps.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -225,6 +234,14 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* GymHop.app */,
 				00E356EE1AD99517003FC87E /* GymHopTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B611FDAF26D9F78C0011FC12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B611FDB326D9F78E0011FC12 /* libAirMaps.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,6 +320,12 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B611FDAF26D9F78C0011FC12 /* Products */;
+					ProjectRef = B611FDAE26D9F78C0011FC12 /* AirMaps.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* GymHop */,
@@ -310,6 +333,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B611FDB326D9F78E0011FC12 /* libAirMaps.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAirMaps.a;
+			remoteRef = B611FDB226D9F78E0011FC12 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -582,11 +615,64 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8D7TMGP5RH;
 				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"<Multiple",
+					"values>",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/AirMaps/**",
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaAsyncSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
+					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Glog\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-PeerTalk\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-RSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/FlipperKit\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Maps-iOS-Utils\"",
+					"\"${PODS_ROOT}/Headers/Public/RCT-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
+					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
+					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
+					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
+					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
+					"\"${PODS_ROOT}/Headers/Public/RNVectorIcons\"",
+					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
+					"\"${PODS_ROOT}/Headers/Public/React-callinvoker\"",
+					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
+					"\"${PODS_ROOT}/Headers/Public/React-perflogger\"",
+					"\"${PODS_ROOT}/Headers/Public/React-runtimeexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
+					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
+					"\"${PODS_ROOT}/Headers/Public/YogaKit\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/libevent\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-geolocation-service\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-google-maps\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-maps\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
+					"\"$(PODS_ROOT)/boost-for-react-native\"",
+					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
+					"\"$(PODS_TARGET_SRCROOT)/include/\"",
+				);
 				INFOPLIST_FILE = GymHop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -609,11 +695,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8D7TMGP5RH;
+				HEADER_SEARCH_PATHS = (
+					"<Multiple",
+					"values>",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/AirMaps/**",
+				);
 				INFOPLIST_FILE = GymHop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -660,7 +752,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -725,7 +817,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -734,6 +826,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
