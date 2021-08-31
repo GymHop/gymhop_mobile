@@ -35,7 +35,7 @@ export const SwipeableComponent = props => {
             left={props.left}
             longitudeDelta={props.longitudeDelta}
             latitudeDelta={props.latitudeDelta}
-            setRegion={props.setRegion}
+            setUserRegion={props.setRegion}
             region={props.region}
           />
         </StyledLeftWrapper>

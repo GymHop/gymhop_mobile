@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {Button, View, Text, ImageBackground, Image, Platform, StyleSheet} from 'react-native';
 import {Map} from '../../../components/map';
 import {Res} from '../../../resources';
@@ -18,21 +18,26 @@ const Container = styled.KeyboardAvoidingView`
 `;
 
 export const Map1ScreenView = props => {
-  const [region, setRegion] = useState({ 
+  const [userRegion, setUserRegion] = useState({ 
     latitude: 40.709318,
     longitude: -73.990686,
     latitudeDelta: 0.068,
     longitudeDelta: 0.033,
   })
+  
   return (
     <Container>
       <Map 
-      latitude={region.latitude}
-      longitude={region.longitude}
-      latitudeDelta={region.latitudeDelta}
-      longitudeDelta={region.longitudeDelta}
-      region={region}
-      setRegion={setRegion}>
+      initialRegion={{"latitude": 40.709318,
+        "longitude": -73.990686,
+        "latitudeDelta": 0.068,
+        "longitudeDelta": 0.033,}}
+      latitude={userRegion.latitude}
+      longitude={userRegion.longitude}
+      latitudeDelta={userRegion.latitudeDelta}
+      longitudeDelta={userRegion.longitudeDelta}
+      userRegion={userRegion}
+      setUserRegion={setUserRegion}>
       </Map>
     </Container>
   )

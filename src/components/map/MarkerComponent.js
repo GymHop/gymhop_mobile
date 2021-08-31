@@ -23,7 +23,7 @@ export const MarkerComponent = props => {
     if (props.coordinate.latitude !== props.latitude ||
       props.coordinate.longitude !== props.longitude) {
       setOnShow(true)
-      props.setRegion(props.coordinate)
+      props.setUserRegion(props.coordinate)
     }
   }
 
@@ -47,8 +47,8 @@ export const MarkerComponent = props => {
         burough: props.burough,
         city: props.city,
         logo_url: props.logo_url,
-        setRegion: props.setRegion,
-        region: props.region,
+        setUserRegion: props.setUserRegion,
+        userRegion: props.userRegion,
         latitudeDelta: props.latitudeDelta,
         longitudeDelta: props.longitudeDelta,
         openClosed: props.openClosed,
