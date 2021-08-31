@@ -17,7 +17,6 @@ top: 0px;
 `
 
 export const MarkerComponent = props => {
-
   const [onShow, setOnShow] = useState(false)
   const locationPinHandler = async () => {
     if (props.coordinate.latitude !== props.latitude ||

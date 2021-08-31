@@ -40,7 +40,6 @@ export const Map = props => {
   const propsLongitude = props.longitude
   const [markers, setMarkers] = useState([])
   const [currentMarker, setCurrentMarker] = useState(false)
-  const [onFocus, setOnFocus] = useState(false)
   const [left, setLeft] = useState('')
   const [right, setRight] = useState('')
 
@@ -123,7 +122,7 @@ export const Map = props => {
       })
     }
   }, [markers])
-  
+
   return (
     <View style={styles.container}>
       <MapView

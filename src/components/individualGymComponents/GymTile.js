@@ -35,6 +35,7 @@ const StyledImage = styled.Image`
 
 const StyledName= styled.Text`
   top: 0px;
+  padding-top: 2px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -45,11 +46,14 @@ const StyledName= styled.Text`
 
 
 const AddressWrap = styled.View`
-  top: 6px;
-  left: 20px;
+  top: ${props => props.address1.length < 30 ? '6px' : '0px'}
+  left: 18px;
+  width: 200px;
   display: flex;
+  align-items: center;
   flex-direction: row;
   justify-content: space-between;
+
 `;
 
 const StyledAddress = styled.Text`
@@ -160,10 +164,10 @@ export const GymTile = props => {
     </ImageContainer>
     <StyledBottomContainer>
       <StyledName style={styles.fontFamily}>{props.name}</StyledName>
-      <AddressWrap>
+      <AddressWrap {...props}>
         <StyledLocationPin source={LocationPin}/>
         <View style={{flexDirection:'row', flex: 1, flexWrap: 'wrap'}}>
-        <StyledAddress style={styles.fontFamily}>{props.address1}</StyledAddress>
+        <StyledAddress style={styles.fontFamily} {...props}>{props.address1}</StyledAddress>
         </View>
       </AddressWrap>
       <StyledLineContainer>
