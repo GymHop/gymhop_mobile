@@ -16,6 +16,7 @@ import {Keyboard, Platform, TouchableOpacity} from 'react-native';
 import React, {createRef, useEffect, useState} from 'react';
 
 import {ButtonVisualizer} from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
+import {DrawerActions} from '@react-navigation/native';
 import {Res} from '../resources';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -76,14 +77,22 @@ const Main = () => {
 
 const Drawer = createDrawerNavigator();
 
-function DrawerRoutes() {
-  return (
-    <Drawer.Navigator initialRouteName="maps1">
-      <Drawer.Screen name="maps1" component={Map1Screen} />
-    </Drawer.Navigator>
-  );
-}
-
+const DrawerRoutes = ({navigation}) => (
+  <Drawer.Navigator initialRouteName="maps1">
+    <Drawer.Screen
+      name="maps1"
+      component={Map1Screen}
+      options={{
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
+            <Image source={require('../assets/icons/menu_24px.png')} />
+          </TouchableOpacity>
+        ),
+      }}
+    />
+  </Drawer.Navigator>
+);
 export const AppNavigation = () => {
   return (
     <NavigationContainer ref={rootNavigationRef}>
@@ -99,7 +108,11 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="map1"
           component={DrawerRoutes}
-          options={{headerShown: false}}
+          options={({navigation, route}) => {
+            console.log(navigation);
+            console.log(route);
+            return {};
+          }}
         />
         <Stack.Screen
           name="onBoardingMap1"

@@ -20,11 +20,14 @@ import PremIcon from '../../../assets/icons/mapMarkerPremium.png';
 import {Res} from '../../../resources';
 import StanIcon from '../../../assets/icons/mapMarkerStandard.png';
 import styled from 'styled-components/native';
+import {useNavigation} from '@react-navigation/native';
 
-function DrawerButton({navigation}) {
+function DrawerButton({}) {
+  const navigation = useNavigation();
   return (
     <SafeAreaView>
-      <TouchableOpacity onPress={() => navigation.dispatch.toggleDrawer()}>
+      <TouchableOpacity
+        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
         <Image source={require('../../../assets/icons/menu_24px.png')} />
       </TouchableOpacity>
     </SafeAreaView>
