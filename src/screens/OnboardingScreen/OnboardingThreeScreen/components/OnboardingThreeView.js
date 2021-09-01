@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { Platform, PermissionsAndroid } from 'react-native';
+import { Platform, PermissionsAndroid, Linking, AppState } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import styled from 'styled-components/native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   PrimaryButton,
 } from '../../../../components';
@@ -25,9 +25,28 @@ import { Res } from '../../../resources';
 export const OnboardingThreeView = () => {
   const navigation = useNavigation();
   const [showModal, setShowModal] = useState(false);
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", nextAppState => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === "active"
+      ) {
+        console.log("App has come to the foreground!");
+        askLocation();
+      }
 
+      appState.current = nextAppState;
+      setAppStateVisible(appState.current);
+      console.log("AppState", appState.current);
+    });
 
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   function navigateToLoggedOut() {
     navigation.navigate('signup');
@@ -37,7 +56,7 @@ export const OnboardingThreeView = () => {
     console.log('asking location permission')
     if (Platform.OS === 'ios') {
       const iosGranted = await Geolocation.requestAuthorization('always');
-      console.log(iosGranted)
+      console.log(iosGranted);
       if (iosGranted === 'granted') {
         Geolocation.getCurrentPosition(
           (position) => {
@@ -76,9 +95,48 @@ export const OnboardingThreeView = () => {
     }
   };
 
-  const detectPress = (e) => {
-    console.log(e.target.name)
-  }
+  const askLocationAgain = async () => {
+    console.log(AppState.currentState);
+    if (Platform.OS === 'ios') {
+      const iosGranted = await Geolocation.requestAuthorization('always');
+      console.log(iosGranted);
+      if (iosGranted === 'granted') {
+        Geolocation.getCurrentPosition(
+          (position) => {
+            console.log(position);
+          },
+          (error) => {
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );
+        navigateToLoggedOut();
+      } else if (iosGranted === 'denied') {
+        console.log('PERMISSION DENIED');
+        await Linking.openSettings();
+      }
+    } else {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('PERMISSION GRANTED');
+        Geolocation.getCurrentPosition(
+          (position) => {
+            console.log(position);
+          },
+          (error) => {
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );
+        navigateToLoggedOut();
+      } else {
+        console.log('PERMISSION DENIED');
+        await Linking.openSettings();
+      }
+    }
+  };
 
 
 
@@ -89,7 +147,6 @@ export const OnboardingThreeView = () => {
           style={{ flex: 1, resizeMode: 'cover', width: null, height: null }}
           source={require('../../../../assets/images/OverheadOnboarding3.jpg')}>
           <View style={{
-            // justifyContent: 'center', 
             alignItems: 'center', flex: 1,
           }}>
             <View style={styles.blackModal}>
@@ -134,7 +191,7 @@ export const OnboardingThreeView = () => {
                     In order to get the best of your GymHop experience, location
                     services are required to easily find and check-in to gyms.
                   </Text>
-                  <PrimaryButton onPress={askLocation} text={'Share Location'} uppercase />
+                  <PrimaryButton onPress={askLocationAgain} text={'Share Location'} uppercase />
                 </View>
               </View>
             )}

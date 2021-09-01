@@ -54,20 +54,13 @@ export const TempNavScreenView = props => {
   return (
     <Container>
       <StyledText>{'TempNavScreen'}</StyledText>
-      <Button title="Go to Login Screen" onPress={() => navigateToLogin()} />
-      <Button title="Go to OnboardMap1" onPress={() => navigateToOnboardMap1()} />
-      <Button title="Go to OnboardMap2" onPress={() => navigateToOnboardMap2()} />
-      <Button
-        title="Go to Buttons Screen"
-        onPress={() => navigateToButtons()}
-      />
-      <Button
-        title="Go to Map1 Screen"
-        onPress={() => navigateToMap1()}
-      />
+      {/* <Button title="Go to Launch" onPress={() => navigateToLaunch()} /> */}
       <Button title="Go to Slider Screen" onPress={() => navigateToSlider()} />
       <Button title="Go to Logged Out" onPress={() => navigateToLoggedOut()} />
-      <Button title="Go to Launch" onPress={() => navigateToLaunch()} />
+      <Button
+        title="Go to Map Screen"
+        onPress={() => navigateToMap1()}
+      />
     </Container>
   );
 };

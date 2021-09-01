@@ -21,7 +21,7 @@ export const OnboradingOneView = () => {
         <Text style={styles.header}>Welcome to</Text>
         <Image
           style={styles.ghLogo}
-          source={require('../../../../assets/images/logos/GHLogo.png')}
+          source={require('../../../../assets/images/logos/GHlogo.png')}
         />
         <Text style={styles.paragraph}>
           Mobile access to all your favorite gyms
@@ -34,8 +34,9 @@ export const OnboradingOneView = () => {
 
 const styles = StyleSheet.create({
   ghLogo: {
-    height: 62,
-    width: 372,
+    height: 44,
+    width: 340,
+    marginTop: 25,
   },
   wrapper: {
     flex: 1,
