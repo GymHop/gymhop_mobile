@@ -28,10 +28,13 @@ export const OnboardingLoggedOutView = () => {
         source={require('../../../../assets/images/onboard1backgroundwithpins.png')}>
         <View style={styles.wrapper}>
           <Text style={styles.header}>Welcome to</Text>
+          <View style={{width: '100%', alignItems: 'center',}}>
+
           <Image
             style={styles.ghLogo}
             source={require('../../../../assets/images/logos/GHLogo.png')}
-          />
+            />
+            </View>
           <Text style={styles.paragraph}>
             Mobile access to all your favorite gyms
           </Text>
@@ -73,8 +76,9 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans-Regular',
   },
   ghLogo: {
-    height: 62,
-    width: 372,
+    height: 44,
+    width: 340,
+    marginTop: 25,
   },
   wrapper: {
     flex: 1,
@@ -95,20 +99,5 @@ const styles = StyleSheet.create({
     top: '57%',
     zIndex: 1,
     fontFamily: 'PlusJakartaSans-Regular',
-  },
-  paginationWrapper: {
-    position: 'absolute',
-    bottom: 80,
-    left: 0,
-    right: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  paginationDots: {
-    height: 13,
-    width: 13,
-    borderRadius: 13 / 2,
-    marginLeft: 23,
   },
 });

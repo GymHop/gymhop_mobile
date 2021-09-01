@@ -34,8 +34,9 @@ export const OnboradingOneView = () => {
 
 const styles = StyleSheet.create({
   ghLogo: {
-    height: 62,
-    width: 372,
+    height: 44,
+    width: 340,
+    marginTop: 25,
   },
   wrapper: {
     flex: 1,
