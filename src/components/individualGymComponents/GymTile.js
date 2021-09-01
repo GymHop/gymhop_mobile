@@ -22,16 +22,20 @@ const Container = styled.View`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 `;
 
-const ImageContainer = styled.View``;
+const ImageContainer = styled.View`
+`;
 
 const StyledImage = styled.Image`
- ${props => props.imageStyle}
+ ${props => props.tier === 'premium' ? 
+ 'bottom: 66px; height: 80px; width: 245px;' 
+ : 'bottom: 25; height: 125px; width: 245px;'}
   borderTopLeftRadius: 14px;
   borderTopRightRadius: 14px;
 `;
 
 const StyledName= styled.Text`
   top: 0px;
+  padding-top: 2px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -40,10 +44,16 @@ const StyledName= styled.Text`
   letter-spacing: 0.24;
 `;
 
-const AddressContainer = styled.View`
+
+const AddressWrap = styled.View`
+  top: ${props => props.address1.length < 30 ? '6px' : '0px'}
+  left: 18px;
+  width: 200px;
   display: flex;
+  align-items: center;
   flex-direction: row;
-  top: 6px
+  justify-content: space-between;
+
 `;
 
 const StyledAddress = styled.Text`
@@ -51,6 +61,7 @@ const StyledAddress = styled.Text`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  right: 5px;
   color: ${Res.colors.textGrey};
 `;
 
@@ -136,8 +147,8 @@ const StyledBadgeContainer = styled.View`
 
 const styles = StyleSheet.create({
   fontText: {
-    fontFamily: 'PlusJakartaSans-Regular'
-  },
+    fontFamily: 'PlusJakartaSans-Regular',
+    }
 }); 
 
 export const GymTile = props => {
@@ -153,10 +164,12 @@ export const GymTile = props => {
     </ImageContainer>
     <StyledBottomContainer>
       <StyledName style={styles.fontFamily}>{props.name}</StyledName>
-      <AddressContainer>
+      <AddressWrap {...props}>
         <StyledLocationPin source={LocationPin}/>
-        <StyledAddress style={styles.fontFamily}>{props.address1}</StyledAddress>
-      </AddressContainer>
+        <View style={{flexDirection:'row', flex: 1, flexWrap: 'wrap'}}>
+        <StyledAddress style={styles.fontFamily} {...props}>{props.address1}</StyledAddress>
+        </View>
+      </AddressWrap>
       <StyledLineContainer>
           <Svg height="100" width="228" style={{top:53}}>
               <Line strokeDasharray='8, 10' x1="0" y1="0" x2="228" y2="0" stroke={Res.colors.textGrey} strokeWidth="2" />
