@@ -80,7 +80,7 @@ const Drawer = createDrawerNavigator();
 const DrawerRoutes = ({navigation}) => (
   <Drawer.Navigator initialRouteName="maps1">
     <Drawer.Screen
-      name="maps1"
+      name="Home"
       component={Map1Screen}
       options={{
         headerLeft: () => (
