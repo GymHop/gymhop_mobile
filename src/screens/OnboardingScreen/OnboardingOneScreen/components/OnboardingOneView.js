@@ -21,7 +21,7 @@ export const OnboradingOneView = () => {
         <Text style={styles.header}>Welcome to</Text>
         <Image
           style={styles.ghLogo}
-          source={require('../../../../assets/images/logos/GHlogo.png')}
+          source={require('../../../../assets/images/logos/GHLogo.png')}
         />
         <Text style={styles.paragraph}>
           Mobile access to all your favorite gyms

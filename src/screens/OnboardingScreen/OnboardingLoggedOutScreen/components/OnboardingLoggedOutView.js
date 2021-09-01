@@ -32,7 +32,7 @@ export const OnboardingLoggedOutView = () => {
 
           <Image
             style={styles.ghLogo}
-            source={require('../../../../assets/images/logos/GHlogo.png')}
+            source={require('../../../../assets/images/logos/GHLogo.png')}
             />
             </View>
           <Text style={styles.paragraph}>
