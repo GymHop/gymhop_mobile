@@ -1,6 +1,10 @@
 import 'react-native-gesture-handler';
 import React, {createRef, useEffect, useState} from 'react';
-import {CommonActions, NavigationContainer} from '@react-navigation/native';
+import {
+  CommonActions,
+  NavigationContainer,
+  DrawerActions,
+} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Keyboard, Platform} from 'react-native';
 import {View, Text} from 'react-native';
@@ -19,7 +23,7 @@ import {ButtonVisualizer} from '../screens/TemporaryNavScreen/components/ButtonV
 import {OnboardingLoggedOutScreen} from '../screens/OnboardingScreen/OnboardingLoggedOutScreen';
 import {Launch} from '../screens/TemporaryNavScreen/components/Launch';
 import {SignupScreen} from '../screens/LoginScreen';
-
+import {createDrawerNavigator} from '@react-navigation/drawer';
 const rootNavigationRef = createRef();
 
 const Stack = createStackNavigator();
@@ -73,6 +77,30 @@ const Main = () => {
     </View>
   );
 };
+
+const Drawer = createDrawerNavigator();
+
+const DrawerRoutes = ({navigation}) => (
+  <Drawer.Navigator
+    screenOptions={{
+      gestureEnabled: false,
+    }}
+    initialRouteName="maps1">
+    <Drawer.Screen
+      name="Home"
+      component={Map1Screen}
+      options={{
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
+            <Image source={require('../assets/icons/menu_24px.png')} />
+          </TouchableOpacity>
+        ),
+      }}
+    />
+  </Drawer.Navigator>
+);
+
 export const AppNavigation = () => {
   return (
     <NavigationContainer ref={rootNavigationRef}>
@@ -87,7 +115,7 @@ export const AppNavigation = () => {
         />
         <Stack.Screen
           name="map1"
-          component={Map1Screen}
+          component={DrawerRoutes}
           options={{headerShown: false}}
         />
         <Stack.Screen
