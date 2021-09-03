@@ -6,7 +6,8 @@ import {
   DrawerActions,
 } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Keyboard, Platform} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Image, Keyboard, Platform} from 'react-native';
 import {View, Text} from 'react-native';
 import {
   LoginScreen,
@@ -77,8 +78,45 @@ const Main = () => {
     </View>
   );
 };
-
+const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
+
+function TabRoutes() {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        showLabel: false,
+        style: {
+          position: 'absolute',
+          elevation: 0,
+          backgroundColor: '#F5FFF9',
+          height: 88,
+        },
+      }}
+      initialRouteName="maps1">
+      <Tab.Screen
+        name="Home"
+        component={Map1Screen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Image
+                source={require('../assets/icons/mapGrey.png')}
+                resizeMode="contain"
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: focused ? '#00CF58' : '#454545',
+                }}
+              />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 const DrawerRoutes = ({navigation}) => (
   <Drawer.Navigator
@@ -88,7 +126,7 @@ const DrawerRoutes = ({navigation}) => (
     initialRouteName="maps1">
     <Drawer.Screen
       name="Home"
-      component={Map1Screen}
+      component={TabRoutes}
       options={{
         headerLeft: () => (
           <TouchableOpacity
