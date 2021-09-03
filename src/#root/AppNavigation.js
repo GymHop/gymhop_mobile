@@ -19,6 +19,7 @@ import {
   OndoardSliderScreen,
   Map1Screen,
   CheckInScreen,
+  UserProfileScreen,
 } from '../screens';
 import {Res} from '../resources';
 import {ButtonVisualizer} from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
@@ -124,6 +125,26 @@ function TabRoutes() {
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <Image
                 source={require('../assets/icons/check.png')}
+                resizeMode="contain"
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: focused ? '#00CF58' : '#454545',
+                }}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="UserProfile"
+        component={UserProfileScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Image
+                source={require('../assets/icons/profile.png')}
                 resizeMode="contain"
                 style={{
                   width: 28,
