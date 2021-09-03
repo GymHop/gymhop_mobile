@@ -7,7 +7,7 @@ import {
 } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Image, Keyboard, Platform} from 'react-native';
+import {Image, Keyboard, Platform, TouchableOpacity} from 'react-native';
 import {View, Text} from 'react-native';
 import {
   LoginScreen,
@@ -30,6 +30,8 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 const rootNavigationRef = createRef();
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 const RED_HEADER = {
   backgroundColor: Res.colors.main,
@@ -80,9 +82,29 @@ const Main = () => {
     </View>
   );
 };
-const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
 
+// middle check in button
+const CheckInTabNavigator = ({children, onPress}) => (
+  <TouchableOpacity
+    style={{
+      top: -16,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+    onPress={onPress}>
+    <View
+      style={{
+        width: 54,
+        height: 54,
+        borderRadius: 27,
+        backgroundColor: '#00C288',
+      }}>
+      {children}
+    </View>
+  </TouchableOpacity>
+);
+
+//Bottom Tab Nav
 function TabRoutes() {
   return (
     <Tab.Navigator
@@ -90,7 +112,7 @@ function TabRoutes() {
         showLabel: false,
         style: {
           position: 'absolute',
-          elevation: 0,
+          elevation: 4,
           backgroundColor: '#F5FFF9',
           height: 88,
         },
@@ -122,18 +144,17 @@ function TabRoutes() {
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Image
-                source={require('../assets/icons/check.png')}
-                resizeMode="contain"
-                style={{
-                  width: 28,
-                  height: 28,
-                  tintColor: focused ? '#00CF58' : '#454545',
-                }}
-              />
-            </View>
+            <Image
+              source={require('../assets/icons/check.png')}
+              resizeMode="contain"
+              style={{
+                width: 28,
+                height: 28,
+                tintColor: '#F5FFF9',
+              }}
+            />
           ),
+          tabBarButton: props => <CheckInTabNavigator {...props} />,
         }}
       />
       <Tab.Screen
@@ -160,6 +181,7 @@ function TabRoutes() {
   );
 }
 
+// drawer nav
 const DrawerRoutes = ({navigation}) => (
   <Drawer.Navigator
     screenOptions={{
@@ -181,6 +203,7 @@ const DrawerRoutes = ({navigation}) => (
   </Drawer.Navigator>
 );
 
+// main navigation for app stack navigation
 export const AppNavigation = () => {
   return (
     <NavigationContainer ref={rootNavigationRef}>
