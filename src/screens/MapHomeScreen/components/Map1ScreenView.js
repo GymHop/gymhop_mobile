@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {Button, View, Text, ImageBackground, Image, Platform, StyleSheet} from 'react-native';
 import {Map} from '../../../components/map';
 import {Res} from '../../../resources';
@@ -7,6 +7,7 @@ import styled from 'styled-components/native';
 import PremIcon from '../../../assets/icons/mapMarkerPremium.png';
 import StanIcon from '../../../assets/icons/mapMarkerStandard.png';
 import { Marker } from 'react-native-maps';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -25,6 +26,14 @@ export const Map1ScreenView = props => {
     longitudeDelta: 0.033,
   })
   
+
+  useEffect(() => {
+    dothis()
+  }, [])
+  const dothis = async () => {
+    const tier = await AsyncStorage.getItem('@tier');
+    console.log(tier)
+  }
   return (
     <Container>
       <Map 

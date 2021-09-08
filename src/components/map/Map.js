@@ -6,6 +6,8 @@ import { MarkerComponent } from './MarkerComponent';
 import { useQuery } from 'react-query'
 import * as geolib from 'geolib';
 import axios from 'axios'
+import { Swipeable } from 'react-native-gesture-handler'
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 import { GymTile, IndividualNavigationButton } from '../individualGymComponents';
 const styles = StyleSheet.create({
   container: {
@@ -21,18 +23,28 @@ const styles = StyleSheet.create({
 });
 const StyledLeftWrapper = styled.View`
 right: 50px;
-top: 15px;
+top: 25px;
 `
 
 const StyledRightWrapper = styled.View`
 left: 260px;
-bottom: 120px;
+bottom: 142px;
 `
 const FocusedStyledLocationPinContainer = styled.View`
-bottom: 125px;
+width: 355px;
+bottom: 50px;
+top: -175px;
 `
 const IndividualContainer = styled.View`
-bottom: 75px;
+top: 30px;
+left: 55px
+height: 161px;
+`
+
+const GymTileContainer = styled.View`
+height: 160px;
+width: 245px;
+bottom: 20px;
 `
 
 export const Map = props => {
@@ -42,6 +54,7 @@ export const Map = props => {
   const [currentMarker, setCurrentMarker] = useState(false)
   const [left, setLeft] = useState('')
   const [right, setRight] = useState('')
+
 
   let mapRef = useRef(null);
 
@@ -122,7 +135,23 @@ export const Map = props => {
       })
     }
   }, [markers])
-
+  const renderLeftActions = () => {
+    if (right) {
+      const longitude = right.longitude
+      const latitude = right.latitude
+      props.setUserRegion({ latitude: latitude, longitude: longitude, latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta })
+    }
+  }
+  const renderRightActions = () => {
+    if (left) {
+      const longitude = left.longitude
+      const latitude = left.latitude
+      props.setUserRegion({ latitude: latitude, longitude: longitude, latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta })
+    }
+  }
+  const gymProfileHandler = async () => {
+    console.log('ToDo')
+  }
   return (
     <View style={styles.container}>
       <MapView
@@ -172,51 +201,63 @@ export const Map = props => {
       </MapView>
       {currentMarker && (
         <FocusedStyledLocationPinContainer>
-          <IndividualContainer>
-            <StyledLeftWrapper>
-              <IndividualNavigationButton
-                direction={'left'}
-                left={left}
-                latitudeDelta={currentMarker.latitudeDelta}
-                longitudeDelta={currentMarker.longitudeDelta}
-                setUserRegion={props.setUserRegion}
-                userRegion={props.userRegion}
-              />
-            </StyledLeftWrapper>
-            <GymTile
-              address1={currentMarker.address1}
-              amenities={currentMarker.amenities}
-              main_photo_url={currentMarker.main_photo_url}
-              name={currentMarker.name}
-              photo_urls={currentMarker.photo_urls}
-              state_code={currentMarker.state_code}
-              tier={currentMarker.tier}
-              website_url={currentMarker.website_url}
-              zip_code={currentMarker.zip_code}
-              coordinate={currentMarker.coordinate}
-              longitude={currentMarker.propsLongitude}
-              latitude={currentMarker.propsLatitude}
-              burough={currentMarker.burough}
-              city={currentMarker.city}
-              logo_url={currentMarker.logo_url}
-              setUserRegion={props.setUserRegion}
-              userRegion={currentMarker.userRegion}
-              latitudeDelta={currentMarker.latitudeDelta}
-              longitudeDelta={currentMarker.longitudeDelta}
-              openClosed={currentMarker.openClosed}
-              rating={currentMarker.rating}
-              distance={currentMarker.distance}
-              userRegion={props.userRegion}
-            />
-            <StyledRightWrapper>
-              <IndividualNavigationButton
-                direction={'right'}
-                latitudeDelta={currentMarker.latitudeDelta}
-                longitudeDelta={currentMarker.longitudeDelta}
-                setUserRegion={props.setUserRegion}
-                right={right} />
-            </StyledRightWrapper>
-          </IndividualContainer>
+          <GestureRecognizer
+            onSwipeLeft={renderLeftActions}
+            onSwipeRight={renderRightActions}
+          >
+            <IndividualContainer>
+              <StyledLeftWrapper>
+                <IndividualNavigationButton
+                  direction={'left'}
+                  left={left}
+                  latitudeDelta={currentMarker.latitudeDelta}
+                  longitudeDelta={currentMarker.longitudeDelta}
+                  setUserRegion={props.setUserRegion}
+                  userRegion={props.userRegion}
+                />
+              </StyledLeftWrapper>
+              <GymTileContainer
+                onPress={gymProfileHandler}>
+                <GymTile
+                  style={{
+                    borderBottomLeftRadius: 14,
+                    borderBottomRightRadius: 14
+                  }}
+                  address1={currentMarker.address1}
+                  amenities={currentMarker.amenities}
+                  main_photo_url={currentMarker.main_photo_url}
+                  name={currentMarker.name}
+                  photo_urls={currentMarker.photo_urls}
+                  state_code={currentMarker.state_code}
+                  tier={currentMarker.tier}
+                  website_url={currentMarker.website_url}
+                  zip_code={currentMarker.zip_code}
+                  coordinate={currentMarker.coordinate}
+                  longitude={currentMarker.propsLongitude}
+                  latitude={currentMarker.propsLatitude}
+                  burough={currentMarker.burough}
+                  city={currentMarker.city}
+                  logo_url={currentMarker.logo_url}
+                  setUserRegion={props.setUserRegion}
+                  userRegion={currentMarker.userRegion}
+                  latitudeDelta={currentMarker.latitudeDelta}
+                  longitudeDelta={currentMarker.longitudeDelta}
+                  openClosed={currentMarker.openClosed}
+                  rating={currentMarker.rating}
+                  distance={currentMarker.distance}
+                  userRegion={props.userRegion}
+                />
+              </GymTileContainer>
+              <StyledRightWrapper>
+                <IndividualNavigationButton
+                  direction={'right'}
+                  latitudeDelta={currentMarker.latitudeDelta}
+                  longitudeDelta={currentMarker.longitudeDelta}
+                  setUserRegion={props.setUserRegion}
+                  right={right} />
+              </StyledRightWrapper>
+            </IndividualContainer>
+          </GestureRecognizer>
         </FocusedStyledLocationPinContainer>
       )}
     </View>
