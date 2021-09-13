@@ -10,14 +10,15 @@ import PremiumBadge from '../../assets/icons/premiumBadge.png'
 
 const Container = styled.View`
   borderBottomLeftRadius: 14px;
+
   borderBottomRightRadius: 14px;
   padding-vertical: ${props => props.small ? Res.spaces.sm : Res.spaces.padding.xs};
-  background-color: ${Res.colors.bgGrey};
+  background-color: ${Res.colors.white}
   align-items: center;
   justify-content: center;
   align-self: ${props => props.small ? 'center' : 'auto'};
   padding-horizontal: ${props => props.small ? Res.spaces.lg : 0};
-  height: 130px;
+  height: 160px;
   width: 245px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 `;
@@ -27,14 +28,14 @@ const ImageContainer = styled.View`
 
 const StyledImage = styled.Image`
  ${props => props.tier === 'premium' ? 
- 'bottom: 66px; height: 80px; width: 245px;' 
- : 'bottom: 25; height: 125px; width: 245px;'}
+ 'bottom: 66px; height: 110px; width: 245px;' 
+ : 'bottom: 25; height: 135px; width: 245px;'}
   borderTopLeftRadius: 14px;
   borderTopRightRadius: 14px;
 `;
 
 const StyledName= styled.Text`
-  top: 0px;
+  bottom: 5px;
   padding-top: 2px;
   font-style: normal;
   font-weight: 500;

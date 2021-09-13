@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 import Toast from 'react-native-toast-message';
 import {AppNavigation} from './AppNavigation';
+import {TestingProvider} from '../context/useTesting'
 import {AuthProvider} from '../context/useAuth';
 import ErrorBoundary from '../context/useError';
 
@@ -20,6 +21,7 @@ const App = () => {
 
   return (
     <AuthProvider>
+      <TestingProvider>
       <>
         <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
@@ -29,6 +31,7 @@ const App = () => {
         </ErrorBoundary>
         <Toast ref={ref => Toast.setRef(ref)} />
       </>
+      </TestingProvider>
     </AuthProvider>
   );
 };
