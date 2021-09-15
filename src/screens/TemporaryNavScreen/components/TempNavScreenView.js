@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {useContext} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import { Button, View, Text } from 'react-native';
 import { Res } from '../../../resources';
 import { Measurements } from '../../../utils';
+import { TestingContext } from '../../../context/useTesting';
 const StyledText = styled.Text``;
 const Container = styled.View`
   flex: 1;
@@ -18,6 +19,20 @@ const Container = styled.View`
 export const TempNavScreenView = props => {
   const navigation = useNavigation();
 
+  const test = useContext(TestingContext);
+  const tierHandler = async (tier) => {
+    if(tier === 'standard'){
+      await test.standardTier()
+      await test.storeTier()
+    }
+    if(tier === 'premium'){
+      await test.premiumTier()
+      await test.storeTier()
+    }
+    if(tier === null){
+      await test.removeTier()
+    }
+  }
   function navigateToLogin() {
     navigation.navigate('auth');
   }
@@ -54,6 +69,18 @@ export const TempNavScreenView = props => {
   return (
     <Container>
       <StyledText>{'TempNavScreen'}</StyledText>
+      <Button
+        title="Set Standard Tier"
+        onPress={() => tierHandler('standard')}
+      />
+      <Button
+        title="Set Premium Tier"
+        onPress={() => tierHandler('premium')}
+      />
+      <Button
+        title="Remove Tier"
+        onPress={() => tierHandler(null)}
+      />
       {/* <Button title="Go to Launch" onPress={() => navigateToLaunch()} /> */}
       <Button title="Go to Slider Screen" onPress={() => navigateToSlider()} />
       <Button title="Go to Logged Out" onPress={() => navigateToLoggedOut()} />

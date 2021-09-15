@@ -12,7 +12,7 @@ width: 54px;
 position: relative;
 `
 const StyledGymIconContainer = styled.View`
-left: 0px;
+right: 10px;
 top: 0px;
 `
 
