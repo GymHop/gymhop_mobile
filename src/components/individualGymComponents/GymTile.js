@@ -13,13 +13,13 @@ const Container = styled.View`
 
   borderBottomRightRadius: 14px;
   padding-vertical: ${props => props.small ? Res.spaces.sm : Res.spaces.padding.xs};
-  background-color: ${Res.colors.white}
+  background-color: ${Res.colors.bgGrey}
   align-items: center;
   justify-content: center;
   align-self: ${props => props.small ? 'center' : 'auto'};
   padding-horizontal: ${props => props.small ? Res.spaces.lg : 0};
-  height: 160px;
-  width: 245px;
+  height: 170px;
+  width: 275px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 `;
 
@@ -28,15 +28,15 @@ const ImageContainer = styled.View`
 
 const StyledImage = styled.Image`
  ${props => props.tier === 'premium' ? 
- 'bottom: 66px; height: 110px; width: 245px;' 
- : 'bottom: 25; height: 135px; width: 245px;'}
+ 'bottom: 66px; height: 110px; width: 275px;' 
+ : 'bottom: 25; height: 135px; width: 275px;'}
   borderTopLeftRadius: 14px;
   borderTopRightRadius: 14px;
 `;
 
 const StyledName= styled.Text`
-  bottom: 5px;
-  padding-top: 2px;
+  bottom: 4px;
+  padding-top: 5px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -49,8 +49,9 @@ const StyledName= styled.Text`
 const AddressWrap = styled.View`
   top: ${props => props.address1.length < 30 ? '6px' : '0px'}
   left: 18px;
-  width: 200px;
+  width: 225px;
   display: flex;
+  padding-bottom: 2px;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
@@ -62,14 +63,15 @@ const StyledAddress = styled.Text`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  right: 5px;
+  right: 10px;
   color: ${Res.colors.textGrey};
 `;
 
 const StyledLineContainer = styled.View`
-width: 228px;
+width: 260px;
 height: 1px;
 bottom: 40px;
+left: 15px;
 `;
 
 const StyledBottomLineContainer = styled.View`
@@ -119,14 +121,14 @@ const StyledBottomContainer = styled.View`
   justify-content: center;
   align-self: ${props => props.small ? 'center' : 'auto'};
   padding-horizontal: ${props => props.small ? Res.spaces.lg : 0};
-  height: 60px;
-  width: 245px;
+  height: 65px;
+  width: 275px;
 `;
 
 const StyledLocationPin = styled.Image`
   height: 14.29px;
   width: 10px
-  right: 10px
+  right: 18px
 `;
 
 const StyledBadge = styled.Image`
@@ -138,8 +140,8 @@ const StyledBadgeContainer = styled.View`
   width: 36px;
   height: 36px;
   borderRadius: 6px;
-  bottom: 25px;
-  right: 100px;
+  bottom: 22px;
+  right: 105px;
   z-index: 2;
   justify-content: center;
   align-items: center;

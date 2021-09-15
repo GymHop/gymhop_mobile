@@ -24,13 +24,16 @@ export const TempNavScreenView = props => {
     if(tier === 'standard'){
       await test.standardTier()
       await test.storeTier()
+      console.log("Tier Standard Activated")
     }
     if(tier === 'premium'){
       await test.premiumTier()
       await test.storeTier()
+      console.log("Tier Premium Activated")
     }
     if(tier === null){
       await test.removeTier()
+      console.log("Tier Removed")
     }
   }
   function navigateToLogin() {

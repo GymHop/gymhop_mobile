@@ -118,7 +118,7 @@ const TabRoutes = () => {
       <Tab.Navigator
         screenOptions={{tabBarVisible: false}}
         initialRouteName="Home">
-        <Tab.Screen name="Home" component={Map1Screen} />
+        <Tab.Screen name="Map1" component={Map1Screen} />
         <Tab.Screen name="CheckIn" component={CheckInScreen} />
         <Tab.Screen name="UserProfile" component={UserProfileScreen} />
       </Tab.Navigator>
@@ -140,7 +140,7 @@ const TabRoutes = () => {
             flexDirection: 'row',
           }}>
           <TouchableOpacity
-            onPress={() => changeTab('Home')}
+            onPress={() => changeTab('Map1')}
             style={{
               alignItems: 'center',
               justifyContent: 'center',

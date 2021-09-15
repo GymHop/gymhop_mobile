@@ -8,26 +8,26 @@ const Container = styled.View`
 const StyledLeftNavButton = styled.TouchableOpacity`
 background: rgba(61, 61, 61, 0.3);
 border-radius: 20px;
-height: 71px;
-width: 38px;
+height: 80px;
+width: 35px;
 position: absolute;
 z-index: 5;
 `
 const StyledRightNavButton = styled.TouchableOpacity`
 background: rgba(61, 61, 61, 0.3);
 border-radius: 20px;
-height: 71px;
-width: 38px;
+height: 80px;
+width: 35px;
 position: absolute;
 z-index: 10;
 `
 const StyledLeftImage = styled.Image`
 left: 8px;
-top: 12px;
+top: 16px;
 `
 const StyledRightImage = styled.Image`
 left: 12px;
-top: 14px;
+top: 16px;
 `
 
 export const IndividualNavigationButton = props => {
