@@ -8,8 +8,10 @@ import {
   Platform,
   StyleSheet,
   SafeAreaView,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import {Header} from 'react-native-elements';
 import {Map} from '../../../components/map';
 import {Res} from '../../../resources';
 import {Measurements} from '../../../utils';
@@ -48,14 +50,32 @@ export const Map1ScreenView = props => {
 
   return (
     <View style={styles.wrap}>
-      <View style={styles.sample}>
-        <Text style={styles.ham}>
-          <DrawerButton />
-        </Text>
-        <View style={styles.logo}>
-          <Image style={styles.gymhoplogo} source={require('../../../assets/images/logos/GHLogo.png')} />
-        </View>
-      </View>
+      <Header
+        leftComponent={<DrawerButton />}
+        centerComponent={
+          <Image
+            style={styles.gymhoplogo}
+            source={require('../../../assets/images/logos/GHLogo.png')}
+          />
+        }
+        containerStyle={{
+          height: 125,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 10,
+          },
+          shadowOpacity: 0.1,
+
+          elevation: 2,
+        }}
+        ViewComponent={LinearGradient}
+        linearGradientProps={{
+          colors: ['#00CF58', '#CAF4DC'],
+          start: {x: 0.7, y: 0},
+          locations: [0, 0.75],
+        }}
+      />
 
       <Container style={styles.map}>
         <Map
@@ -78,7 +98,10 @@ export const Map1ScreenView = props => {
 
 const styles = StyleSheet.create({
   wrap: {
-    height: '100%',
+    flex: 1,
+  },
+  headerWrap: {
+    flex: 1,
   },
   sample: {
     backgroundColor: '#00C29E',
@@ -93,8 +116,8 @@ const styles = StyleSheet.create({
     top: 67,
     left: 30,
   },
-  gymhoplogo:{
+  gymhoplogo: {
     width: 180,
     height: 24,
-  }
+  },
 });
