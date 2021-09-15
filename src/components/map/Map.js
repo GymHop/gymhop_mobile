@@ -29,7 +29,7 @@ left: 260px;
 bottom: 120px;
 `
 const FocusedStyledLocationPinContainer = styled.View`
-bottom: 125px;
+bottom: 25px;
 `
 const IndividualContainer = styled.View`
 bottom: 75px;

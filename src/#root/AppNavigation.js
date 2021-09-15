@@ -1,9 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 import 'react-native-gesture-handler';
 import React, {createRef, useEffect, useState} from 'react';
 import {
   CommonActions,
   NavigationContainer,
   DrawerActions,
+  useNavigation,
 } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -27,6 +29,7 @@ import {OnboardingLoggedOutScreen} from '../screens/OnboardingScreen/OnboardingL
 import {Launch} from '../screens/TemporaryNavScreen/components/Launch';
 import {SignupScreen} from '../screens/LoginScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import TabsShape from './TabShape';
 const rootNavigationRef = createRef();
 
 const Stack = createStackNavigator();
@@ -88,62 +91,72 @@ const CheckInTabNavigator = ({children, onPress}) => (
   <TouchableOpacity
     style={{
       top: -16,
+      width: 54,
+      height: 54,
+      borderRadius: 27,
+      backgroundColor: '#00C288',
       justifyContent: 'center',
       alignItems: 'center',
+      display: 'flex',
     }}
     onPress={onPress}>
-    <View
-      style={{
-        width: 54,
-        height: 54,
-        borderRadius: 27,
-        backgroundColor: '#00C288',
-      }}>
-      {children}
-    </View>
+    {children}
   </TouchableOpacity>
 );
 
 //Bottom Tab Nav
-function TabRoutes() {
+const TabRoutes = () => {
+  const [activeTab, setActiveTab] = useState('map1');
+  const navigation = useNavigation();
+
+  const changeTab = name => {
+    navigation.navigate(name);
+    setActiveTab(name);
+  };
   return (
-    <Tab.Navigator
-      tabBarOptions={{
-        showLabel: false,
-        style: {
+    <>
+      <Tab.Navigator
+        screenOptions={{tabBarVisible: false}}
+        initialRouteName="Home">
+        <Tab.Screen name="Home" component={Map1Screen} />
+        <Tab.Screen name="CheckIn" component={CheckInScreen} />
+        <Tab.Screen name="UserProfile" component={UserProfileScreen} />
+      </Tab.Navigator>
+
+      <View
+        style={{
           position: 'absolute',
-          elevation: 4,
-          backgroundColor: '#F5FFF9',
-          height: 88,
-        },
-      }}
-      initialRouteName="maps1">
-      <Tab.Screen
-        name="Home"
-        component={Map1Screen}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Image
-                source={require('../assets/icons/mapGrey.png')}
-                resizeMode="contain"
-                style={{
-                  width: 28,
-                  height: 28,
-                  tintColor: focused ? '#00CF58' : '#454545',
-                }}
-              />
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="CheckIn"
-        component={CheckInScreen}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({focused}) => (
+          bottom: 0,
+          backgroundColor: 'transparent',
+        }}>
+        <TabsShape tabWidth={80} />
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 10,
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-around',
+            flexDirection: 'row',
+          }}>
+          <TouchableOpacity
+            onPress={() => changeTab('Home')}
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: -25,
+            }}>
+            <Image
+              source={require('../assets/icons/mapGrey.png')}
+              resizeMode="contain"
+              style={{
+                width: 28,
+                height: 28,
+                tintColor: activeTab === 'Home' ? '#00CF58' : '#454545',
+              }}
+            />
+          </TouchableOpacity>
+          <CheckInTabNavigator onPress={() => changeTab('CheckIn')}>
             <Image
               source={require('../assets/icons/check.png')}
               resizeMode="contain"
@@ -153,33 +166,29 @@ function TabRoutes() {
                 tintColor: '#F5FFF9',
               }}
             />
-          ),
-          tabBarButton: props => <CheckInTabNavigator {...props} />,
-        }}
-      />
-      <Tab.Screen
-        name="UserProfile"
-        component={UserProfileScreen}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({focused}) => (
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Image
-                source={require('../assets/icons/profile.png')}
-                resizeMode="contain"
-                style={{
-                  width: 28,
-                  height: 28,
-                  tintColor: focused ? '#00CF58' : '#454545',
-                }}
-              />
-            </View>
-          ),
-        }}
-      />
-    </Tab.Navigator>
+          </CheckInTabNavigator>
+          <TouchableOpacity
+            onPress={() => changeTab('UserProfile')}
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: -25,
+            }}>
+            <Image
+              source={require('../assets/icons/profile.png')}
+              resizeMode="contain"
+              style={{
+                width: 28,
+                height: 28,
+                tintColor: activeTab === 'UserProfile' ? '#00CF58' : '#454545',
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </>
   );
-}
+};
 
 // drawer nav
 const DrawerRoutes = ({navigation}) => (
