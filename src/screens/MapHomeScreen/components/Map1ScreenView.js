@@ -25,7 +25,10 @@ function DrawerButton({}) {
     <SafeAreaView>
       <TouchableOpacity
         onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-        <Image source={require('../../../assets/icons/menu_24px.png')} />
+        <Image
+          style={{marginLeft: 15}}
+          source={require('../../../assets/icons/menu_24px.png')}
+        />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -59,21 +62,23 @@ export const Map1ScreenView = props => {
           />
         }
         containerStyle={{
+          paddingTop: '10%',
           height: 125,
           shadowColor: '#000',
           shadowOffset: {
             width: 0,
-            height: 10,
+            height: 4,
           },
-          shadowOpacity: 0.1,
-
-          elevation: 2,
+          shadowOpacity: 0.32,
+          shadowRadius: 5.46,
+          elevation: 9,
         }}
         ViewComponent={LinearGradient}
         linearGradientProps={{
-          colors: ['#00CF58', '#CAF4DC'],
-          start: {x: 0.7, y: 0},
-          locations: [0, 0.75],
+          colors: ['#CAF4DC', '#00CF58'],
+          useAngle: true,
+          angle: 175,
+          angleCenter: {x: 0.98, y: 1.3},
         }}
       />
 
@@ -115,6 +120,7 @@ const styles = StyleSheet.create({
   ham: {
     top: 67,
     left: 30,
+    marginTop: '15%',
   },
   gymhoplogo: {
     width: 180,
