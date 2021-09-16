@@ -1,3 +1,3 @@
-import {drawerNavHeader} from './drawerNavHeader';
+import {DrawerNavHeader} from './DrawerNavHeader';
 
-export {drawerNavHeader};
+export {DrawerNavHeader};

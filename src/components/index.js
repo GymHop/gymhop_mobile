@@ -4,7 +4,7 @@ import {TierTile} from './onboardingComponents';
 import {GymTile, GymIcon} from './individualGymComponents';
 import {Header} from './interface';
 import {DefaultInput, Timer, CodeEnter} from './fields';
-import {drawerNavHeader} from './navigation';
+import {DrawerNavHeader} from './navigation';
 
 export {
   H1,
@@ -18,5 +18,5 @@ export {
   TierTile,
   GymTile,
   GymIcon,
-  drawerNavHeader,
+  DrawerNavHeader,
 };

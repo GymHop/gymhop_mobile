@@ -1,38 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {
-  Button,
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  Platform,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import {Header} from 'react-native-elements';
+import React, {useState} from 'react';
+import {View, StyleSheet} from 'react-native';
 import {Map} from '../../../components/map';
 import {Res} from '../../../resources';
 import {Measurements} from '../../../utils';
 import styled from 'styled-components/native';
-import {DrawerActions} from '@react-navigation/native';
-import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-function DrawerButton({}) {
-  const navigation = useNavigation();
-  return (
-    <SafeAreaView>
-      <TouchableOpacity
-        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-        <Image
-          style={{marginLeft: 15}}
-          source={require('../../../assets/icons/menu_24px.png')}
-        />
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
-}
+import {DrawerNavHeader} from '../../../components';
 
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -53,34 +25,7 @@ export const Map1ScreenView = props => {
 
   return (
     <View style={styles.wrap}>
-      <Header
-        leftComponent={<DrawerButton />}
-        centerComponent={
-          <Image
-            style={styles.gymhoplogo}
-            source={require('../../../assets/images/logos/GHLogo.png')}
-          />
-        }
-        containerStyle={{
-          paddingTop: '10%',
-          height: 125,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 4,
-          },
-          shadowOpacity: 0.32,
-          shadowRadius: 5.46,
-          elevation: 9,
-        }}
-        ViewComponent={LinearGradient}
-        linearGradientProps={{
-          colors: ['#CAF4DC', '#00CF58'],
-          useAngle: true,
-          angle: 175,
-          angleCenter: {x: 0.98, y: 1.3},
-        }}
-      />
+      <DrawerNavHeader />
 
       <Container style={styles.map}>
         <Map

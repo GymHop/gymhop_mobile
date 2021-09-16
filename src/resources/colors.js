@@ -6,6 +6,7 @@ export const colors = {
   primaryGreen: '#00C288',
   secondaryGreen: '#00CF58',
   altGreen: '#D4F8E5',
+  paleGreen: '#CAF4DC',
 
   gold: '#F1CC52',
 
@@ -13,12 +14,9 @@ export const colors = {
   textGrey: '#727272',
   iconGrey: '#454545',
 
-
   textDark: '#000000',
   placeholder: '#BDBDBD',
 
   white: '#fff',
   black: '#000',
-
 };
-

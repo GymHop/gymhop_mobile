@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
 import {View, Text} from 'react-native';
 import {Res} from '../../../resources';
+import {DrawerNavHeader} from '../../../components';
 import {Measurements} from '../../../utils';
 const StyledText = styled.Text``;
 const Container = styled.View`
@@ -17,8 +18,11 @@ const Container = styled.View`
 
 export const UserProfileScreenView = props => {
   return (
-    <Container>
-      <StyledText>{'UserProfileScreen'}</StyledText>
-    </Container>
+    <>
+      <DrawerNavHeader />
+      <Container>
+        <StyledText>{'UserProfileScreen'}</StyledText>
+      </Container>
+    </>
   );
 };
