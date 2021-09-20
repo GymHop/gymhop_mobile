@@ -1,33 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {
-  Button,
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  Platform,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity
-} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet} from 'react-native';
 import {Map} from '../../../components/map';
 import {Res} from '../../../resources';
 import {Measurements} from '../../../utils';
 import styled from 'styled-components/native';
-import {DrawerActions} from '@react-navigation/native';
-import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-function DrawerButton({}) {
-  const navigation = useNavigation();
-  return (
-    <SafeAreaView>
-      <TouchableOpacity
-        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-        <Image source={require('../../../assets/icons/menu_24px.png')} />
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
-}
+import {DrawerNavHeader} from '../../../components';
 
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -48,14 +25,7 @@ export const Map1ScreenView = props => {
 
   return (
     <View style={styles.wrap}>
-      <View style={styles.sample}>
-        <Text style={styles.ham}>
-          <DrawerButton />
-        </Text>
-        <View style={styles.logo}>
-          <Image style={styles.gymhoplogo} source={require('../../../assets/images/logos/GHLogo.png')} />
-        </View>
-      </View>
+      <DrawerNavHeader />
 
       <Container style={styles.map}>
         <Map
@@ -78,7 +48,10 @@ export const Map1ScreenView = props => {
 
 const styles = StyleSheet.create({
   wrap: {
-    height: '100%',
+    flex: 1,
+  },
+  headerWrap: {
+    flex: 1,
   },
   sample: {
     backgroundColor: '#00C29E',
@@ -92,9 +65,10 @@ const styles = StyleSheet.create({
   ham: {
     top: 67,
     left: 30,
+    marginTop: '15%',
   },
-  gymhoplogo:{
+  gymhoplogo: {
     width: 180,
     height: 24,
-  }
+  },
 });
