@@ -106,7 +106,7 @@ const CheckInTabNavigator = ({children, onPress}) => (
 
 //Bottom Tab Nav
 const TabRoutes = () => {
-  const [activeTab, setActiveTab] = useState('map1');
+  const [activeTab, setActiveTab] = useState('Map1');
   const navigation = useNavigation();
 
   const changeTab = name => {
@@ -152,7 +152,7 @@ const TabRoutes = () => {
               style={{
                 width: 28,
                 height: 28,
-                tintColor: activeTab === 'Home' ? '#00CF58' : '#454545',
+                tintColor: activeTab === 'Map1' ? '#00CF58' : '#454545',
               }}
             />
           </TouchableOpacity>

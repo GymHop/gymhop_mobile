@@ -38,8 +38,8 @@ export const DrawerNavHeader = props => {
         />
       }
       containerStyle={{
-        paddingTop: '10%',
-        height: Platform.OS === 'ios' ? 125 : 110,
+        paddingTop: Platform.OS === 'ios' ? 0 : '10%',
+        height: Platform.OS === 'ios' ? 95: 110,
         shadowColor: Res.colors.black,
         shadowOffset: {
           width: 0,
