@@ -22,28 +22,27 @@ const styles = StyleSheet.create({
   }
 });
 const StyledLeftWrapper = styled.View`
-right: 50px;
-top: 25px;
+right: 45px;
+top: 20px;
 `
 
 const StyledRightWrapper = styled.View`
-left: 260px;
-bottom: 142px;
+left: 285px;
+bottom: 138px;
 `
 const FocusedStyledLocationPinContainer = styled.View`
 width: 355px;
-bottom: 50px;
-top: -175px;
+bottom: 125px;
 `
 const IndividualContainer = styled.View`
 top: 30px;
-left: 55px
+left: 40px
 height: 161px;
 `
 
 const GymTileContainer = styled.View`
 height: 160px;
-width: 245px;
+width: 275px;
 bottom: 20px;
 `
 
