@@ -1,16 +1,40 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+import {View, Text} from 'react-native';
+import {UserProfileView} from './containers/UserProfileView';
+import {useEffect, useContext, useState} from 'react';
+import {useQuery, useMutation} from 'react-query';
+import axios from 'axios';
+import {AuthContext} from '../../context/useAuth';
+import {DrawerNavHeader} from '../../components';
 
-import {screen} from '../../hocs/screen';
+export const UserProfileScreen = () => {
 
-import UserProfileScreenContainer from './containers/UserProfileScreenContainer';
+  const auth = useContext(AuthContext);
 
-export const UserProfileScreen = screen(
-  props => {
-    const navigation = useNavigation();
-    return <UserProfileScreenContainer />;
-  },
-  {
-    noHeader: true,
-  },
-);
+  const {data, error, isLoading, isError, isSuccess} = useQuery(
+    'user',
+    async () => {
+      const response = await axios.get(
+        'https://gymhop-api-staging.herokuapp.com/api/v1/users/me',
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        },
+      );
+      return response.data.data;
+    },
+  );
+
+  return (
+    <>
+      <DrawerNavHeader />
+
+      {isLoading && <Text>Loading...</Text>}
+
+      {isError && <Text>Error: {error.message}</Text>}
+
+      {isSuccess && <UserProfileView userData={data} token={auth.token} />}
+    </>
+  );
+};

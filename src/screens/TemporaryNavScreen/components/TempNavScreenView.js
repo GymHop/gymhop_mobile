@@ -66,8 +66,8 @@ export const TempNavScreenView = props => {
   function navigateToMap1() {
     navigation.navigate('map1');
   }
-  function navigateToO3() {
-    navigation.navigate('onboard3');
+  function navigateToUserProfile() {
+    navigation.navigate('userProfile');
   }
   function navigateToLaunch() {
     navigation.navigate('launch');
@@ -100,6 +100,11 @@ export const TempNavScreenView = props => {
         title="Go to Map Screen"
         onPress={() => navigateToMap1()}
       />
+      <Button
+        title="Go to User Profile Screen"
+        onPress={() => navigateToUserProfile()}
+      />
+      
     </Container>
   );
 };

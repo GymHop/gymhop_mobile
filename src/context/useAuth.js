@@ -78,12 +78,30 @@ export const AuthProvider = props => {
     }
   };
 
+  const getTokenOnly = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@token');
+      console.log(value);
+      if (value !== null) {
+        // value previously stored
+        setToken(value);
+        setAxiosHeader();
+        getDefault();
+        return token;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const auth = async data => {
     console.log('murat tishkul', data);
     setLoading(true);
     Api.post(REQUEST.AUTH, {user: data})
       .then(res => {
-        console.log(res);
+        // console.log(res);
         // setUser(res.data);
         Toast.show({
           text1: 'Success',
@@ -113,7 +131,7 @@ export const AuthProvider = props => {
         // await getUser();
 
         setLoading(false);
-        console.log('MUratmurat murat murat murat', res);
+        console.log('MUratmurat murat murat murat', res.data);
 
         NavigationAction.reset('map1');
       })
@@ -181,6 +199,7 @@ export const AuthProvider = props => {
         auth: auth,
         login: login,
         getToken: getToken,
+        getTokenOnly: getTokenOnly,
         clearUser: clearUser,
         codeSent: codeSent,
       }}>
