@@ -22,7 +22,7 @@ export {
   OnboardingMapScreen2,
   OnboardThreeScreen,
   Map1Screen,
-  CheckInMainScreen
+  CheckInMainScreen,
   CheckInScreen,
   UserProfileScreen,
 };
