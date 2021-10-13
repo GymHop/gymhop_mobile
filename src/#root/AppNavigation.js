@@ -16,6 +16,7 @@ import {
   EntryScreen,
   TemporaryNavScreen,
   TempScreen,
+  CheckInMainScreen,
   OnboardingMapScreen1,
   OnboardingMapScreen2,
   OndoardSliderScreen,
@@ -258,6 +259,11 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="buttons"
           component={ButtonVisualizer}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="CheckInMain"
+          component={CheckInMainScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen

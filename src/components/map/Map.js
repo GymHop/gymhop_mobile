@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import MapView, { AnimatedRegion, Animated } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { View, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import { MarkerComponent } from './MarkerComponent';
@@ -112,10 +112,19 @@ export const Map = props => {
         }
       }
       )
+      
       const nearestWest = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude }, westGyms)
       const nearestEast = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude }, eastGyms)
-      setLeft(nearestWest)
-      setRight(nearestEast)
+      if(nearestWest){ 
+        setLeft(nearestWest)
+      }else{
+        setLeft(eastGyms[eastGyms.length - 1])
+      }
+      if(nearestEast){
+        setRight(nearestEast)
+      }else{
+        setLeft(westGyms[westGyms.length - 1])
+      }
     }
   }, [propsLatitude, propsLongitude, currentMarker])
 
@@ -139,6 +148,8 @@ export const Map = props => {
       const longitude = right.longitude
       const latitude = right.latitude
       props.setUserRegion({ latitude: latitude, longitude: longitude, latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta })
+    } else{
+      console.log('adele')
     }
   }
   const renderRightActions = () => {
@@ -146,6 +157,8 @@ export const Map = props => {
       const longitude = left.longitude
       const latitude = left.latitude
       props.setUserRegion({ latitude: latitude, longitude: longitude, latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta })
+    }else{
+      
     }
   }
   const gymProfileHandler = async () => {
