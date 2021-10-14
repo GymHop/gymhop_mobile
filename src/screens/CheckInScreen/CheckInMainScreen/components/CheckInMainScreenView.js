@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 import { Res } from '../../../../resources';
 import { Measurements } from '../../../../utils';
 import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg';
@@ -40,7 +40,7 @@ export const CheckInMainScreenView = props => {
   return (
     <Container>
       <View>
-        hey girls the name's alaska
+        {/* hey girls the name's alaska */}
       </View>
     </Container>
   );

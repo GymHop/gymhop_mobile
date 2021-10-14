@@ -120,7 +120,7 @@ const TabRoutes = () => {
         screenOptions={{tabBarVisible: false}}
         initialRouteName="Home">
         <Tab.Screen name="Map1" component={Map1Screen} />
-        <Tab.Screen name="CheckIn" component={CheckInScreen} />
+        <Tab.Screen name="CheckIn" component={CheckInMainScreen} />
         <Tab.Screen name="UserProfile" component={UserProfileScreen} />
       </Tab.Navigator>
 
