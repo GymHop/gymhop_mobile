@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
+
 import {View, StyleSheet} from 'react-native';
 import {Map} from '../../../components/map';
 import {Res} from '../../../resources';
 import {Measurements} from '../../../utils';
 import styled from 'styled-components/native';
 import {DrawerNavHeader} from '../../../components';
+import { useQuery } from 'react-query'
+import axios from 'axios'
+
+
 
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -22,6 +27,7 @@ export const Map1ScreenView = props => {
     latitudeDelta: 0.068,
     longitudeDelta: 0.033,
   });
+
 
   return (
     <View style={styles.wrap}>

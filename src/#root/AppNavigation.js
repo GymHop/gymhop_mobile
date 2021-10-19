@@ -157,7 +157,7 @@ const TabRoutes = () => {
               }}
             />
           </TouchableOpacity>
-          <CheckInTabNavigator onPress={() => changeTab('CheckIn')}>
+          <CheckInTabNavigator onPress={() => changeTab('CheckInMain')}>
             <Image
               source={require('../assets/icons/check.png')}
               resizeMode="contain"

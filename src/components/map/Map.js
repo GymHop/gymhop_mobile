@@ -148,17 +148,13 @@ export const Map = props => {
       const longitude = right.longitude
       const latitude = right.latitude
       props.setUserRegion({ latitude: latitude, longitude: longitude, latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta })
-    } else{
-      console.log('adele')
-    }
+    } 
   }
   const renderRightActions = () => {
     if (left) {
       const longitude = left.longitude
       const latitude = left.latitude
       props.setUserRegion({ latitude: latitude, longitude: longitude, latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta })
-    }else{
-      
     }
   }
   const gymProfileHandler = async () => {
