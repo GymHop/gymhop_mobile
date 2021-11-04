@@ -49,7 +49,7 @@ bottom: 20px;
 export const Map = props => {
   const propsLatitude = props.latitude
   const propsLongitude = props.longitude
-  const [markers, setMarkers] = useState([])
+  // const [markers, setMarkers] = useState([])
   const [currentMarker, setCurrentMarker] = useState(false)
   const [left, setLeft] = useState('')
   const [right, setRight] = useState('')
@@ -65,20 +65,20 @@ export const Map = props => {
   const animateToRegion = () => {
     mapRef.current.animateToRegion(props.userRegion, 1000);
   }
-  const { data, error, loading } = useQuery(
-    'gyms',
-    async () => {
-      const response = await axios.get('https://gymhop-api-staging.herokuapp.com/api/v1/gyms?latitude=40.7021&longitude=-73.9863196')
-      return response.data.data
-    }
-  )
+  // const { data, error, loading } = useQuery(
+  //   'gyms',
+  //   async () => {
+  //     const response = await axios.get('https://gymhop-api-staging.herokuapp.com/api/v1/gyms?latitude=40.7021&longitude=-73.9863196')
+  //     return response.data.data
+  //   }
+  // )
 
-  useEffect(() => {
-    if (loading) return 'null';
-    if (error) return `Error! ${error.message}`;
-    if (data) setMarkers(data);
+  // useEffect(() => {
+  //   if (loading) return 'null';
+  //   if (error) return `Error! ${error.message}`;
+  //   if (data) setMarkers(data);
 
-  }, [data, loading, error])
+  // }, [data, loading, error])
 
   useEffect(() => {
     if (currentMarker) {
@@ -86,7 +86,7 @@ export const Map = props => {
       const currentLongitude = currentMarker.coordinate.longitude
       setRight('')
       setLeft('')
-      const nearestGyms = geolib.orderByDistance({ latitude: currentLatitude, longitude: currentLongitude }, markers.map((mark) => {
+      const nearestGyms = geolib.orderByDistance({ latitude: currentLatitude, longitude: currentLongitude }, props.markers.map((mark) => {
         const markLat = mark.latitude
         const markLong = mark.longitude
         const markObj = { latitude: markLat, longitude: markLong }
@@ -112,10 +112,10 @@ export const Map = props => {
         }
       }
       )
-      
+
       const nearestWest = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude }, westGyms)
       const nearestEast = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude }, eastGyms)
-      if(nearestWest){ 
+      if(nearestWest){
         setLeft(nearestWest)
       }else{
         setLeft(eastGyms[eastGyms.length - 1])
@@ -130,7 +130,7 @@ export const Map = props => {
 
   useEffect(() => {
 
-    const nearestGym = geolib.findNearest({ propsLatitude, propsLongitude }, markers.map((mark) => {
+    const nearestGym = geolib.findNearest({ propsLatitude, propsLongitude }, props.markers.map((mark) => {
       const markLat = mark.latitude
       const markLong = mark.longitude
       const markObj = { latitude: markLat, longitude: markLong }
@@ -142,13 +142,13 @@ export const Map = props => {
         latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta
       })
     }
-  }, [markers])
+  }, [props.markers])
   const renderLeftActions = () => {
     if (right) {
       const longitude = right.longitude
       const latitude = right.latitude
       props.setUserRegion({ latitude: latitude, longitude: longitude, latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta })
-    } 
+    }
   }
   const renderRightActions = () => {
     if (left) {
@@ -171,7 +171,7 @@ export const Map = props => {
         animateToRegion={currentMarker.userRegion, { duration: 100 }}
 
       >
-        {markers && (markers.map((marker, index) => (
+        {props.markers && (props.markers.map((marker, index) => (
           <MarkerComponent
             key={marker.id}
             address1={marker.address1}

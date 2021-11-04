@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 
 import {View, StyleSheet} from 'react-native';
 import {Map} from '../../../components/map';
+import { MapListButton } from '../../../components/buttons';
 import {Res} from '../../../resources';
 import {Measurements} from '../../../utils';
 import styled from 'styled-components/native';
 import {DrawerNavHeader} from '../../../components';
+import { useQuery } from 'react-query'
+import axios from 'axios'
+import { GymListTile } from '../../../components/individualGymComponents';
 import { Tabs } from '../../../components/tabs/Tabs';
+
 
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -17,6 +22,11 @@ const Container = styled.KeyboardAvoidingView`
   z-index: 3;
 `;
 
+const ContainerList = styled.ScrollView`
+  z-index:3;
+  display:flex;
+  `
+
 export const MapScreenView = props => {
   const [userRegion, setUserRegion] = useState({
     latitude: 40.709318,
@@ -25,27 +35,55 @@ export const MapScreenView = props => {
     longitudeDelta: 0.033,
   });
 
+  const [icon, setIcon] = useState('list')
+  const [markers, setMarkers] = useState([])
+
+  const { data, error, isLoading } = useQuery(
+    'gyms',
+    async () => {
+      const response = await axios.get('https://gymhop-api-staging.herokuapp.com/api/v1/gyms?latitude=40.7021&longitude=-73.9863196')
+      return response.data.data
+    }
+  )
+
+    useEffect(() => {
+      if (data) setMarkers(data);
+    }, [data, isLoading, error])
+
 
   return (
     <View style={styles.wrap}>
       <DrawerNavHeader />
-
+      <MapListButton icon={icon} setIcon={setIcon} />
+      {icon == 'list' ?
       <Container style={styles.map}>
-        <Map
-          initialRegion={{
-            latitude: 40.709318,
-            longitude: -73.990686,
-            latitudeDelta: 0.068,
-            longitudeDelta: 0.033,
-          }}
-          latitude={userRegion.latitude}
-          longitude={userRegion.longitude}
-          latitudeDelta={userRegion.latitudeDelta}
-          longitudeDelta={userRegion.longitudeDelta}
-          userRegion={userRegion}
-          setUserRegion={setUserRegion}></Map>
+      <Map
+        markers={markers}
+        initialRegion={{
+          latitude: 40.709318,
+          longitude: -73.990686,
+          latitudeDelta: 0.068,
+          longitudeDelta: 0.033,
+        }}
+        latitude={userRegion.latitude}
+        longitude={userRegion.longitude}
+        latitudeDelta={userRegion.latitudeDelta}
+        longitudeDelta={userRegion.longitudeDelta}
+        userRegion={userRegion}
+        setUserRegion={setUserRegion}></Map>
       </Container>
-      
+      :<>
+      <ContainerList contentContainerStyle={styles.center} >
+        {markers.map( (gym, i) => {
+          gym.openClosed='open'
+          gym.rating='5.0'
+          gym.distance='6.7mi'
+          return <GymListTile key={gym.id} gym={gym} i={i} />
+        })}
+        <View style={{width:300, height:100}} />
+      </ContainerList>
+      </>
+      }
       <Tabs />
     </View>
   );
@@ -76,109 +114,8 @@ const styles = StyleSheet.create({
     width: 180,
     height: 24,
   },
+  center :{
+    alignItems: 'center',
+    // justifyContent: 'center',
+  }
 });
-
-// const Tab = createBottomTabNavigator();
-
-// const TabRoutes = () => {
-//   const [activeTab, setActiveTab] = useState('Map1');
-//   const navigation = useNavigation();
-
-//   const changeTab = name => {
-//     navigation.navigate(name);
-//     setActiveTab(name);
-//   };
-//   return (
-//     <>
-//       <Tab.Navigator
-//         screenOptions={{tabBarVisible: false}}
-//         initialRouteName="Home">
-//         <Tab.Screen name="Map1" component={Map1Screen} />
-//         <Tab.Screen name="CheckIn" component={CheckInMainScreen} />
-//         <Tab.Screen name="UserProfile" component={UserProfileScreen} />
-//       </Tab.Navigator>
-
-//       <View
-//         style={{
-//           position: 'absolute',
-//           bottom: 0,
-//           backgroundColor: 'transparent',
-//         }}>
-//         <TabsShape tabWidth={80} />
-//         <View
-//           style={{
-//             position: 'absolute',
-//             bottom: 10,
-//             width: '100%',
-//             display: 'flex',
-//             justifyContent: 'space-around',
-//             flexDirection: 'row',
-//           }}>
-//           <TouchableOpacity
-//             onPress={() => changeTab('Map1')}
-//             style={{
-//               alignItems: 'center',
-//               justifyContent: 'center',
-//               marginTop: -25,
-//             }}>
-//             <Image
-//               source={require('../assets/icons/mapGrey.png')}
-//               resizeMode="contain"
-//               style={{
-//                 width: 28,
-//                 height: 28,
-//                 tintColor: activeTab === 'Map1' ? '#00CF58' : '#454545',
-//               }}
-//             />
-//           </TouchableOpacity>
-//           <CheckInTabNavigator onPress={() => changeTab('CheckInMain')}>
-//             <Image
-//               source={require('../assets/icons/check.png')}
-//               resizeMode="contain"
-//               style={{
-//                 width: 28,
-//                 height: 28,
-//                 tintColor: '#F5FFF9',
-//               }}
-//             />
-//           </CheckInTabNavigator>
-//           <TouchableOpacity
-//             onPress={() => changeTab('UserProfile')}
-//             style={{
-//               alignItems: 'center',
-//               justifyContent: 'center',
-//               marginTop: -25,
-//             }}>
-//             <Image
-//               source={require('../assets/icons/profile.png')}
-//               resizeMode="contain"
-//               style={{
-//                 width: 28,
-//                 height: 28,
-//                 tintColor: activeTab === 'UserProfile' ? '#00CF58' : '#454545',
-//               }}
-//             />
-//           </TouchableOpacity>
-//         </View>
-//       </View>
-//     </>
-//   );
-// };
-
-// middle check in button
-// const CheckInTabNavigator = ({children, onPress}) => (
-//   <TouchableOpacity
-//     style={{
-//       top: -16,
-//       width: 54,
-//       height: 54,
-//       borderRadius: 27,
-//       backgroundColor: '#00C288',
-//       justifyContent: 'center',
-//       alignItems: 'center',
-//       display: 'flex',
-//     }}
-//     onPress={onPress}>
-//     {children}
-//   </TouchableOpacity>
-// );
