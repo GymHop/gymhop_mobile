@@ -38,7 +38,7 @@ export const OnboardSliderView = () => {
   const setSliderPage = event => {
     const {currentPage} = sliderState;
     const {x} = event.nativeEvent.contentOffset;
-    const indexOfNextScreen = Math.floor(x / width);
+    const indexOfNextScreen = Math.floor(x / parseInt(width));
     if (indexOfNextScreen !== currentPage) {
       setSliderState({
         ...sliderState,
