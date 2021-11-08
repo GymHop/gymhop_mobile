@@ -26,7 +26,7 @@ export const ProfilePhoto = () => {
       style={{
         marginTop: 16,
         backgroundColor: '#FFFFFF',
-        marginBottom: 16,
+        marginBottom: 200,
         paddingBottom: 35,
       }}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>

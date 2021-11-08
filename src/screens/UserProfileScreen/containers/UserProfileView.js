@@ -24,6 +24,10 @@ const ScrollViewWithColor = styled.ScrollView`
   background-color: #f8f8f8;
 `;
 
+const ProfileImage = styled.Image`
+  margin-top: 14px;
+`;
+
 const styles = StyleSheet.create({
   fontText: {
     fontFamily: 'PlusJakartaSans-Regular',
@@ -47,7 +51,9 @@ export const UserProfileView = ({userData, token}) => {
       <SafeAreaView>
         <ScrollViewWithColor>
           <TopView>
-            <Image source={require('../../../assets/icons/userBlank.png')} />
+            <ProfileImage
+              source={require('../../../assets/icons/userBlank.png')}
+            />
           </TopView>
 
           <ProfileHeader userData={userData} />
@@ -61,11 +67,11 @@ export const UserProfileView = ({userData, token}) => {
             </WarningBox>
           )}
 
-          <MiddleNavigation />
-
-          <ProfileDetails userData={userData} token={token} />
-
-          <ProfilePhoto />
+          <MiddleNavigation
+            gymProfile={false}
+            userData={userData}
+            token={token}
+          />
         </ScrollViewWithColor>
       </SafeAreaView>
     </>

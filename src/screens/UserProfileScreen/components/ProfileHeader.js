@@ -14,7 +14,7 @@ const LocationBlock = styled.View`
 `;
 const SmallIcon = styled.Image`
   width: 20px;
-  height: 20px;
+  height: 25px;
 `;
 
 export const ProfileHeader = ({userData}) => {
