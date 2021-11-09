@@ -1,7 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+platform :ios, '12.1'
 
 target 'GymHop' do
   config = use_native_modules!
@@ -11,10 +11,26 @@ target 'GymHop' do
     # to enable hermes on iOS, change `false` to `true` and then install pods
     :hermes_enabled => false
   )
+  #   pod 'React', :path => '../node_modules/react-native', :subspecs => [
+  #   'Core',
+  #   'CxxBridge', # Include this for RN >= 0.47
+  #   # 'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
+  #   'RCTText',
+  #   'RCTNetwork',
+  #   'RCTWebSocket', # Needed for debugging
+  #   'RCTAnimation', # Needed for FlatList and animations running on native UI thread
+  #   # Add any other subspecs you want to use in your project
+  # ]
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
+    pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+  pod 'react-native-camera', path: '../node_modules/react-native-camera', subspecs: [
+  'FaceDetectorMLKit'
+]
 
   target 'GymHopTests' do
     inherit! :complete
@@ -24,6 +40,7 @@ target 'GymHop' do
   pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
+  
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and

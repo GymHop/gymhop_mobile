@@ -31,6 +31,8 @@ import {Launch} from '../screens/TemporaryNavScreen/components/Launch';
 import {SignupScreen} from '../screens/LoginScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import TabsShape from './TabShape';
+import {Camera} from '../screens/UserProfileScreen/components/Camera';
+
 const rootNavigationRef = createRef();
 
 const Stack = createStackNavigator();
@@ -210,6 +212,7 @@ const DrawerRoutes = ({navigation}) => (
         ),
       }}
     />
+    <Drawer.Screen name="Temporary Nav Screen" component={TempScreen} />
   </Drawer.Navigator>
 );
 
@@ -257,8 +260,8 @@ export const AppNavigation = () => {
         />
         <Stack.Screen name="signup" component={SignupScreen} />
         <Stack.Screen
-          name="buttons"
-          component={ButtonVisualizer}
+          name="userProfile"
+          component={UserProfileScreen}
           options={{headerShown: false}}
         />
          <Stack.Screen
@@ -269,6 +272,11 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="launch"
           component={Launch}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="camera"
+          component={Camera}
           options={{headerShown: false}}
         />
         <Stack.Screen
