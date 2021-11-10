@@ -120,14 +120,23 @@ export const MiddleNavigation = props => {
       </MidNavContainer>
 
       <View>
-        {activeTab === 1 && (
+        {!props.gymProfile && activeTab === 1 && (
           <>
             <ProfileDetails userData={props.userData} token={props.token} />
             <ProfilePhoto />
           </>
         )}
-        {activeTab === 2 && <Text>User Activity Page</Text>}
-        {activeTab === 3 && <Text>User Membership Page</Text>}
+        {!props.gymProfile && activeTab === 2 && (
+          <Text>User Activity Page</Text>
+        )}
+        {!props.gymProfile && activeTab === 3 && (
+          <Text>User Membership Page</Text>
+        )}
+        {props.gymProfile && activeTab === 1 && <></>}
+        {props.gymProfile && activeTab === 2 && <Text>User Activity Page</Text>}
+        {props.gymProfile && activeTab === 3 && (
+          <Text>User Membership Page</Text>
+        )}
       </View>
     </>
   );

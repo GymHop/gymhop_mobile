@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import styled from 'styled-components/native';
 import {SecondaryButton} from '../../../components/buttons';
 
@@ -28,14 +28,29 @@ const styles = StyleSheet.create({
   fontText: {
     fontFamily: 'PlusJakartaSans-Regular',
   },
+  profileTitle: {
+    fontFamily: 'PlusJakartaSans-Regular',
+    fontWeight: '700',
+    fontSize: 28,
+    padding: 8,
+  },
 });
 
-export const GymHeader = props => {
+export const GymHeader = ({gymData, distance, rating}) => {
   return (
     <GymProfileHeader>
+      <Text style={styles.profileTitle}>{gymData.name}</Text>
       <LocationBlock>
         <SmallIcon source={require('../../../assets/icons/locationpin.png')} />
-        <TextWithIcon style={styles.fontText}>location</TextWithIcon>
+        <TextWithIcon style={styles.fontText}>{gymData.address1}</TextWithIcon>
+      </LocationBlock>
+      <LocationBlock>
+        <SmallIcon source={require('../../../assets/icons/locationpin.png')} />
+        <TextWithIcon style={styles.fontText}>{distance}</TextWithIcon>
+      </LocationBlock>
+      <LocationBlock>
+        <SmallIcon source={require('../../../assets/icons/locationpin.png')} />
+        <TextWithIcon style={styles.fontText}>{rating} (74 reviews)</TextWithIcon>
       </LocationBlock>
       <View style={{alignItems: 'center'}}>
         <SecondaryButton text={'See Memberships'} />
