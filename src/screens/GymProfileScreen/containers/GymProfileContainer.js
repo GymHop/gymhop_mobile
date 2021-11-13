@@ -4,15 +4,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {screen} from '../../hocs/screen.js';
 import {DescriptionBlock} from '../components/DescriptionBlock.js';
 import {GymHeader} from '../components/GymHeader.js';
-import {GymNav} from '../components/GymNav.js';
-import {useQuery} from 'react-query';
-import axios from 'axios';
-import {AuthContext} from '../../context/useAuth';
 import {MiddleNavigation} from '../../UserProfileScreen/components/MiddleNavigation.js';
 import {GymInfoBlock} from '../components/GymInfoBlock.js';
-import {GymTile} from '../../../components/index.js';
 import {ScrollView} from 'react-native-gesture-handler';
-import { HoursBlock } from '../components/HoursBlock.js';
+import {HoursBlock} from '../components/HoursBlock.js';
+import { ProfileMap } from '../components/ProfileMap.js';
 
 export const GymProfileContainer = ({gymData}) => {
   return (
@@ -22,12 +18,7 @@ export const GymProfileContainer = ({gymData}) => {
       <DescriptionBlock />
       <HoursBlock gymData={gymData} />
       <GymInfoBlock gymData={gymData} />
-      <View style={{marginTop: 16}}>
-        <Image
-          source={require('../../../assets/images/tempMap.png')}
-          style={{width: '98%', borderRadius: 18}}
-        />
-      </View>
+      <ProfileMap gymData={gymData} />
     </ScrollView>
   );
 };

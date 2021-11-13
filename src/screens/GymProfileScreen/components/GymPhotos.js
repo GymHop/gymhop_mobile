@@ -19,7 +19,8 @@ export const GymPhotos = ({gymData}) => {
     console.log(gymData.photo_urls);
   }, []);
 
-  return <></>}
+  return <></>
+}
   // return (
     // <ImageSlider
     //  />

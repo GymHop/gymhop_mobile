@@ -18,9 +18,13 @@ const GymLinkRow = styled.TouchableOpacity`
   border-bottom-color: #d4d4d4;
 `;
 
+const GymLinkContainer = styled.View`
+  margin-bottom: 16px;
+`;
+
 export const GymInfoBlock = ({gymData}) => {
   return (
-    <>
+    <GymLinkContainer>
       <GymLinkRow
         onPress={() => Linking.openURL(gymData.website_url)}
         style={{borderBottomWidth: 1}}>
@@ -35,6 +39,6 @@ export const GymInfoBlock = ({gymData}) => {
         <GymLinkText>Classes Offered</GymLinkText>
         <Image source={require('../../../assets/icons/dumbbell.png')} />
       </GymLinkRow>
-    </>
+    </GymLinkContainer>
   );
 };

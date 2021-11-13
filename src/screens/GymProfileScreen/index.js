@@ -7,17 +7,11 @@ import {AuthContext} from '../../context/useAuth';
 import {GymProfileContainer} from './containers/GymProfileContainer.js';
 
 export const GymProfileScreen = () => {
-  const auth = useContext(AuthContext);
   const {data, error, isLoading, isError, isSuccess} = useQuery(
-    'user',
+    'gym',
     async () => {
       const response = await axios.get(
-        'https://gymhop-api-staging.herokuapp.com/api/v1/gyms/1',
-        {
-          headers: {
-            Authorization: `Bearer ${auth.token}`,
-          },
-        },
+        'https://gymhop-api-staging.herokuapp.com/api/v1/gyms/1'
       );
       console.log(response.data.data);
       return response.data.data;

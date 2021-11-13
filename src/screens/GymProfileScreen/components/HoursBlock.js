@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 
 export const HoursBlock = ({gymData}) => {
   const [currentDay, setCurrentDay] = useState(null);
-  const [currentHours, setCurrentHours] = useState(null);
+  const [currentHours, setCurrentHours] = useState(0);
   const [collapsed, setCollapsed] = useState(true);
 
   let hours = gymData.gym_schedules;
@@ -82,8 +82,10 @@ export const HoursBlock = ({gymData}) => {
     setCurrentDay(day);
     if (currentDay >= 1) {
       setCurrentHours(hours[currentDay - 1]);
+      console.log(currentHours)
     } else if (currentDay === 0) {
       setCurrentHours(hours[6]);
+      console.log(currentHours)
     }
   };
 
