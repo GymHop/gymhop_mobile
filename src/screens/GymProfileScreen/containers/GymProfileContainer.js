@@ -8,17 +8,30 @@ import {MiddleNavigation} from '../../UserProfileScreen/components/MiddleNavigat
 import {GymInfoBlock} from '../components/GymInfoBlock.js';
 import {ScrollView} from 'react-native-gesture-handler';
 import {HoursBlock} from '../components/HoursBlock.js';
-import { ProfileMap } from '../components/ProfileMap.js';
+import {ProfileMap} from '../components/ProfileMap.js';
+
+export const GymLocationTab = props => {
+  return (
+    <>
+      <DescriptionBlock />
+      <HoursBlock gymData={props.gymData} />
+      <GymInfoBlock gymData={props.gymData} />
+      <ProfileMap gymData={props.gymData} />
+    </>
+  );
+};
 
 export const GymProfileContainer = ({gymData}) => {
   return (
     <ScrollView>
-      <GymHeader gymData={gymData} distance={'6.7mi away'} rating={'5.0'} />
+      <GymHeader
+        gymData={gymData}
+        distance={'6.7mi away'}
+        rating={'5.0'}
+        tier={gymData.tier}
+      />
       <MiddleNavigation gymProfile={true} />
-      <DescriptionBlock />
-      <HoursBlock gymData={gymData} />
-      <GymInfoBlock gymData={gymData} />
-      <ProfileMap gymData={gymData} />
+      <GymLocationTab gymData={gymData} />
     </ScrollView>
   );
 };

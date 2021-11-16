@@ -1,9 +1,7 @@
-import React, {useContext} from 'react';
-import {Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import React from 'react';
+import {Text, View} from 'react-native';
 import {useQuery} from 'react-query';
 import axios from 'axios';
-import {AuthContext} from '../../context/useAuth';
 import {GymProfileContainer} from './containers/GymProfileContainer.js';
 
 export const GymProfileScreen = () => {
@@ -11,20 +9,19 @@ export const GymProfileScreen = () => {
     'gym',
     async () => {
       const response = await axios.get(
-        'https://gymhop-api-staging.herokuapp.com/api/v1/gyms/1'
+        'https://gymhop-api-staging.herokuapp.com/api/v1/gyms/1',
       );
-      console.log(response.data.data);
       return response.data.data;
     },
   );
 
   return (
-    <SafeAreaView>
+    <View>
       {isLoading && <Text>Loading...</Text>}
 
       {isError && <Text>Error: {error.message}</Text>}
 
       {isSuccess && <GymProfileContainer gymData={data} />}
-    </SafeAreaView>
+    </View>
   );
 };

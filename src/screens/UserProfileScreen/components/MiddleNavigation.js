@@ -133,10 +133,8 @@ export const MiddleNavigation = props => {
           <Text>User Membership Page</Text>
         )}
         {props.gymProfile && activeTab === 1 && <></>}
-        {props.gymProfile && activeTab === 2 && <Text>User Activity Page</Text>}
-        {props.gymProfile && activeTab === 3 && (
-          <Text>User Membership Page</Text>
-        )}
+        {props.gymProfile && activeTab === 2 && <Text>Gym Amenities Page</Text>}
+        {props.gymProfile && activeTab === 3 && <Text>Gym Reviews Page</Text>}
       </View>
     </>
   );

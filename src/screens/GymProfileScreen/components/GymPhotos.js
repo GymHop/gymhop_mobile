@@ -6,57 +6,86 @@ import {
   Image,
   FlatList,
   Dimensions,
+  ScrollView,
+  StyleSheet,
 } from 'react-native';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
-import ImageSlider from 'react-native-image-slider';
-
-const {width} = Dimensions.get('window');
-const SPACING = 10;
-const THUMB_SIZE = 80;
 
 export const GymPhotos = ({gymData}) => {
+  const [sliderState, setSliderState] = useState({currentPage: 0});
+  const imageTotal = gymData.photo_urls.length;
+  const {width} = Dimensions.get('window');
+  const imageWidth = width / imageTotal;
+  const scrollViewRef = useRef(0);
+
+  const setSliderPage = event => {
+    const {currentPage} = sliderState;
+    const {x} = event.nativeEvent.contentOffset;
+    const indexOfNextScreen = Math.floor(x / width);
+    if (indexOfNextScreen !== currentPage) {
+      setSliderState({
+        ...sliderState,
+        currentPage: indexOfNextScreen,
+      });
+    }
+  };
+
   useEffect(() => {
-    console.log(gymData.photo_urls);
+    console.log(width);
+    console.log(imageTotal);
   }, []);
 
-  return <></>
-}
-  // return (
-    // <ImageSlider
-    //  />
+  const {currentPage: pageIndex} = sliderState;
 
+  return (
+    <>
+      <ScrollView
+        style={{flex: 1}}
+        horizontal={true}
+        scrollEventThrottle={16}
+        pagingEnabled={true}
+        showsHorizontalScrollIndicator={false}
+        onScroll={event => {
+          setSliderPage(event);
+        }}
+        ref={node => (this.scroll = node)}>
+        {gymData.photo_urls.map(photo => (
+          <View style={{width, height: 275}}>
+            <Image
+              source={{uri: photo}}
+              style={{width, height: 275, resizeMode: 'cover'}}
+            />
+          </View>
+        ))}
+      </ScrollView>
+      <View style={styles.paginationWrapper}>
+        {gymData.photo_urls.map((key, index) => (
+          <View
+            style={[
+              styles.paginationDots,
+              {backgroundColor: pageIndex === index ? 'white' : '#c4c4c4'},
+            ]}
+            key={index}
+          />
+        ))}
+      </View>
+    </>
+  );
+};
 
-
-    // <View style={{flex: 1, backgroundColor: 'black', alignItems: 'center'}}>
-    //   <Text
-    //     style={{
-    //       color: 'white',
-    //       fontSize: 32,
-    //       marginTop: 50,
-    //       marginBottom: 25,
-    //     }}>
-    //     Custom Gallery
-    //   </Text>
-
-    //   <View style={{flex: 1 / 2, marginTop: 20}}>
-    //     <Carousel
-    //       layout="default"
-    //       data={gymData.photo_urls}
-    //       sliderWidth={width}
-    //       itemWidth={width}
-    //       firstItem={0}
-    //       initialScrollIndex={0}
-     
-    //       renderItem={({item, index}) => (
-    //         <Image
-    //           key={index}
-    //           style={{width: '100%', height: '100%'}}
-    //           resizeMode="contain"
-    //           source={{uri: item}}
-    //         />
-    //       )}
-    //     />
-    //   </View>
-    // </View>
-  // );
-// };
+const styles = StyleSheet.create({
+  paginationWrapper: {
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 210,
+  },
+  paginationDots: {
+    height: 13,
+    width: 13,
+    borderRadius: 13 / 2,
+    margin: 10,
+  },
+});
