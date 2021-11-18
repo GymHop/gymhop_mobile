@@ -2,8 +2,8 @@ import React, {useEffect, useContext, useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
-import {useIsFocused} from '@react-navigation/core';
-import {RNCamera} from 'react-native-camera';
+// import {useIsFocused} from '@react-navigation/core';
+// import {RNCamera} from 'react-native-camera';
 import {useNavigation} from '@react-navigation/native';
 
 const HeaderText = styled.Text`
@@ -15,11 +15,11 @@ const HeaderText = styled.Text`
 
 export const ProfilePhoto = () => {
   const navigation = useNavigation();
-  const isFocused = useIsFocused();
+  // const isFocused = useIsFocused();
 
-  const navigateToCamera = () => {
-    navigation.navigate('camera');
-  }
+  // const navigateToCamera = () => {
+  //   navigation.navigate('camera');
+  // }
 
   return (
     <View
@@ -41,7 +41,7 @@ export const ProfilePhoto = () => {
             source={require('../../../assets/icons/userBlank.png')}
             style={{width: 67, height: 67}}
           />
-          <TouchableOpacity onPress={() => navigateToCamera()}>
+          <TouchableOpacity>
             <Image
               source={require('../../../assets/icons/user.png')}
               style={{width: 30, height: 30}}

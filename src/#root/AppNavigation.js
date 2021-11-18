@@ -25,13 +25,11 @@ import {
   UserProfileScreen,
 } from '../screens';
 import {Res} from '../resources';
-import {ButtonVisualizer} from '../screens/TemporaryNavScreen/components/ButtonVisualizer';
 import {OnboardingLoggedOutScreen} from '../screens/OnboardingScreen/OnboardingLoggedOutScreen';
 import {Launch} from '../screens/TemporaryNavScreen/components/Launch';
 import {SignupScreen} from '../screens/LoginScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import TabsShape from './TabShape';
-import {Camera} from '../screens/UserProfileScreen/components/Camera';
 
 const rootNavigationRef = createRef();
 
@@ -264,7 +262,7 @@ export const AppNavigation = () => {
           component={UserProfileScreen}
           options={{headerShown: false}}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="CheckInMain"
           component={CheckInMainScreen}
           options={{headerShown: false}}
@@ -272,11 +270,6 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="launch"
           component={Launch}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="camera"
-          component={Camera}
           options={{headerShown: false}}
         />
         <Stack.Screen
