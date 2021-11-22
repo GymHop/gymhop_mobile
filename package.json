@@ -31,7 +31,6 @@
     "react-native-linear-gradient": "^2.5.6",
     "react-native-linear-gradient-degree": "^0.0.1",
     "react-native-maps": "^0.28.0",
-    "react-native-number-input": "0.0.12",
     "react-native-phone-number-input": "^2.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
@@ -50,13 +49,13 @@
     "eslint": "^7.32.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.64.0",
-    "react": "^16.14.0",
-    "react-art": "^16.13.1",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.2",
+    "react-art": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-native": "^0.66.1",
     "react-native-reanimated": "^2.2.3",
     "react-native-web": "^0.11.7",
-    "react-test-renderer": "17.0.1"
+    "react-test-renderer": "^17.0.2"
   },
   "jest": {
     "preset": "react-native"
