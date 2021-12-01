@@ -53,8 +53,8 @@ export const TempNavScreenView = props => {
     navigation.navigate('CheckInMain');
   }
 
-  function navigateToButtons() {
-    navigation.navigate('buttons');
+  function navigateToGymProfile() {
+    navigation.navigate('gymProfile');
   }
   function navigateToSlider() {
     navigation.navigate('onboardslider');
@@ -103,6 +103,10 @@ export const TempNavScreenView = props => {
       <Button
         title="Go to User Profile Screen"
         onPress={() => navigateToUserProfile()}
+      />
+      <Button
+        title="Go to Gym Profile Screen"
+        onPress={() => navigateToGymProfile()}
       />
       
     </Container>

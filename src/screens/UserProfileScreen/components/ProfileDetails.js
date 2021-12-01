@@ -7,7 +7,7 @@ import {putRequest} from '../../../context/queryHooks';
 const editIcon = '../../../assets/icons/create.png';
 const saveIcon = '../../../assets/icons/greenCheck.png';
 
-const HeaderText = styled.Text`
+export const HeaderText = styled.Text`
   font-weight: 700;
   height: 26px;
   font-size: 21px;

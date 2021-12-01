@@ -30,6 +30,7 @@ import {Launch} from '../screens/TemporaryNavScreen/components/Launch';
 import {SignupScreen} from '../screens/LoginScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import TabsShape from './TabShape';
+import { GymProfileScreen } from '../screens/GymProfileScreen';
 
 const rootNavigationRef = createRef();
 
@@ -263,6 +264,11 @@ export const AppNavigation = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="gymProfile"
+          component={GymProfileScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="CheckInMain"
           component={CheckInMainScreen}
           options={{headerShown: false}}
@@ -270,11 +276,6 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="launch"
           component={Launch}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="camera"
-          component={Camera}
           options={{headerShown: false}}
         />
         <Stack.Screen
