@@ -273,6 +273,11 @@ export const AppNavigation = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="camera"
+          component={Camera}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="loggedOut"
           component={OnboardingLoggedOutScreen}
           options={{headerShown: false}}
