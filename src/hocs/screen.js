@@ -1,14 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {CommonActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {Header} from '../components';
 import {
   Keyboard,
-  KeyboardAvoidingView,
   TouchableWithoutFeedback,
 } from 'react-native';
 
-export const screen = (ScreenComponent, navigationOptions) => {
+export const screen = (ScreenComponent) => {
   const enhanceNavigationProp = navigation => ({
     ...navigation,
     reset: options => navigation.dispatch(CommonActions.reset(options)),
@@ -25,34 +22,12 @@ export const screen = (ScreenComponent, navigationOptions) => {
       ScreenComponent.displayName || ScreenComponent.name
     })`;
 
-    let navigationOption =
-      typeof navigationOptions === 'function'
-        ? navigationOptionsContainer =>
-            navigationOptions({
-              ...navigationOptionsContainer,
-              navigation: enhanceNavigationProp(
-                navigationOptionsContainer.navigation,
-              ),
-            })
-        : navigationOptions;
-
     return (
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        {/* <KeyboardAvoidingView behavior="padding" style={{flex: 1}}> */}
-        <>
-          {!navigationOption?.noHeader && (
-            <Header
-              navigationOptions={navigationOption}
-              {...props}
-              drawer={props.drawer}
-            />
-          )}
-          <ScreenComponent
-            {...props}
-            navigation={enhanceNavigationProp(props.navigation)}
-          />
-        </>
-        {/* </KeyboardAvoidingView> */}
+        <ScreenComponent
+          {...props}
+          navigation={enhanceNavigationProp(props.navigation)}
+        />
       </TouchableWithoutFeedback>
     );
   };

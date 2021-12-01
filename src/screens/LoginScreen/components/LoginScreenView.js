@@ -68,8 +68,6 @@ const Header = styled.View`
 export const LoginScreenView = props => {
   const navigation = useNavigation();
   const [phone, setPhone] = useState('');
-  let signup = props.signup;
-
 
   return (
     <ImageBackground
@@ -97,11 +95,11 @@ export const LoginScreenView = props => {
                     marginTop: 30,
                   }}
                   white
-                  text={signup ? 'Create an Account' : 'Log In'}
+                  text={'Log In'}
                 />
                 <H2
                   white
-                  text={signup ? "Register with Phone Number" : "Log in with Phone Number"}
+                  text={"Log in with Phone Number"}
                   style={{marginBottom: 10}}
                 />
                 <PhoneInput
@@ -147,9 +145,7 @@ export const LoginScreenView = props => {
                 <PrimaryButton
                   onPress={() => {
                     if (phone.length > 9) {
-                      props.onAuth({
-                        phone,
-                      });
+                      props.onPhoneSubmit(phone);
                     } else {
                       Toast.show({
                         type: 'error',
@@ -159,92 +155,46 @@ export const LoginScreenView = props => {
                   }}
                   small
                   style={{width: '100%'}}
-                  text={signup ? 'SEND SMS VERIFICATION' : 'Log In'}
+                  text={'Log In'}
                 />
-                <Row
-                  style={{
-                    justifyContent: !props.user ? 'center' : 'space-between',
-                    flexDirection: 'column',
-                    width: '100%',
-                  }}>
-                  {/* {props.user && <Timer style={{opacity: 0}} time={60} />} */}
-
-                  {/* {props.user && <Timer time={60} />} */}
-                  <H2
-                    white
-                    text="By creating an account, I agree to GymHop’s terms and conditions."
-                    style={{margin: 10}}
-                  />
-                </Row>
               </View>
             </>
           ) : (
-            <View
-              style={{
-                flex: 1,
-                // paddingTop: `${Res.spaces.md}`,
-                justifyContent: 'space-around',
-                paddingBottom: 50,
-              }}>
-              <H2
+            <>
+              <View
                 style={{
-                  fontWeight: '500',
-                  fontSize: 25,
-                  textAlign: 'left',
-                  lineHeight: 35,
-                  // marginBottom: 30,
-                  marginTop: 30,
-                }}
-                white
-                text={'SMS Verification Sent'}
-              />
-              <View style={{justifyContent: 'flex-start'}}>
+                  flex: 1
+                }}>
+                <H2
+                  style={{
+                    fontWeight: '500',
+                    fontSize: 25,
+                    textAlign: 'left',
+                    lineHeight: 35,
+                    marginTop: 30,
+                    marginBottom: 40
+                  }}
+                  white
+                  text={'SMS Verification Sent'}
+                />
                 <H2 white text="Enter 6 digit code" />
                 <CodeEnter
                   onCode={code => {
                     Keyboard.dismiss();
 
-                    props.onLogin({
+                    props.onCodeSubmit({
                       phone,
                       code,
                     });
                   }}
                 />
+                <View style={{marginTop: 30}}>
+                    <H2 white text="Don't see it? Send again" />
+                </View>
+                
+                
               </View>
-              <H2 white text="Don't see it? Send again" />
-
-              <Row
-                style={{
-                  justifyContent: !props.user ? 'center' : 'space-between',
-                  flexDirection: 'column',
-                }}>
-                {/* {props.user && <Timer style={{opacity: 0}} time={60} />} */}
-
-                <PrimaryButton
-                  onPress={() => {
-                    if (phone.length > 9) {
-                      props.onLogin({
-                        phone,
-                        code,
-                      });
-                    } else {
-                      Toast.show({
-                        type: 'error',
-                        text1: 'Error',
-                      });
-                    }
-                  }}
-                  small
-                  style={{width: '100%'}}
-                  text={'CONTINUE'}
-                />
-                {/* {props.user && <Timer time={60} />} */}
-                <H2
-                  white
-                  text="By creating an account, I agree to GymHop’s terms and conditions."
-                />
-              </Row>
-            </View>
+            </>
           )}
         </Wrap>
       </Container>
