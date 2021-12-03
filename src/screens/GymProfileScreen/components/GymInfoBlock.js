@@ -35,7 +35,7 @@ export const GymInfoBlock = ({gymData}) => {
         <GymLinkText>Phone</GymLinkText>
         <Image source={require('../../../assets/icons/phone.png')} />
       </GymLinkRow>
-      <GymLinkRow>
+      <GymLinkRow onPress={() => Linking.openURL(gymData.website_url)}>
         <GymLinkText>Classes Offered</GymLinkText>
         <Image source={require('../../../assets/icons/dumbbell.png')} />
       </GymLinkRow>

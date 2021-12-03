@@ -97,23 +97,23 @@ export const MiddleNavigation = props => {
 
         <MidNavTab onPress={() => setActiveTab(3)}>
           {props.gymProfile ? (
-            activeTab === 3 ? (
-              <Image source={icon3.gymActive} />
-            ) : (
-              <Image source={icon3.gym} />
-            )
-          ) : activeTab === 3 ? (
+            activeTab === 3 ? null : // <Image source={icon3.gymActive} />
+            null
+          ) : // <Image source={icon3.gym} />
+          activeTab === 3 ? (
             <Image source={icon3.userActive} />
           ) : (
             <Image source={icon3.user} />
           )}
           {activeTab === 3 ? (
             <MidNavTextActive>
-              {props.gymProfile ? 'Reviews' : 'Membership'}
+              {props.gymProfile ? null : 'Membership'}
+              {/* {props.gymProfile ? 'Reviews' : 'Membership'} */}
             </MidNavTextActive>
           ) : (
             <MidNavText>
-              {props.gymProfile ? 'Reviews' : 'Membership'}
+              {props.gymProfile ? null : 'Membership'}
+              {/* {props.gymProfile ? 'Reviews' : 'Membership'} */}
             </MidNavText>
           )}
         </MidNavTab>

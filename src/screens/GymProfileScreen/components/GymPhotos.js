@@ -29,11 +29,6 @@ export const GymPhotos = ({gymData}) => {
     }
   };
 
-  useEffect(() => {
-    console.log(width);
-    console.log(imageTotal);
-  }, []);
-
   const {currentPage: pageIndex} = sliderState;
 
   return (

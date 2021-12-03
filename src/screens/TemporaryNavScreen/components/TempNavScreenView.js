@@ -93,7 +93,7 @@ export const TempNavScreenView = props => {
         title="Navigate to checkin main"
         onPress={() => navigateToCHeckInMain()}
       />
-      {/* <Button title="Go to Launch" onPress={() => navigateToLaunch()} /> */}
+      <Button title="Go to Launch" onPress={() => navigateToLaunch()} />
       <Button title="Go to Slider Screen" onPress={() => navigateToSlider()} />
       <Button title="Go to Logged Out" onPress={() => navigateToLoggedOut()} />
       <Button

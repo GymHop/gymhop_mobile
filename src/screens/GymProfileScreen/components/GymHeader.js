@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
 import styled from 'styled-components/native';
 import {GymIcon} from '../../../components';
@@ -45,11 +45,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export const GymHeader = ({gymData, distance, rating, tier}) => {
+export const GymHeader = ({gymData, distance, userData, tier}) => {
+  useEffect(() => {
+    console.log(userData);
+  }, []);
+
   return (
     <GymProfileHeader>
-      <GymPhotos gymData={gymData} />
-      <View style={{position: 'absolute', top: 235}}>
+
+      <View style={{position: 'absolute', bottom: 135}}>
         <GymIcon
           tier={gymData.tier}
           logo_url={gymData.main_photo_url}
@@ -78,16 +82,17 @@ export const GymHeader = ({gymData, distance, rating, tier}) => {
         />
         <TextWithIcon style={styles.fontText}>{distance}</TextWithIcon>
       </LocationBlock>
-      <LocationBlock>
-        <SmallIcon
-          source={require('../../../assets/icons/starGrey.png')}
-          style={{height: 16, width: 16}}
-        />
-        <TextWithIcon style={styles.fontText}>
-          {rating} (74 reviews)
-        </TextWithIcon>
-      </LocationBlock>
       <View style={{alignItems: 'center', marginTop: 8, marginBottom: 16}}>
+        {/* {userData.current_tier === null && (
+          <SecondaryButton text={'See Memberships'} />
+        )}
+        {userData.current_tier === 'standard' && (
+          <SecondaryButton text={'Check In'} />
+        )}
+        {userData.current_tier === 'premium' && (
+          <SecondaryButton text={'Check In'} />
+        )} */}
+
         <SecondaryButton text={'See Memberships'} />
       </View>
     </GymProfileHeader>

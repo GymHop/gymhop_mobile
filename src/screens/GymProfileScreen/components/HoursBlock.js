@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Image, View, StyleSheet} from 'react-native';
+import {Image, View, StyleSheet, Text} from 'react-native';
 import styled from 'styled-components/native';
 import {HeaderText} from '../../UserProfileScreen/components/ProfileDetails';
 
@@ -82,10 +82,8 @@ export const HoursBlock = ({gymData}) => {
     setCurrentDay(day);
     if (currentDay >= 1) {
       setCurrentHours(hours[currentDay - 1]);
-      console.log(currentHours)
     } else if (currentDay === 0) {
       setCurrentHours(hours[6]);
-      console.log(currentHours)
     }
   };
 
@@ -96,7 +94,7 @@ export const HoursBlock = ({gymData}) => {
   return (
     <HoursContainer>
       <HeaderText>Hours</HeaderText>
-      <OpenNowContainer onPress={()=>setCollapsed(!collapsed)}>
+      <OpenNowContainer onPress={() => setCollapsed(!collapsed)}>
         <HoursRow>
           <OpenToday>
             <Image
@@ -106,11 +104,13 @@ export const HoursBlock = ({gymData}) => {
             <OpenNowText style={styles.fontText}>Open Today</OpenNowText>
           </OpenToday>
           <OpenToday>
-            <OpenNowText>
-              {currentHours.start_hour}:{currentHours.start_minute}{' '}
-              {currentHours.start_am_pm} - {currentHours.end_hour}:
-              {currentHours.end_minute} {currentHours.end_am_pm}
-            </OpenNowText>
+            {currentDay && (
+              <OpenNowText>
+                {currentHours.start_hour}:{currentHours.start_minute}{' '}
+                {currentHours.start_am_pm} - {currentHours.end_hour}:
+                {currentHours.end_minute} {currentHours.end_am_pm}
+              </OpenNowText>
+            )}
             <Image
               style={{marginLeft: 10, marginRight: 10}}
               source={require('../../../assets/icons/expand.png')}
@@ -121,8 +121,8 @@ export const HoursBlock = ({gymData}) => {
 
       {!collapsed && (
         <HoursBox>
-          {hours.map(dailyHours => (
-            <HoursRow>
+          {hours.map((dailyHours, id) => (
+            <HoursRow key={id}>
               <DayText style={styles.fontText}>{dailyHours.day}</DayText>
               <HoursText style={styles.fontText}>
                 {dailyHours.start_hour}:{dailyHours.start_minute}{' '}

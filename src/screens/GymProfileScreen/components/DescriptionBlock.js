@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {HeaderText} from '../../UserProfileScreen/components/ProfileDetails';
 
-
 export const DescriptionBlock = () => {
   return (
     <View style={{backgroundColor: '#FFFFFF', marginBottom: 10}}>

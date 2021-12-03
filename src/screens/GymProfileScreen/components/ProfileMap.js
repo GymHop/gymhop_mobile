@@ -10,11 +10,12 @@ const MapBlock = styled.View`
   align-items: center;
   background-color: #ffffff;
   padding: 16px;
+  margin-bottom: 100px;
 `;
 const MapLinkContainer = styled.TouchableOpacity`
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  background-color: yellow;
+  background-color: white;
   border-radius: 10px;
 `;
 const StyledMap = styled.View`
@@ -80,6 +81,7 @@ export const ProfileMap = ({gymData}) => {
     let url = scheme + `${lat},${long}`;
     Linking.openURL(url);
   };
+
   useEffect(() => {
     getLocationDistance();
   }, []);
