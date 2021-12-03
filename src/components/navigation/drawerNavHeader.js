@@ -30,7 +30,6 @@ function DrawerButton({}) {
 export const DrawerNavHeader = props => {
   return (
     <Header
-      leftComponent={<DrawerButton />}
       centerComponent={
         <Image
           style={styles.gymhoplogo}

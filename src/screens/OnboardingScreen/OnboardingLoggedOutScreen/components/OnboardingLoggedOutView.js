@@ -18,7 +18,7 @@ export const OnboardingLoggedOutView = () => {
   const navigation = useNavigation();
 
   function navigateToLogin() {
-    navigation.navigate('auth', {signup: true});
+    navigation.navigate('auth');
   }
 
   return (
@@ -28,7 +28,7 @@ export const OnboardingLoggedOutView = () => {
         source={require('../../../../assets/images/onboard1backgroundwithpins.png')}>
         <View style={styles.wrapper}>
           <Text style={styles.header}>Welcome to</Text>
-          <View style={{width: '100%', alignItems: 'center',}}>
+          <View style={{width: '100%', alignItems: 'center'}}>
 
           <Image
             style={styles.ghLogo}
@@ -47,10 +47,6 @@ export const OnboardingLoggedOutView = () => {
             onPress={() => navigateToLogin()}
           />
           <View style={{padding: 10}}></View>
-          <PrimaryButtonTransparent
-            text={'I ALREADY HAVE AN ACCOUNT'}
-            onPress={() => navigateToLogin()}
-          />
           <View style={{padding: 10}}></View>
           <Text style={styles.terms}>
             By signing up to GymHop you agree to our terms

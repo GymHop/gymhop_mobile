@@ -189,6 +189,12 @@ export const AuthProvider = props => {
       });
   };
 
+  useEffect(() => {
+    console.log("yusa", getToken());
+
+  }, []);
+
+
   return (
     <AuthContext.Provider
       value={{

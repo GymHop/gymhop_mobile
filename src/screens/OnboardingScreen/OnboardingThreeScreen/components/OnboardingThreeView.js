@@ -49,7 +49,7 @@ export const OnboardingThreeView = () => {
   }, []);
 
   function navigateToLoggedOut() {
-    navigation.navigate('signup');
+    navigation.navigate('onboardsignup');
   }
 
   const askLocation = async (e) => {

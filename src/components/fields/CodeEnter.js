@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import CodeInput from 'react-native-code-input';
-import HideWithKeyboard from 'react-native-hide-with-keyboard';
 import styled from 'styled-components/native';
 import {Res} from '../../resources';
 import {H2, PrimaryButton} from '../../components';
@@ -41,34 +40,21 @@ const Liner = styled.View`
 
 export const CodeEnter = props => {
   return (
-    <Container>
-      <CodeInput
-        secureTextEntry
-        // borderType={'underline'}
-        space={10}
-        size={80}
-        codeLength={6}
-        inputPosition="left"
-        secureTextEntry={false}
-        onFulfill={code => {
-          props.onCode(code);
-        }}
-        selectionColor="red"
-        codeInputStyle={{
-          height: 54,
-          width: 54,
-          backgroundColor: Res.colors.white,
-          borderRadius: Res.spaces.radius.xs,
-          textAlign: 'center',
-          color: '#000',
-        }}
-        underlineColorAndroid={'transparent'}
-      />
-      <Wrap>
-        <HideWithKeyboard>
-          {/* <PrimaryButton text={'placeholders.signIn'} /> */}
-        </HideWithKeyboard>
-      </Wrap>
-    </Container>
+    <CodeInput
+      codeLength={6}
+      inputPosition="left"
+      secureTextEntry={false}
+      onFulfill={code => {
+        props.onCode(code);
+      }}
+      selectionColor="red"
+      codeInputStyle={{
+        backgroundColor: Res.colors.white,
+        borderRadius: Res.spaces.radius.xs,
+        textAlign: 'center',
+        color: '#000',
+      }}
+      underlineColorAndroid={'transparent'}
+    />
   );
 };
