@@ -75,9 +75,9 @@ export const HoursBlock = ({gymData}) => {
   const [collapsed, setCollapsed] = useState(true);
 
   let hours = gymData.gym_schedules;
-  let dateVariable = new Date(Date.now());
 
-  const checkDay = () => {
+  useEffect(() => {
+    let dateVariable = new Date(Date.now());
     let day = dateVariable.getDay();
     setCurrentDay(day);
     if (currentDay >= 1) {
@@ -85,11 +85,7 @@ export const HoursBlock = ({gymData}) => {
     } else if (currentDay === 0) {
       setCurrentHours(hours[6]);
     }
-  };
-
-  useEffect(() => {
-    checkDay();
-  }, []);
+  }, [currentDay, hours]);
 
   return (
     <HoursContainer>
