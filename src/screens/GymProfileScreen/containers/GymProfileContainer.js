@@ -15,7 +15,7 @@ export const GymLocationTab = props => {
       {/* <DescriptionBlock /> */}
       <HoursBlock gymData={props.gymData} />
       <GymInfoBlock gymData={props.gymData} />
-      <ProfileMap gymData={props.gymData} />
+      <ProfileMap gymData={props.gymData} distance={props.distance} />
     </>
   );
 };
@@ -56,7 +56,7 @@ export const GymProfileContainer = ({gymData}) => {
         tier={gymData.tier}
       />
       <MiddleNavigation gymProfile={true} />
-      <GymLocationTab gymData={gymData} />
+      <GymLocationTab gymData={gymData} distance={distance} />
     </ScrollView>
   );
 };

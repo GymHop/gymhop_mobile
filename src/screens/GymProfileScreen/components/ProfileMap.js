@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Platform, Linking} from 'react-native';
 import styled from 'styled-components';
 import MapView from 'react-native-maps';
-import * as geolib from 'geolib';
-import Geolocation from 'react-native-geolocation-service';
 import {TextWithIcon, LocationBlock, SmallIcon} from './GymHeader';
 
 const MapBlock = styled.View`
@@ -50,41 +48,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ProfileMap = ({gymData}) => {
+export const ProfileMap = ({gymData, distance}) => {
   const [lat, setLat] = useState(gymData.latitude);
   const [long, setLong] = useState(gymData.longitude);
-  const [distance, setDistance] = useState(null);
-  const getLocationDistance = () => {
-    Geolocation.getCurrentPosition(
-      position => {
-        setLat(position.coords.latitude);
-        setLong(position.coords.longitude);
-        let meters = geolib.getDistance(
-          {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          },
-          {latitude: gymData.latitude, longitude: gymData.longitude},
-        );
-        let miles = geolib.convertDistance(meters, 'mi');
-        console.log(miles.toFixed(1));
-        setDistance(miles.toFixed(1));
-      },
-      error => {
-        console.log(error.code, error.message);
-      },
-      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
-    );
-  };
+
   const handleMapClick = () => {
     let scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:';
     let url = scheme + `${lat},${long}`;
     Linking.openURL(url);
   };
-
-  useEffect(() => {
-    getLocationDistance();
-  }, []);
 
   return (
     <MapBlock>
