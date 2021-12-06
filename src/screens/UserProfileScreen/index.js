@@ -22,7 +22,6 @@ export const UserProfileScreen = () => {
           },
         },
       );
-      console.log(response.data.data);
       return response.data.data;
     },
   );

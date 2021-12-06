@@ -10,6 +10,7 @@ import {
   UserProfileScreen,
 } from '../screens';
 import {OnboardingLoggedOutScreen} from '../screens/OnboardingScreen/OnboardingLoggedOutScreen';
+import { GymProfileScreen } from '../screens/GymProfileScreen';
 
 const Stack = createStackNavigator();
 
@@ -54,6 +55,11 @@ export const AppNavigation = () => {
         <Stack.Screen
           name="userProfile"
           component={UserProfileScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="gymProfile"
+          component={GymProfileScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen

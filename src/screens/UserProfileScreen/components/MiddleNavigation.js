@@ -25,7 +25,7 @@ const icon3 = {
 
 const MidNavContainer = styled.View`
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: ${props => (props.gymProfile ? 'center' : 'space-around')};
   background-color: white;
   border-top-color: #cdcdcd;
   border-top-width: 1;
@@ -34,6 +34,8 @@ const MidNavContainer = styled.View`
   padding: 10px;
 `;
 const MidNavTab = styled.TouchableOpacity`
+  padding-right: ${props => (props.gymProfile ? '15%' : null)};
+  padding-left: ${props => (props.gymProfile ? '15%' : null)};
   align-items: center;
 `;
 
@@ -50,8 +52,10 @@ export const MiddleNavigation = props => {
 
   return (
     <>
-      <MidNavContainer>
-        <MidNavTab onPress={() => setActiveTab(1)}>
+      <MidNavContainer gymProfile={props.gymProfile}>
+        <MidNavTab
+          onPress={() => setActiveTab(1)}
+          gymProfile={props.gymProfile}>
           {props.gymProfile ? (
             activeTab === 1 ? (
               <Image source={icon1.gymActive} />
@@ -72,7 +76,9 @@ export const MiddleNavigation = props => {
           )}
         </MidNavTab>
 
-        <MidNavTab onPress={() => setActiveTab(2)}>
+        <MidNavTab
+          onPress={() => setActiveTab(2)}
+          gymProfile={props.gymProfile}>
           {props.gymProfile ? (
             activeTab === 2 ? (
               <Image source={icon2.gymActive} />
@@ -97,37 +103,43 @@ export const MiddleNavigation = props => {
 
         <MidNavTab onPress={() => setActiveTab(3)}>
           {props.gymProfile ? (
-            activeTab === 3 ? (
-              <Image source={icon3.gymActive} />
-            ) : (
-              <Image source={icon3.gym} />
-            )
-          ) : activeTab === 3 ? (
+            activeTab === 3 ? null : null // <Image source={icon3.gymActive} />
+          ) : // <Image source={icon3.gym} />
+          activeTab === 3 ? (
             <Image source={icon3.userActive} />
           ) : (
             <Image source={icon3.user} />
           )}
           {activeTab === 3 ? (
             <MidNavTextActive>
-              {props.gymProfile ? 'Reviews' : 'Membership'}
+              {props.gymProfile ? null : 'Membership'}
+              {/* {props.gymProfile ? 'Reviews' : 'Membership'} */}
             </MidNavTextActive>
           ) : (
             <MidNavText>
-              {props.gymProfile ? 'Reviews' : 'Membership'}
+              {props.gymProfile ? null : 'Membership'}
+              {/* {props.gymProfile ? 'Reviews' : 'Membership'} */}
             </MidNavText>
           )}
         </MidNavTab>
       </MidNavContainer>
 
       <View>
-        {activeTab === 1 && (
+        {!props.gymProfile && activeTab === 1 && (
           <>
             <ProfileDetails userData={props.userData} token={props.token} />
             <ProfilePhoto />
           </>
         )}
-        {activeTab === 2 && <Text>User Activity Page</Text>}
-        {activeTab === 3 && <Text>User Membership Page</Text>}
+        {!props.gymProfile && activeTab === 2 && (
+          <Text>User Activity Page</Text>
+        )}
+        {!props.gymProfile && activeTab === 3 && (
+          <Text>User Membership Page</Text>
+        )}
+        {props.gymProfile && activeTab === 1 && <></>}
+        {props.gymProfile && activeTab === 2 && <Text>Gym Amenities Page</Text>}
+        {props.gymProfile && activeTab === 3 && <Text>Gym Reviews Page</Text>}
       </View>
     </>
   );
