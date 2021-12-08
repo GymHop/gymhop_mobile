@@ -73,6 +73,7 @@ export const OnboardingMapScreen1View = props => {
             openClosed={'Open'}
             distance={'6.7mi away'}
             rating={'4.5'}
+            onboarding={true}
           />
         </GymTileContainer>
       </Container>

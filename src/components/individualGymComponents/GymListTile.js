@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { Res } from '../../resources';
@@ -6,8 +6,10 @@ import LocationPin from "../../assets/icons/transparentLocationPin.png"
 import Star from "../../assets/icons/star_24px.png"
 import PremiumBadge from '../../assets/icons/premiumBadge.png'
 import Svg, { Circle } from 'react-native-svg';
+import {useNavigation} from '@react-navigation/core';
+import * as geolib from 'geolib';
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
     height: 176px;
     width: 343px;
     position: relative;
@@ -114,10 +116,29 @@ const StyledOpenClosed = styled.Text`
 
 
 export function GymListTile(props) {
+    const navigation = useNavigation();
+    const [distance, setDistance] = useState(null);
 
+
+    const getLocationDistance = () => {
+        let meters = geolib.getDistance(
+            {
+                latitude: props.userRegion.latitude,
+                longitude: props.userRegion.longitude,
+            },
+            { latitude: props.gym.latitude, longitude: props.gym.longitude },
+        );
+        let miles = geolib.convertDistance(meters, 'mi');
+        setDistance(miles.toFixed(1));
+    };
+
+    useEffect(()=> {
+        getLocationDistance();
+    }, [])
 
     return (
-    <Container firstGym={props.i === 0} >
+    <Container 
+    firstGym={props.i === 0} onPress={()=>navigation.navigate('gymProfile', {id: props.gym.id})} >
         <StyledImage source={{uri:props.gym.main_photo_url}}/>
         <GymInfoContainer>
             <GymInfoTop>
@@ -130,7 +151,7 @@ export function GymListTile(props) {
                     <Circle cx="5" cy="5" r="5" fill={props.gym.openClosed === 'open' ? Res.colors.secondaryGreen : '#FF6060'} />
                 </Svg>
                 <StyledOpenClosed style={styles.fontText}>{props.gym.openClosed}</StyledOpenClosed>
-                <StyledStar source={Star}></StyledStar>
+                {/* <StyledStar source={Star}></StyledStar> */}
                 <StyledRating style={styles.fontText}>{props.gym.rating}</StyledRating>
                 </View>
             </GymInfoTop>

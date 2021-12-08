@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { Res } from '../../resources';
@@ -6,9 +6,11 @@ import { H2 } from '../polygraphy';
 import LocationPin from "../../assets/icons/locationpin.png"
 import Star from "../../assets/icons/star_24px.png"
 import {Svg, Line } from 'react-native-svg';
-import PremiumBadge from '../../assets/icons/premiumBadge.png'
+import PremiumBadge from '../../assets/icons/premiumBadge.png';
+import { useNavigation } from '@react-navigation/core';
+import * as geolib from 'geolib';
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   borderBottomLeftRadius: 14px;
 
   borderBottomRightRadius: 14px;
@@ -155,8 +157,32 @@ const styles = StyleSheet.create({
 }); 
 
 export const GymTile = props => {
+  const navigation = useNavigation();
+
+  // get distance to gym from userRegion
+  const [distance, setDistance] = useState(null);
+  
+  
+  const getLocationDistance = () => {
+    if (!props.onboarding) {
+      let meters = geolib.getDistance(
+        {latitude: props.userLatitude, longitude: props.userLongitude},
+        {latitude: props.coordinate.latitude, longitude: props.coordinate.longitude},
+        );
+        let miles = geolib.convertDistance(meters, 'mi');
+        console.log(miles.toFixed(1));
+        setDistance(miles.toFixed(1));
+    } else return;
+  };
+  useEffect(()=> {
+    getLocationDistance();
+  }, []);
+
+
+
+
   return(
-  <Container>
+  <Container onPress={()=> navigation.navigate('gymProfile', {id: props.id})} >
     {props.tier === "premium" && (
       <StyledBadgeContainer>
         <StyledBadge source={PremiumBadge} />
@@ -180,9 +206,9 @@ export const GymTile = props => {
       </StyledLineContainer> 
       <StyledBottomLineContainer>
         <StyledOpenClosed style={styles.fontFamily}>{props.openClosed}</StyledOpenClosed>
-        <StyledDistance style={styles.fontFamily}>{props.distance}</StyledDistance>
-        <StyledStar source={Star}></StyledStar>
-        <StyledRating style={styles.fontFamily}>{props.rating}</StyledRating>
+        <StyledDistance style={styles.fontFamily}>{distance} mi away</StyledDistance>
+        {/* <StyledStar source={Star}></StyledStar> */}
+        {/* <StyledRating style={styles.fontFamily}>{props.rating}</StyledRating> */}
       </StyledBottomLineContainer>
     </StyledBottomContainer>
   </Container>

@@ -28,9 +28,9 @@ const MidNavContainer = styled.View`
   justify-content: ${props => (props.gymProfile ? 'center' : 'space-around')};
   background-color: white;
   border-top-color: #cdcdcd;
-  border-top-width: 1;
+  border-top-width: 1px;
   border-bottom-color: #cdcdcd;
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   padding: 10px;
 `;
 const MidNavTab = styled.TouchableOpacity`

@@ -12,6 +12,8 @@ import axios from 'axios'
 import { GymListTile } from '../../../components/individualGymComponents';
 import { Tabs } from '../../../components/tabs/Tabs';
 
+import Geolocation from 'react-native-geolocation-service';
+
 
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -34,17 +36,42 @@ export const MapScreenView = props => {
     latitudeDelta: 0.068,
     longitudeDelta: 0.033,
   });
-
+  const [userCoords, setUserCoords] = useState({
+    latitude: 40.709318,
+    longitude: -73.990686,
+    latitudeDelta: 0.068,
+    longitudeDelta: 0.033,
+  });
   const [icon, setIcon] = useState('list')
   const [markers, setMarkers] = useState([])
+
+  // get user's geolocation & setUserCoords lat/lng
+  const getUserCoords = () => {
+    Geolocation.getCurrentPosition(position => {
+        setUserCoords({
+          latitude: position.coords.latitude, 
+          longitude: position.coords.longitude,
+          latitudeDelta: 0.068,
+          longitudeDelta: 0.033,
+        })
+    }, error => {
+      console.log(error.code, error.message);
+    },
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+    );
+  };
+  useEffect(() => {
+    getUserCoords();
+  }, []);
+
 
   const { data, error, isLoading } = useQuery(
     'gyms',
     async () => {
-      const response = await axios.get('https://gymhop-api-staging.herokuapp.com/api/v1/gyms?latitude=40.7021&longitude=-73.9863196')
+      const response = await axios.get(`https://gymhop-api-staging.herokuapp.com/api/v1/gyms?latitude=${userCoords.latitude}&longitude=${userCoords.longitude}`)
       return response.data.data
     }
-  )
+  );
 
     useEffect(() => {
       if (data) setMarkers(data);
@@ -60,8 +87,8 @@ export const MapScreenView = props => {
       <Map
         markers={markers}
         initialRegion={{
-          latitude: 40.709318,
-          longitude: -73.990686,
+          latitude: userCoords.latitude,
+          longitude: userCoords.longitude,
           latitudeDelta: 0.068,
           longitudeDelta: 0.033,
         }}
@@ -70,15 +97,18 @@ export const MapScreenView = props => {
         latitudeDelta={userRegion.latitudeDelta}
         longitudeDelta={userRegion.longitudeDelta}
         userRegion={userRegion}
-        setUserRegion={setUserRegion}></Map>
+        setUserRegion={setUserRegion}
+        userLatitude={userCoords.latitude}
+        userLongitude={userCoords.longitude}
+        ></Map>
       </Container>
       :<>
       <ContainerList contentContainerStyle={styles.center} >
         {markers.map( (gym, i) => {
           gym.openClosed='open'
-          gym.rating='5.0'
-          gym.distance='6.7mi'
-          return <GymListTile key={gym.id} gym={gym} i={i} />
+          // gym.rating='5.0'
+          // gym.distance='6.7mi'
+          return <GymListTile key={gym.id} gym={gym} i={i} userRegion={userRegion} />
         })}
         <View style={{width:300, height:100}} />
       </ContainerList>

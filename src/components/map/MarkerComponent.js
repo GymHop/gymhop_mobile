@@ -32,7 +32,7 @@ export const MarkerComponent = props => {
       setOnShow(true)
       props.setCurrentMarker({
         address1: props.address1,
-        amenities: props.amenities,
+        // amenities: props.amenities,
         main_photo_url: props.main_photo_url,
         name: props.name,
         photo_urls: props.photo_urls,
@@ -54,7 +54,8 @@ export const MarkerComponent = props => {
         rating: props.rating,
         distance: props.distance,
         right: props.right,
-        left: props.left
+        left: props.left,
+        id: props.id,
       })
     } else {
       setOnShow(false)
