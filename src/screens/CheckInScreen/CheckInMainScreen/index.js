@@ -4,7 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 import {useContext} from 'react';
 import {useQuery} from 'react-query';
 import axios from 'axios';
-import { AuthContext } from '../../../context/useAuth';
+import { AuthContext } from '../../../#root/AuthProvider';
+import { api } from '../../../utils/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CheckInMainScreenContainer from './containers/CheckInMainScreenContainer';
 import * as geolib from 'geolib'
@@ -12,49 +13,50 @@ import Geolocation from 'react-native-geolocation-service'
 
 export const CheckInMainScreen = () => {
 
-  // const auth = useContext(AuthContext);
-  // auth.getTokenOnly()
-  // auth.getToken()
-  const [user, setUser] = useState(null)
+  const auth = useContext(AuthContext);
+
   const [gymData, setGymData] = useState(null)
+  const [gymWaiver, setGymWaiver] = useState(false)
   const [distance, setDistance] = useState(undefined)
-
-  const {data, error, isLoading, isError, isSuccess} = useQuery(
-    'user',
-    async () => {
-      const token = await AsyncStorage.getItem('@token');
-      // console.log(auth.token)
-      const userDataResponse = await axios.get(
-        'https://gymhop-api-staging.herokuapp.com/api/v1/users/me',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      // this is hard coded to get the first gym, not the closest one
-      const gymResponse = await axios.get(
-        'https://gymhop-api-staging.herokuapp.com/api/v1/gyms/1'
-      );
-      return [userDataResponse.data.data, gymResponse.data.data]
-    },
-  );
-
-  useEffect(() => {
-    // if (isLoading) return 'null';
-    // if (error) return `Error! ${error.message}`;
-    if (data) {
-      setUser(data[0])
-      setGymData(data[1])
-    }
-    // console.log(data[1])
-  }, [data, isLoading, error])
 
   useEffect(() => {
     if (distance === undefined && gymData) {
       getLocationDistance()
     }
   }, [gymData])
+
+  useEffect(() => {
+    getGymWaiverStatus()
+    checkIn()
+  }, [])
+
+  const getGymWaiverStatus = () => {
+    // change this from being hard coded
+    api.get("/gyms/1/waiver_status")
+      .then(res => setGymWaiver(res.data.data))
+      .catch(e => {
+        console.log(e, '###################################')
+      })
+  }
+
+  const checkIn = () => {
+    console.log(gymWaiver)
+       api.post(
+        '/check_ins',
+        {
+          check_in: {
+            gym_id: 1,
+            check_in_latitude: 37.4219983,
+            check_in_longitude: -122.084,
+            waiver_accepted: true
+          }
+        }
+        )
+        .then(res => console.log(res))
+        .catch(e => {
+          console.log(e, 'checkIn')
+        })
+  };
 
   const getLocationDistance = () => {
       Geolocation.getCurrentPosition(
@@ -77,41 +79,10 @@ export const CheckInMainScreen = () => {
     );
   };
 
-  if (isLoading) {
-    return (
-      <>
-        {/* This is repeated because on android there is a blue bar that covers up the first one */}
-        {<Text>Loading...</Text>}
-        {<Text>Loading...</Text>}
-      </>
-    )
-  }
-  else if (user?.current_tier !== null && distance <= 200) {
-    return (
-      <>
-        {<CheckInMainScreenContainer userData={data[0]}/>}
-      </>
-    )
-  } else if (user?.current_tier !== null && distance > 200) {
-    return (
-      <>
-        {<Text>Filler Text</Text>}
-        {<Text>Not Close Enough to Gym</Text>}
-      </>
-    )
-  } else if (user?.current_tier === null) {
-    return (
-      <>
-        {<Text>Filler Text</Text>}
-        {<Text>Not A Member</Text>}
-      </>
-    )
-  } else {
-    return (
-      <>
-        {<Text>Error</Text>}
-        {<Text>Error</Text>}
-      </>
-    )
-  }
+  return (
+    <>
+      {<CheckInMainScreenContainer userData={auth.user}/>}
+    </>
+  )
+  // backend validates, react to the response
 }
