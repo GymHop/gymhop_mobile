@@ -192,7 +192,7 @@ export const LoginScreenView = props => {
                 <View style={{marginTop: 30}}>
                     <H2 white text="Don't see it?" />
                     <SecondaryButton
-                  onClick={props.onPhoneSubmit(phone)}
+                  onPress={() => props.onPhoneSubmit(phone)}
                   small
                   style={{width: '100%'}}
                   text={'Send again'}
