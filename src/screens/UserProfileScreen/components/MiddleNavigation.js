@@ -34,8 +34,8 @@ const MidNavContainer = styled.View`
   padding: 10px;
 `;
 const MidNavTab = styled.TouchableOpacity`
-  padding-right: ${props => (props.gymProfile ? '15%' : null)};
-  padding-left: ${props => (props.gymProfile ? '15%' : null)};
+  padding-right: ${props => (props.gymProfile ? '15%' : 0)};
+  padding-left: ${props => (props.gymProfile ? '15%' : 0)};
   align-items: center;
 `;
 

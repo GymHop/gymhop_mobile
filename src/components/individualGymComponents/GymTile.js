@@ -182,7 +182,7 @@ export const GymTile = props => {
 
 
   return(
-  <Container onPress={()=> navigation.navigate('gymProfile', {id: props.id})} >
+  <Container disabled={props.onboarding} onPress={()=> navigation.navigate('gymProfile', {id: props.id})} >
     {props.tier === "premium" && (
       <StyledBadgeContainer>
         <StyledBadge source={PremiumBadge} />
@@ -206,7 +206,8 @@ export const GymTile = props => {
       </StyledLineContainer> 
       <StyledBottomLineContainer>
         <StyledOpenClosed style={styles.fontFamily}>{props.openClosed}</StyledOpenClosed>
-        <StyledDistance style={styles.fontFamily}>{distance} mi away</StyledDistance>
+        {props.onboarding ? (<StyledDistance style={styles.fontFamily}>6.7 mi away</StyledDistance>) : 
+        (<StyledDistance style={styles.fontFamily}>{distance} mi away</StyledDistance>)}
         {/* <StyledStar source={Star}></StyledStar> */}
         {/* <StyledRating style={styles.fontFamily}>{props.rating}</StyledRating> */}
       </StyledBottomLineContainer>

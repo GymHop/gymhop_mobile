@@ -43,7 +43,6 @@ export const UserProfileView = ({userData, token}) => {
     }
   };
   useEffect(() => {
-    console.log('ALDKMFLAKSMDF', userData)
     checkProfileEmpty();
   }, []);
 

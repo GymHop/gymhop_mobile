@@ -7,18 +7,14 @@ import {DrawerNavHeader} from '../../components';
 export const UserProfileScreen = () => {
 
   const userContext = useContext(AuthContext);
-  const {userData} = userContext;
+  const userData = userContext.user;
 
-  useEffect(() => {
-    console.log(userContext);
-    console.log(userData)
-  }, []);
 
   return (
     <>
       <DrawerNavHeader />
 
-      <UserProfileView userData={userData} token={userContext.user.token} />
+      <UserProfileView userData={userData} />
     </>
   );
 };
