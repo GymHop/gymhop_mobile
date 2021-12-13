@@ -31,6 +31,7 @@
     "react-native-linear-gradient": "^2.5.6",
     "react-native-linear-gradient-degree": "^0.0.1",
     "react-native-maps": "^0.28.0",
+    "react-native-permissions": "^3.1.0",
     "react-native-phone-number-input": "^2.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
@@ -54,7 +55,7 @@
     "react-dom": "^17.0.2",
     "react-native": "^0.66.1",
     "react-native-reanimated": "^2.2.3",
-    "react-native-web": "^0.11.7",
+    "react-native-web": "^0.17.5",
     "react-test-renderer": "^17.0.2"
   },
   "jest": {
