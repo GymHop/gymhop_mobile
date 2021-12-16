@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {Platform} from 'react-native';
+import {Platform, PermissionsAndroid} from 'react-native';
 import {Res} from '../../../../resources';
 import {Measurements} from '../../../../utils';
 import MapIMG from '../../../../assets/images/MapOnboardingStatic.jpg';

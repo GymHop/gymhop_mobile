@@ -9,6 +9,7 @@ import {Measurements} from '../../../utils';
 import {
   DefaultInput,
   PrimaryButton,
+  SecondaryButton,
   Timer,
   CodeEnter,
   H2,
@@ -149,7 +150,7 @@ export const LoginScreenView = props => {
                     } else {
                       Toast.show({
                         type: 'error',
-                        text1: 'Error',
+                        text1: 'Invalid phone number',
                       });
                     }
                   }}
@@ -189,7 +190,13 @@ export const LoginScreenView = props => {
                   }}
                 />
                 <View style={{marginTop: 30}}>
-                    <H2 white text="Don't see it? Send again" />
+                    <H2 white text="Don't see it?" />
+                    <SecondaryButton
+                  onPress={() => props.onPhoneSubmit(phone)}
+                  small
+                  style={{width: '100%'}}
+                  text={'Send again'}
+                />
                 </View>
                 
                 
