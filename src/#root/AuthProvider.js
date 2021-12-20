@@ -4,10 +4,12 @@ import {api} from '../utils/api';
 import Toast from 'react-native-toast-message';
 import {Splash} from '../components/splash/Splash';
 
+
 export const AuthContext = createContext();
 
 export const AuthProvider = props => {
   const [user, setUser] = useState();
+  const [getStarted, setGetStarted] = useState()
   const [loading, setLoading] = useState(true);
 
   const setSignedInUser = async user => {
@@ -49,7 +51,12 @@ export const AuthProvider = props => {
         loadUser();
       } else {
         setUser(null);
-        setTimeout(() => setLoading(false), 2000);
+        setTimeout(() => setLoading(false), 9000);
+      }
+    });
+    AsyncStorage.getItem('getStarted').then(value => {
+      if (value === 'passed') {
+        setGetStarted(true)
       }
     });
   }, []);
@@ -57,6 +64,7 @@ export const AuthProvider = props => {
   return (
     <AuthContext.Provider
       value={{
+        getStarted:getStarted,
         user: user,
         setSignedInUser: setSignedInUser,
         removeSignedInUser: removeSignedInUser,

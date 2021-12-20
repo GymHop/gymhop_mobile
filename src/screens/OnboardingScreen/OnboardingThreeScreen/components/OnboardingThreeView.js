@@ -4,6 +4,7 @@ import Geolocation from 'react-native-geolocation-service';
 import styled from 'styled-components/native';
 import React, {useState, useEffect, useRef} from 'react';
 import {PrimaryButton} from '../../../../components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   View,
   StatusBar,
@@ -48,7 +49,14 @@ export const OnboardingThreeView = () => {
   }, []);
 
   function navigateToLoggedOut() {
-    navigation.navigate('onboardsignup');
+    AsyncStorage.getItem('getStarted').then(value => {
+      if (value === 'passed') {
+        navigation.navigate('auth');
+      }else{
+        navigation.navigate('onboardsignup');
+      }
+    });
+    
   }
 
   

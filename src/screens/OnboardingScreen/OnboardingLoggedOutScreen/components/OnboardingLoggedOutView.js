@@ -13,12 +13,19 @@ import {useNavigation} from '@react-navigation/native';
 import {PrimaryButton} from '../../../../components';
 import {PrimaryButtonTransparent} from '../../../../components/buttons';
 import {LinearGradientOnboard} from '../../../../components/onboardingComponents/LinearGradientOnboard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const OnboardingLoggedOutView = () => {
   const navigation = useNavigation();
+  
 
   function navigateToLogin() {
     navigation.navigate('auth');
+  }
+
+  const getStarted = async () =>{
+    await AsyncStorage.setItem('getStarted', 'passed');
+    console.log('must be true1')
   }
 
   return (
@@ -44,7 +51,9 @@ export const OnboardingLoggedOutView = () => {
         <View style={styles.buttonContainer}>
           <PrimaryButton
             text={'GET STARTED'}
-            onPress={() => navigateToLogin()}
+            onPress={() => {
+              getStarted()
+              navigateToLogin()}}
           />
           <View style={{padding: 10}}></View>
           <View style={{padding: 10}}></View>
