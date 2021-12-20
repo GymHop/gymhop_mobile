@@ -18,12 +18,6 @@ const LoginScreenContainer = props => {
         text2: 'Sms is sent',
       });
     })
-    .catch(e => {
-      Toast.show({
-        text1: 'Error',
-        text2: e,
-      });
-    });
     setCodeSent(true);
   };
 
@@ -34,9 +28,16 @@ const LoginScreenContainer = props => {
       navigation.navigate('map');
     })
     .catch(e => {
-      console.log(e);
+      Toast.show({
+        text1: 'Wrong code',
+      });
     });
   };
+  useEffect(() => {
+    if(context.user){
+      navigation.navigate('map');
+    }
+  }, []);
 
   return (
     <LoginScreenView

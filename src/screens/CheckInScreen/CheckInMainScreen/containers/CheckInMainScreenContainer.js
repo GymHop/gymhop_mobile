@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {CheckInMainScreenView} from '../components/CheckInMainScreenView';
 
-const CheckInMainScreenContainer = props => {
-  return <CheckInMainScreenView />;
+const CheckInMainScreenContainer = ({userData}) => {
+  return <CheckInMainScreenView userData={userData}/>;
 };
 
 export default CheckInMainScreenContainer;

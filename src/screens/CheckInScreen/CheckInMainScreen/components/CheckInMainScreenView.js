@@ -44,8 +44,8 @@ const StyledAddress = styled.Text``;
 const StyledMap = styled.View`
 height: 142px;
 width: 342px;`;
-export const CheckInMainScreenView = props => {
-  const [user, setUser] = useState(null)
+export const CheckInMainScreenView = ({userData}) => {
+  // const [user, setUser] = useState(null)
   const [gymDetails, setGymDetails] = useState([])
   const [userRegion, setUserRegion] = useState({
     latitude: 40.709318,
@@ -73,36 +73,37 @@ export const CheckInMainScreenView = props => {
 
   }, [])
 
-  const { data, error, loading } = useQuery(
-    'user',
-    async () => {
-      const token = await AsyncStorage.getItem('@token');
-      const response = await axios.get('https://gymhop-api-staging.herokuapp.com/api/v1/users/me', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      })
-      setUser(response.data.data)
-    })
+  // const { data, error, loading } = useQuery(
+  //   'user',
+  //   async () => {
+  //     const token = await AsyncStorage.getItem('@token');
+  //     const response = await axios.get('https://gymhop-api-staging.herokuapp.com/api/v1/users/me', {
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,
+  //       },
+  //     })
+  //     console.log(response.data.data)
+  //     setUser(response.data.data)
+  //   })
 
-  useEffect(() => {
-    if (loading) return 'null';
-    if (error) return `Error! ${error.message}`;
-    if (data) setUser(data);
-
-  }, [data, loading, error])
+  // useEffect(() => {
+  //   if (loading) return 'null';
+  //   if (error) return `Error! ${error.message}`;
+  //   if (data) setUser(data);
+  //   console.log(data)
+  // }, [data, loading, error])
 
 
   return (
     <Container>
-      {user && (
+      {userData && (
         <View>
           <View>
             <View>
-              <ProfilePic source={{ uri: user.image_url }} />
+              <ProfilePic source={{ uri: userData.image_url }} />
             </View>
             <View>
-              <WelcomeText >Welcome {user.first_name}</WelcomeText>
+              <WelcomeText >Welcome {userData.first_name}</WelcomeText>
               <CheckInText>Please Check In</CheckInText>
             </View>
           </View>
