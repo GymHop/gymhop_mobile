@@ -74,7 +74,7 @@ export const Tabs = () => {
             />
           </CheckInTabNavigator>
           <TouchableOpacity
-            onPress={() => navigation.navigate('CheckInMain')}
+            onPress={() => navigation.navigate('userProfile')}
             style={{
               alignItems: 'center',
               justifyContent: 'center',

@@ -9,6 +9,7 @@ import axios from 'axios'
 import { Swipeable } from 'react-native-gesture-handler'
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 import { GymTile, IndividualNavigationButton } from '../individualGymComponents';
+
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
@@ -40,7 +41,7 @@ left: 40px
 height: 161px;
 `
 
-const GymTileContainer = styled.View`
+const GymTileContainer = styled.TouchableOpacity`
 height: 160px;
 width: 275px;
 bottom: 20px;
@@ -65,20 +66,7 @@ export const Map = props => {
   const animateToRegion = () => {
     mapRef.current.animateToRegion(props.userRegion, 1000);
   }
-  // const { data, error, loading } = useQuery(
-  //   'gyms',
-  //   async () => {
-  //     const response = await axios.get('https://gymhop-api-staging.herokuapp.com/api/v1/gyms?latitude=40.7021&longitude=-73.9863196')
-  //     return response.data.data
-  //   }
-  // )
 
-  // useEffect(() => {
-  //   if (loading) return 'null';
-  //   if (error) return `Error! ${error.message}`;
-  //   if (data) setMarkers(data);
-
-  // }, [data, loading, error])
 
   useEffect(() => {
     if (currentMarker) {
@@ -157,9 +145,8 @@ export const Map = props => {
       props.setUserRegion({ latitude: latitude, longitude: longitude, latitudeDelta: props.latitudeDelta, longitudeDelta: props.longitudeDelta })
     }
   }
-  const gymProfileHandler = async () => {
-    console.log('ToDo')
-  }
+
+
   return (
     <View style={styles.container}>
       <MapView
@@ -174,6 +161,7 @@ export const Map = props => {
         {props.markers && (props.markers.map((marker, index) => (
           <MarkerComponent
             key={marker.id}
+            id={marker.id}
             address1={marker.address1}
             amenities={marker.amenities}
             main_photo_url={marker.main_photo_url}
@@ -198,12 +186,11 @@ export const Map = props => {
             userRegion={props.userRegion}
             latitudeDelta={props.latitudeDelta}
             longitudeDelta={props.longitudeDelta}
-            openClosed={'open'}
-            rating={'5.0'}
-            distance={'6.7mi away'}
             right={right}
             left={left}
             setCurrentMarker={setCurrentMarker}
+            userLatitude={props.userLatitude}
+            userLongitude={props.userLongitude}
           />
         )))}
       </MapView>
@@ -224,8 +211,7 @@ export const Map = props => {
                   userRegion={props.userRegion}
                 />
               </StyledLeftWrapper>
-              <GymTileContainer
-                onPress={gymProfileHandler}>
+              <GymTileContainer>
                 <GymTile
                   style={{
                     borderBottomLeftRadius: 14,
@@ -250,10 +236,13 @@ export const Map = props => {
                   userRegion={currentMarker.userRegion}
                   latitudeDelta={currentMarker.latitudeDelta}
                   longitudeDelta={currentMarker.longitudeDelta}
-                  openClosed={currentMarker.openClosed}
+                  openClosed={'open'}
                   rating={currentMarker.rating}
                   distance={currentMarker.distance}
                   userRegion={props.userRegion}
+                  id={currentMarker.id}
+                  userLatitude={props.userLatitude}
+                  userLongitude={props.userLongitude}
                 />
               </GymTileContainer>
               <StyledRightWrapper>

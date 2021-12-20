@@ -1,10 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {
-  TouchableOpacity,
   View,
-  Text,
   Image,
-  FlatList,
   Dimensions,
   ScrollView,
   StyleSheet,
@@ -43,14 +40,22 @@ export const GymPhotos = ({gymData}) => {
           setSliderPage(event);
         }}
         ref={node => (this.scroll = node)}>
-        {gymData.photo_urls.map(photo => (
-          <View style={{width, height: 275}}>
+
+        {gymData.photo_urls.length !== 0 ? (gymData.photo_urls.map((photo, i) => (
+          <View style={{width, height: 275}} key={i}>
             <Image
               source={{uri: photo}}
               style={{width, height: 275, resizeMode: 'cover'}}
             />
           </View>
-        ))}
+        ))) : (
+            <View style={{ width, height: 275 }}>
+              <Image
+                source={{ uri: gymData.main_photo_url }}
+                style={{ width, height: 275, resizeMode: 'cover' }}
+              />
+            </View>
+        )}  
       </ScrollView>
       <View style={styles.paginationWrapper}>
         {gymData.photo_urls.map((key, index) => (
