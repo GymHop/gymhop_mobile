@@ -46,13 +46,9 @@ const styles = StyleSheet.create({
 });
 
 export const GymHeader = ({gymData, distance, userData, tier}) => {
-  useEffect(() => {
-    console.log(userData);
-  }, []);
 
   return (
     <GymProfileHeader>
-
       <View style={{position: 'absolute', bottom: 135}}>
         <GymIcon
           tier={gymData.tier}
@@ -83,7 +79,7 @@ export const GymHeader = ({gymData, distance, userData, tier}) => {
         <TextWithIcon style={styles.fontText}>{distance}</TextWithIcon>
       </LocationBlock>
       <View style={{alignItems: 'center', marginTop: 8, marginBottom: 16}}>
-        {/* {userData.current_tier === null && (
+        {userData.current_tier === null && (
           <SecondaryButton text={'See Memberships'} />
         )}
         {userData.current_tier === 'standard' && (
@@ -91,9 +87,9 @@ export const GymHeader = ({gymData, distance, userData, tier}) => {
         )}
         {userData.current_tier === 'premium' && (
           <SecondaryButton text={'Check In'} />
-        )} */}
+        )}
 
-        <SecondaryButton text={'See Memberships'} />
+        {/* <SecondaryButton text={'See Memberships'} /> */}
       </View>
     </GymProfileHeader>
   );

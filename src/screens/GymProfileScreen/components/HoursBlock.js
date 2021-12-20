@@ -76,6 +76,7 @@ export const HoursBlock = ({gymData}) => {
 
   let hours = gymData.gym_schedules;
 
+  // get current day/time and set today's gym hours
   useEffect(() => {
     let dateVariable = new Date(Date.now());
     let day = dateVariable.getDay();

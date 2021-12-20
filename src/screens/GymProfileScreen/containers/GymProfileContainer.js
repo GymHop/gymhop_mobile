@@ -5,22 +5,14 @@ import {GymInfoBlock} from '../components/GymInfoBlock.js';
 import {ScrollView} from 'react-native-gesture-handler';
 import {HoursBlock} from '../components/HoursBlock.js';
 import {ProfileMap} from '../components/ProfileMap.js';
+import {DescriptionBlock} from '../components/DescriptionBlock';
 import * as geolib from 'geolib';
 import Geolocation from 'react-native-geolocation-service';
 import {GymPhotos} from '../components/GymPhotos.js';
+import { GymMainTab } from '../components/GymMainTab.js';
 
-export const GymLocationTab = props => {
-  return (
-    <>
-      {/* <DescriptionBlock /> */}
-      <HoursBlock gymData={props.gymData} />
-      <GymInfoBlock gymData={props.gymData} />
-      <ProfileMap gymData={props.gymData} distance={props.distance} />
-    </>
-  );
-};
 
-export const GymProfileContainer = ({gymData}) => {
+export const GymProfileContainer = ({gymData, userData}) => {
   const [distance, setDistance] = useState(null);
   const getLocationDistance = () => {
     Geolocation.getCurrentPosition(
@@ -33,7 +25,6 @@ export const GymProfileContainer = ({gymData}) => {
           {latitude: gymData.latitude, longitude: gymData.longitude},
         );
         let miles = geolib.convertDistance(meters, 'mi');
-        console.log(miles.toFixed(1));
         setDistance(miles.toFixed(1));
       },
       error => {
@@ -54,9 +45,10 @@ export const GymProfileContainer = ({gymData}) => {
         gymData={gymData}
         distance={`${distance} miles away`}
         tier={gymData.tier}
+        userData={userData}
       />
       <MiddleNavigation gymProfile={true} />
-      <GymLocationTab gymData={gymData} distance={distance} />
+      <GymMainTab gymData={gymData} distance={distance} />
     </ScrollView>
   );
 };

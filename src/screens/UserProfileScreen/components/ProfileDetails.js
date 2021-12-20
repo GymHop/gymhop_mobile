@@ -24,11 +24,9 @@ const InputField = styled.TextInput`
   width: 85%;
   align-self: center;
   color: #898989;
-
   margin-top: 10px;
   margin-bottom: 10px;
   margin-right: 10px;
-
   font-size: 14px;
   left: 34px;
 `;
