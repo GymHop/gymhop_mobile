@@ -53,6 +53,8 @@ export const NewProfileMembership = props => {
   const {width, height} = Dimensions.get('window');
   const scrollViewRef = useRef(0);
 
+  const trial = false;
+
   const [checked, setChecked] = useState(false);
 
   const setSliderPage = event => {
@@ -75,7 +77,7 @@ export const NewProfileMembership = props => {
           <HeaderText style={styles.fontText}>Memberships</HeaderText>
         </HeaderContainer>
         <ScrollView
-          style={{marginTop: 15, height: 340}}
+          style={{marginTop: 10, height: 370}}
           horizontal={true}
           scrollEventThrottle={16}
           pagingEnabled={true}
@@ -113,16 +115,17 @@ export const NewProfileMembership = props => {
           ))}
         </View>
 
-        <View style={styles.carousel}>
-          {/* <StandartSubscribe /> */}
-          {/* <PremiumSubscribe /> */}
-          {/* <WeekPass /> */}
-        </View>
-        <TouchableOpacity>
-          <LinearGradient colors={['#00C288', '#00CF58']} style={styles.button}>
-            <Text style={styles.buttonFont}>Cancel Free Trial</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+        <View style={styles.carousel}></View>
+
+        {trial && (
+          <TouchableOpacity>
+            <LinearGradient
+              colors={['#00C288', '#00CF58']}
+              style={styles.button}>
+              <Text style={styles.buttonFont}>Cancel Free Trial</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        )}
 
         <Text style={styles.text}>
           Limit one free trial per customer. If trial has been{'\n'} used, user
@@ -131,10 +134,10 @@ export const NewProfileMembership = props => {
           on our website.
         </Text>
 
-        <PaymentMethod />
+        {/* <PaymentMethod />
         <SelectPayment />
         <PaymentInfo />
-        <Total />
+        <Total /> */}
       </View>
     </>
   );
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontFamily: 'Plus Jakarta Sans',
     lineHeight: 17.64,
-    paddingTop: 14,
+    marginTop: 55,
     paddingBottom: 34,
     alignSelf: 'center',
   },
@@ -197,6 +200,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    marginTop: 20,
   },
   paginationDots: {
     height: 13,

@@ -26,7 +26,7 @@ export const HeaderText = styled.Text`
 export const TrialSubscribe = props => {
   return (
     <>
-      <View style={{}}>
+      <View style={{paddingTop: 15}}>
         <View style={styles.box}>
           <View style={styles.labelTop}>
             <Text style={styles.labelFont}>Most Popular</Text>
@@ -92,7 +92,7 @@ export const TrialSubscribe = props => {
 const styles = StyleSheet.create({
   box: {
     width: 312,
-    height: 328,
+    paddingBottom: 60,
     alignSelf: 'center',
     borderBottomWidth: 3,
     borderTopWidth: 3,
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: 'center',
     top: -15,
+    zIndex: 99,
   },
   labelFont: {
     fontWeight: 'normal',
@@ -149,7 +150,8 @@ const styles = StyleSheet.create({
     width: 309,
     backgroundColor: '#00C288',
     position: 'absolute',
-    top: 290,
+    top: 295,
+    left: 0,
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
   },

@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     marginTop: -60,
     paddingTop: 60,
     borderRadius: radius,
-    //add radius
   },
   gymhoplogo: {
     width: 180,
