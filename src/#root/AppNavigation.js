@@ -34,11 +34,11 @@ export const AppNavigation = () => {
     />
   );
   const screens = [
-    <Stack.Screen
-      name="auth"
-      component={LoginScreen}
-      options={{headerShown: false}}
-    />,
+    // <Stack.Screen
+    //   name="auth"
+    //   component={LoginScreen}
+    //   options={{headerShown: false}}
+    // />,
     <Stack.Screen
       name="map"
       component={MapScreen}
