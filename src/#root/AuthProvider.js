@@ -29,7 +29,7 @@ export const AuthProvider = props => {
       .get('/users/me')
       .then(res => {
         setUser(res.data.data);
-        setTimeout(() => setLoading(false), 2000);
+        setTimeout(() => setLoading(false), 1000);
       })
       .catch(e => {
         showError(e);
@@ -51,7 +51,7 @@ export const AuthProvider = props => {
         loadUser();
       } else {
         setUser(null);
-        setTimeout(() => setLoading(false), 9000);
+        setTimeout(() => setLoading(false), 2000);
       }
     });
     AsyncStorage.getItem('getStarted').then(value => {
