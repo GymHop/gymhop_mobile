@@ -26,7 +26,7 @@ export const HeaderText = styled.Text`
 export const CurrentlySubscribed = props => {
   return (
     <>
-      <View style={{}}>
+      <View style={{paddingTop: 15}}>
         <View style={styles.box}>
           <View style={styles.labelTop}>
             <Text style={styles.labelFont}>Most Popular</Text>
