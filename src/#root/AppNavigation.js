@@ -9,10 +9,10 @@ import {
   CheckInMainScreen,
   OndoardSliderScreen,
   MapScreen,
-  UserProfileScreen,
 } from '../screens';
 import {OnboardingLoggedOutScreen} from '../screens/OnboardingScreen/OnboardingLoggedOutScreen';
 import {GymProfileScreen} from '../screens/GymProfileScreen';
+import {ProfileScreen} from '../screens/NewProfileScreen/index';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +23,7 @@ const forFade = ({current}) => ({
 });
 
 export const AppNavigation = () => {
-  const context = useContext(AuthContext)
+  const context = useContext(AuthContext);
   const onBoardingScreen = (
     <Stack.Screen
       name="onboardslider"
@@ -51,7 +51,7 @@ export const AppNavigation = () => {
     />,
     <Stack.Screen
       name="userProfile"
-      component={UserProfileScreen}
+      component={ProfileScreen}
       options={{headerShown: false}}
     />,
     <Stack.Screen
@@ -65,10 +65,9 @@ export const AppNavigation = () => {
       options={{headerShown: false}}
     />,
   ];
-  if(!context.getStarted){
+  if (!context.getStarted) {
     screens.unshift(onBoardingScreen);
   }
-  
 
   return (
     <NavigationContainer>

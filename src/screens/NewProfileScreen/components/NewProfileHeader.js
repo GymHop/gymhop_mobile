@@ -19,9 +19,7 @@ const SmallIcon = styled.Image`
   height: 25px;
 `;
 
-const widthSc = Dimensions.get('window').width + 66;
-const heightSc = widthSc / 2;
-const radius = heightSc / (heightSc / 2);
+const width = Dimensions.get('window').width;
 
 export const NewProfileHeader = props => {
   return (
@@ -56,19 +54,15 @@ export const NewProfileHeader = props => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    height: heightSc,
-    width: widthSc,
-    marginLeft: -33,
-    marginTop: -60,
-    paddingTop: 60,
-    borderRadius: radius,
+    width: width,
+    height: 226,
   },
   gymhoplogo: {
     width: 180,
     height: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 49,
+    marginTop: 99,
   },
   avatar: {
     width: 99,
