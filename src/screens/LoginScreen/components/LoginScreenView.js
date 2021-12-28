@@ -69,6 +69,9 @@ const Header = styled.View`
 export const LoginScreenView = props => {
   const navigation = useNavigation();
   const [phone, setPhone] = useState('');
+  function navigateToTrial() {
+    navigation.navigate('trial');
+  }
 
   return (
     <ImageBackground
@@ -100,7 +103,7 @@ export const LoginScreenView = props => {
                 />
                 <H2
                   white
-                  text={"Log in with Phone Number"}
+                  text={'Log in with Phone Number'}
                   style={{marginBottom: 10}}
                 />
                 <PhoneInput
@@ -164,7 +167,7 @@ export const LoginScreenView = props => {
             <>
               <View
                 style={{
-                  flex: 1
+                  flex: 1,
                 }}>
                 <H2
                   style={{
@@ -173,7 +176,7 @@ export const LoginScreenView = props => {
                     textAlign: 'left',
                     lineHeight: 35,
                     marginTop: 30,
-                    marginBottom: 40
+                    marginBottom: 40,
                   }}
                   white
                   text={'SMS Verification Sent'}
@@ -190,16 +193,14 @@ export const LoginScreenView = props => {
                   }}
                 />
                 <View style={{marginTop: 30}}>
-                    <H2 white text="Don't see it?" />
-                    <SecondaryButton
-                  onPress={() => props.onPhoneSubmit(phone)}
-                  small
-                  style={{width: '100%'}}
-                  text={'Send again'}
-                />
+                  <H2 white text="Don't see it?" />
+                  <SecondaryButton
+                    onPress={() => props.onPhoneSubmit(phone)}
+                    small
+                    style={{width: '100%'}}
+                    text={'Send again'}
+                  />
                 </View>
-                
-                
               </View>
             </>
           )}

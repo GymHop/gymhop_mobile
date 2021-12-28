@@ -40,11 +40,11 @@ const InputFieldSmall = styled.TextInput`
 
 export const OnboardingPaymentView = props => {
   const [phone, setPhone] = useState('');
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
-  // function navigateToMap() {
-  //   navigation.navigate('map');
-  // }
+  function navigateToMap() {
+    navigation.navigate('map');
+  }
 
   return (
     <ImageBackground
@@ -84,6 +84,7 @@ export const OnboardingPaymentView = props => {
             editable={true}
             style={styles.inputInner}
             maxLength={16}
+            keyboardType="numeric"
           />
         </View>
 
@@ -106,6 +107,7 @@ export const OnboardingPaymentView = props => {
               editable={true}
               style={styles.inputInner}
               maxLength={3}
+              keyboardType="numeric"
             />
           </View>
         </Row>

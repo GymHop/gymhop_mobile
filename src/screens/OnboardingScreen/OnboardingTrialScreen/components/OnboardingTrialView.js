@@ -14,11 +14,11 @@ const Row = styled.View`
 export const OnboardingTrialView = props => {
   const [phone, setPhone] = useState('');
   const [trial, setTrial] = useState(false);
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
-  // function navigateToMap() {
-  //   navigation.navigate('map');
-  // }
+  function navigateToMap() {
+    navigation.navigate('map');
+  }
 
   return trial ? (
     <OnboardingPaymentView />

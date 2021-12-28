@@ -3,38 +3,40 @@ import {LoginScreenView} from '../components/LoginScreenView';
 import {AuthContext} from '../../../#root/AuthProvider';
 import {api} from '../../../utils/api';
 import Toast from 'react-native-toast-message';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const LoginScreenContainer = props => {
-  const [codeSent, setCodeSent] = useState(false)
-  const context = useContext(AuthContext)
+  const [codeSent, setCodeSent] = useState(false);
+  const context = useContext(AuthContext);
   const navigation = useNavigation();
-  
-  const onPhoneSubmit = async (phone) => {
-    api.post('/auth/send_phone_verification_code', {user:{phone}})
-    .then(res => {
-      Toast.show({
-        text1: 'Success',
-        text2: 'Sms is sent',
+
+  const onPhoneSubmit = async phone => {
+    api
+      .post('/auth/send_phone_verification_code', {user: {phone}})
+      .then(res => {
+        Toast.show({
+          text1: 'Success',
+          text2: 'Sms is sent',
+        });
       });
-    })
     setCodeSent(true);
   };
 
   const onCodeSubmit = async ({phone, code}) => {
-    api.post('/auth/phone_login/', {phone, code})
-    .then(async res => {
-      context.setSignedInUser(res.data.data)
-      navigation.navigate('map');
-    })
-    .catch(e => {
-      Toast.show({
-        text1: 'Wrong code',
+    api
+      .post('/auth/phone_login/', {phone, code})
+      .then(async res => {
+        context.setSignedInUser(res.data.data);
+        navigation.navigate('trial');
+      })
+      .catch(e => {
+        Toast.show({
+          text1: 'Wrong code',
+        });
       });
-    });
   };
   useEffect(() => {
-    if(context.user){
+    if (context.user) {
       navigation.navigate('map');
     }
   }, []);

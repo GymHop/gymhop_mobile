@@ -11,6 +11,8 @@ import {
   MapScreen,
 } from '../screens';
 import {OnboardingLoggedOutScreen} from '../screens/OnboardingScreen/OnboardingLoggedOutScreen';
+import {OnboardingTrialScreen} from '../screens/OnboardingScreen/OnboardingTrialScreen';
+
 import {GymProfileScreen} from '../screens/GymProfileScreen';
 import {ProfileScreen} from '../screens/NewProfileScreen/index';
 
@@ -62,6 +64,11 @@ export const AppNavigation = () => {
     <Stack.Screen
       name="CheckInMain"
       component={CheckInMainScreen}
+      options={{headerShown: false}}
+    />,
+    <Stack.Screen
+      name="trial"
+      component={OnboardingTrialScreen}
       options={{headerShown: false}}
     />,
   ];
