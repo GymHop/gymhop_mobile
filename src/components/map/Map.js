@@ -71,6 +71,13 @@ export const Map = props => {
   const nearestGym = geolib.findNearest({ latitude: propsLatitude, longitude: propsLongitude }, allGyms)
   const thisGymIndex = allGyms.findIndex(el => el.latitude === nearestGym.latitude && el.longitude === nearestGym.longitude);
 
+  props.markers.forEach((marker, i) => {
+    const gym = {
+      "latitude": marker.latitude,
+      "longitude": marker.longitude
+    }
+    allGyms.push(gym)
+  })
 
   let mapRef = useRef(null);
 
