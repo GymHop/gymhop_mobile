@@ -54,7 +54,18 @@ export const Map = props => {
   const [currentMarker, setCurrentMarker] = useState(false)
   const [left, setLeft] = useState('')
   const [right, setRight] = useState('')
+  let allGyms = []
 
+  props.markers.forEach((marker, i) => {
+    const gym = {
+      "latitude": marker.latitude,
+      "longitude": marker.longitude
+    }
+    allGyms.push(gym)
+  })
+  allGyms = allGyms.sort((a, b) => a.longitude > b.longitude ? 1 : -1)
+  const nearestGym = geolib.findNearest({ latitude: propsLatitude, longitude: propsLongitude }, allGyms)
+  const thisGymIndex = allGyms.findIndex(el => el.latitude === nearestGym.latitude && el.longitude === nearestGym.longitude);
 
   let mapRef = useRef(null);
 
@@ -80,38 +91,17 @@ export const Map = props => {
         const markObj = { latitude: markLat, longitude: markLong }
         return markObj
       }))
-      const westGyms = [];
-      const eastGyms = [];
-      nearestGyms.forEach((gym, i) => {
-        let gymLat = gym.latitude
-        let gymLong = gym.longitude
-        if ((gymLong !== currentLatitude) && (gymLat !== currentLatitude)) {
-          const bearing = geolib.getCompassDirection({ latitude: currentLatitude, longitude: currentLongitude }, { latitude: gymLat, longitude: gymLong })
-          if (bearing.includes('W')) {
-            westGyms.push(gym)
-          }
-          if (bearing.includes('E')) {
-            eastGyms.push(gym)
-          }
-          if (bearing === 'S' || bearing === 'N') {
-            westGyms.push(gym)
-            eastGyms.push(gym)
-          }
-        }
-      }
-      )
 
-      const nearestWest = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude }, westGyms)
-      const nearestEast = geolib.findNearest({ latitude: currentLatitude, longitude: currentLongitude }, eastGyms)
-      if(nearestWest){
-        setLeft(nearestWest)
+
+      if(allGyms[thisGymIndex - 1]){
+        setLeft(allGyms[thisGymIndex - 1])
       }else{
-        setLeft(eastGyms[eastGyms.length - 1])
+        setLeft(allGyms[allGyms.length - 1])
       }
-      if(nearestEast){
-        setRight(nearestEast)
+      if(allGyms[thisGymIndex + 1]){       
+        setRight(allGyms[thisGymIndex + 1])
       }else{
-        setLeft(westGyms[westGyms.length - 1])
+        setRight(allGyms[0])
       }
     }
   }, [propsLatitude, propsLongitude, currentMarker])
