@@ -63,9 +63,17 @@ export const Map = props => {
     }
     allGyms.push(gym)
   })
-  allGyms = allGyms.sort((a, b) => a.longitude > b.longitude ? 1 : -1)
+  
   const nearestGym = geolib.findNearest({ latitude: propsLatitude, longitude: propsLongitude }, allGyms)
+ 
+  allGyms = geolib.orderByDistance({ latitude: nearestGym.longitude, longitude: nearestGym.longitude }, allGyms);
   const thisGymIndex = allGyms.findIndex(el => el.latitude === nearestGym.latitude && el.longitude === nearestGym.longitude);
+
+  
+
+  
+
+
 
   let mapRef = useRef(null);
 

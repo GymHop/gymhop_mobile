@@ -35,7 +35,6 @@ export const IndividualNavigationButton = props => {
   const propsLatitudeDelta = props.latitudeDelta
   const propsLongitudeDelta = props.longitudeDelta
    if(props.left){
-    console.log('needthis',props)
    const longitude = props.left.longitude
    const latitude = props.left.latitude 
   props.setUserRegion({latitude: latitude, longitude: longitude, latitudeDelta: propsLatitudeDelta, longitudeDelta: propsLongitudeDelta})
