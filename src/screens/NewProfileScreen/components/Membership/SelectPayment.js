@@ -11,6 +11,8 @@ import {
   Dimensions,
 } from 'react-native';
 import {CheckBox, Icon} from 'react-native-elements';
+import {PaymentInfo} from './PaymentInfo';
+import {Total} from './Total';
 
 const HeaderContainer = styled.View`
   flex-direction: row;
@@ -45,8 +47,9 @@ export const CancelButton = styled.Text`
   border-radius: 5px;
 `;
 
-export const SelectPayment = props => {
+export const SelectPayment = ({tier}) => {
   const [check4, setCheck4] = useState(false);
+  const [toggleCard, setToggleCard] = useState(false);
   return (
     <>
       <View style={{paddingBottom: 36, paddingTop: 20}}>
@@ -75,8 +78,8 @@ export const SelectPayment = props => {
                 iconStyle={{marginRight: 10}}
               />
             }
-            checked={check4}
-            onPress={() => setCheck4(!check4)}
+            checked={toggleCard}
+            onPress={() => setToggleCard(true)}
           />
           <View>
             <Text style={styles.title}>Credit/debit card</Text>
@@ -109,7 +112,7 @@ export const SelectPayment = props => {
                 iconStyle={{marginRight: 10}}
               />
             }
-            checked={check4}
+            checked={false}
             onPress={() => setCheck4(!check4)}
           />
           <View style={{marginLeft: 1}}>
@@ -123,6 +126,13 @@ export const SelectPayment = props => {
             s
           />
         </Row>
+
+        {toggleCard && (
+          <>
+            <PaymentInfo />
+            <Total tier={tier} />
+          </>
+        )}
       </View>
     </>
   );

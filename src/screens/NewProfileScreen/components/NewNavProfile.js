@@ -5,6 +5,8 @@ import {NewProfileDetails} from './Account/NewProfileDetails';
 import {NewActivityLayout} from './Activity/NewActivityLayout';
 import {NewProfilePicture} from './Account/NewProfilePicture';
 import {NewProfileMembership} from './Membership/NewProfileMembership';
+import { PaymentMethod } from './Membership/PaymentMethod';
+import { NewMembershipLayout } from './Membership/NewMembershipLayout';
 
 const icon1 = {
   account: require('../../../assets/icons/account.png'),
@@ -80,7 +82,7 @@ export const NewNavProfile = props => {
       {activeTab === 1 && <NewProfileDetails />}
       {activeTab === 1 && <NewProfilePicture />}
       {activeTab == 2 && <NewActivityLayout />}
-      {activeTab == 3 && <NewProfileMembership />}
+      {activeTab == 3 && <NewMembershipLayout />}
     </>
   );
 };
@@ -106,11 +108,11 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#454545',
-    fontFamily: 'PlusJakartaSans',
+    fontFamily: 'PlusJakartaSans-Regular',
   },
   textActive: {
     color: '#00C288',
-    fontFamily: 'PlusJakartaSans',
+    fontFamily: 'PlusJakartaSans-Regular',
   },
   after: {
     width: 45,

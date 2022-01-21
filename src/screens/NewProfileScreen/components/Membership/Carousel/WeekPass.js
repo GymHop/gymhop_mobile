@@ -24,7 +24,13 @@ export const HeaderText = styled.Text`
   margin-left: 16px;
 `;
 
-export const WeekPass = props => {
+export const WeekPass = ({setPaymentModalBool}) => {
+
+  const showPaymentModal = () => {
+    console.log('week subscribe click');
+    setPaymentModalBool(true);
+    setTier('week');
+  };
   return (
     <>
       <View style={{paddingTop: 15}}>
@@ -78,7 +84,7 @@ export const WeekPass = props => {
               </Row>
             </View>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={showPaymentModal}>
             <LinearGradient
               colors={['#00C288', '#00CF58']}
               style={styles.button}>

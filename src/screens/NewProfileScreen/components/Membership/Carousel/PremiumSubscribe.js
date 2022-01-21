@@ -24,7 +24,13 @@ export const HeaderText = styled.Text`
   margin-left: 16px;
 `;
 
-export const PremiumSubscribe = props => {
+export const PremiumSubscribe = ({setPaymentModalBool}) => {
+
+  const showPaymentModal = () => {
+    console.log('premium subscribe click');
+    setPaymentModalBool(true);
+    setTier('premium');
+  };
   return (
     <>
       <View style={{paddingTop: 15}}>
@@ -80,7 +86,7 @@ export const PremiumSubscribe = props => {
               </Row>
             </View>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={showPaymentModal}>
             <LinearGradient
               colors={['#00C288', '#00CF58']}
               style={styles.button}>

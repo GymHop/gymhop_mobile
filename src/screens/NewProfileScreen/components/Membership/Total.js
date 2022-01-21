@@ -40,13 +40,14 @@ export const CancelButton = styled.Text`
   border-radius: 5px;
 `;
 
-export const Total = props => {
+export const Total = ({tier}) => {
   return (
     <>
       <View style={{paddingBottom: 36, paddingTop: 20}}>
         <HeaderContainer>
           <HeaderText style={styles.fontText}>Total</HeaderText>
         </HeaderContainer>
+        {tier==="standard" && <Text>standard boom</Text>}
         <Row style={styles.box}>
           <Text style={styles.text}>
             Standard Membership{'\n'}
