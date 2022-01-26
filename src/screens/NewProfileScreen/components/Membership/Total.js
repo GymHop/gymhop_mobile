@@ -47,13 +47,16 @@ export const Total = ({tier}) => {
         <HeaderContainer>
           <HeaderText style={styles.fontText}>Total</HeaderText>
         </HeaderContainer>
-        {tier==="standard" && <Text>standard boom</Text>}
         <Row style={styles.box}>
           <Text style={styles.text}>
-            Standard Membership{'\n'}
-            Monthly Payments
+            {tier} Membership{'\n'}
+            {tier === 'standard' || tier === 'premium'
+              ? 'Monthly Payments'
+              : 'Weekly Payments'}
           </Text>
-          <Text style={styles.price}>$70.00</Text>
+          {tier === 'standard' && <Text style={styles.price}>$70.00</Text>}
+          {tier === 'premium' && <Text style={styles.price}>$140.00</Text>}
+          {tier === 'week' && <Text style={styles.price}>$20.00</Text>}
         </Row>
         <TouchableOpacity>
           <LinearGradient colors={['#00C288', '#00CF58']} style={styles.button}>
@@ -86,6 +89,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     paddingBottom: 15,
     marginLeft: 28,
+    textTransform: 'capitalize',
   },
   button: {
     width: 166,

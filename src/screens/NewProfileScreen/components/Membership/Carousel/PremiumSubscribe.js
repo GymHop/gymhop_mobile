@@ -24,12 +24,12 @@ export const HeaderText = styled.Text`
   margin-left: 16px;
 `;
 
-export const PremiumSubscribe = ({setPaymentModalBool}) => {
+export const PremiumSubscribe = ({setPaymentModalBool, setTier}) => {
 
   const showPaymentModal = () => {
     console.log('premium subscribe click');
-    setPaymentModalBool(true);
     setTier('premium');
+    setPaymentModalBool(true);
   };
   return (
     <>

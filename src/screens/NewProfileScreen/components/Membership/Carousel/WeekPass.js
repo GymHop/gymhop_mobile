@@ -24,12 +24,11 @@ export const HeaderText = styled.Text`
   margin-left: 16px;
 `;
 
-export const WeekPass = ({setPaymentModalBool}) => {
-
+export const WeekPass = ({setPaymentModalBool, setTier}) => {
   const showPaymentModal = () => {
     console.log('week subscribe click');
-    setPaymentModalBool(true);
     setTier('week');
+    setPaymentModalBool(true);
   };
   return (
     <>
