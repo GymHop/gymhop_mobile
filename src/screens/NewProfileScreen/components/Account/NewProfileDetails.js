@@ -23,9 +23,10 @@ const InputField = styled.TextInput`
   align-self: center;
   color: #898989;
 
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 10px;
   margin-right: 10px;
+  padding-bottom: 5px;
 
   font-size: 14px;
   left: 34px;
@@ -133,5 +134,5 @@ const styles = StyleSheet.create({
     color: '#898989',
     left: 34,
   },
-  edit: {marginTop: 25},
+  edit: {marginTop: 0},
 });

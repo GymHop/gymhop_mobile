@@ -50,7 +50,7 @@ export const NewProfileNotification = () => {
               <Switch
                 trackColor={{false: '#D4F8E5', true: '#F0F0F0'}}
                 thumbColor={isEnabled ? '#C5C5C5' : '#00C288'}
-                ios_backgroundColor="#3e3e3e"
+                ios_backgroundColor="rgb(219, 247, 230)"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
                 style={styles.switch}
@@ -67,7 +67,7 @@ export const NewProfileNotification = () => {
               <Switch
                 trackColor={{false: '#D4F8E5', true: '#F0F0F0'}}
                 thumbColor={isEnabled ? '#C5C5C5' : '#00C288'}
-                ios_backgroundColor="#3e3e3e"
+                ios_backgroundColor="rgb(219, 247, 230)"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
                 style={styles.switch}
@@ -88,7 +88,7 @@ export const NewProfileNotification = () => {
               <Switch
                 trackColor={{false: '#D4F8E5', true: '#F0F0F0'}}
                 thumbColor={isEnabled ? '#C5C5C5' : '#00C288'}
-                ios_backgroundColor="#3e3e3e"
+                ios_backgroundColor="rgb(219, 247, 230)"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
                 style={styles.switch}
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   switch: {
-    height: 28,
+    
   },
   divider: {
     marginTop: 25,

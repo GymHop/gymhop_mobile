@@ -8,7 +8,7 @@ const UserHeader = styled.View`
   align-items: center;
   padding-bottom: 10px;
   background-color: #ffffff;
-  margin-top: 49;
+  padding-top: 49;
 `;
 const LocationBlock = styled.View`
   flex-direction: row;
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     height: 226,
+    zIndex: 10,
   },
   gymhoplogo: {
     width: 180,
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     height: 99,
     position: 'absolute',
     top: 175,
-    zIndex: 9,
+    zIndex: 20,
     borderRadius: 50,
   },
   profileTitle: {

@@ -35,9 +35,9 @@ export const PremiumSubscribe = ({setPaymentModalBool, setTier}) => {
     <>
       <View style={{paddingTop: 15}}>
         <View style={styles.box}>
-          <View style={styles.labelTop}>
+          {/* <View style={styles.labelTop}>
             <Text style={styles.labelFont}>Most Popular</Text>
-          </View>
+          </View> */}
 
           <View style={styles.container}>
             <Row style={{justifyContent: 'space-between', marginTop: -5}}>
