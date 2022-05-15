@@ -24,7 +24,14 @@ export const HeaderText = styled.Text`
   margin-left: 16px;
 `;
 
-export const StandartSubscribe = props => {
+export const StandartSubscribe = ({setPaymentModalBool, setTier}) => {
+
+  const showPaymentModal = () => {
+    console.log('standard subscribe click');
+    setTier('standard');
+    setPaymentModalBool(true);
+  };
+
   return (
     <>
       <View style={{paddingTop: 15}}>
@@ -79,7 +86,7 @@ export const StandartSubscribe = props => {
               </Row>
             </View>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={showPaymentModal}>
             <LinearGradient
               colors={['#00C288', '#00CF58']}
               style={styles.button}>
@@ -117,6 +124,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: 'center',
     top: -15,
+    justifyContent: 'center',
   },
   labelFont: {
     fontWeight: 'normal',

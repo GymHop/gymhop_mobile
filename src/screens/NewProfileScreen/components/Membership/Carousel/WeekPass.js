@@ -24,14 +24,19 @@ export const HeaderText = styled.Text`
   margin-left: 16px;
 `;
 
-export const WeekPass = props => {
+export const WeekPass = ({setPaymentModalBool, setTier}) => {
+  const showPaymentModal = () => {
+    console.log('week subscribe click');
+    setTier('week');
+    setPaymentModalBool(true);
+  };
   return (
     <>
       <View style={{paddingTop: 15}}>
         <View style={styles.box}>
-          <View style={styles.labelTop}>
+          {/* <View style={styles.labelTop}>
             <Text style={styles.labelFont}>Most Popular</Text>
-          </View>
+          </View> */}
 
           <View style={styles.container}>
             <Row style={{justifyContent: 'space-between', marginTop: -5}}>
@@ -78,7 +83,7 @@ export const WeekPass = props => {
               </Row>
             </View>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={showPaymentModal}>
             <LinearGradient
               colors={['#00C288', '#00CF58']}
               style={styles.button}>

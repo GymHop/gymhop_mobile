@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
     marginTop: 55,
     alignSelf: 'center',
     backgroundColor: '#DE5757',
+    justifyContent: 'center',
   },
   text: {
     alignSelf: 'center',
     fontSize: 16,
     color: '#FFFFFF',
-    marginTop: 5,
     fontFamily: 'PlusJakartaSans-Regular',
   },
 });

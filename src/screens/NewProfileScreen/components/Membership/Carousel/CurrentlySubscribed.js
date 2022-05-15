@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: 'center',
     top: -15,
+    justifyContent: 'center',
   },
   labelFont: {
     fontWeight: 'normal',

@@ -48,7 +48,7 @@ export const CancelButton = styled.Text`
   border-radius: 5px;
 `;
 
-export const NewProfileMembership = props => {
+export const NewProfileMembership = ({setPaymentModalBool, setTier}) => {
   const [sliderState, setSliderState] = useState({currentPage: 0});
   const {width, height} = Dimensions.get('window');
   const scrollViewRef = useRef(0);
@@ -94,13 +94,13 @@ export const NewProfileMembership = props => {
             <CurrentlySubscribed />
           </View>
           <View style={{width}}>
-            <StandartSubscribe />
+            <StandartSubscribe setPaymentModalBool={setPaymentModalBool} setTier={setTier} />
           </View>
           <View style={{width}}>
-            <PremiumSubscribe />
+            <PremiumSubscribe setPaymentModalBool={setPaymentModalBool} setTier={setTier} />
           </View>
           <View style={{width}}>
-            <WeekPass />
+            <WeekPass setPaymentModalBool={setPaymentModalBool} setTier={setTier} />
           </View>
         </ScrollView>
         <View style={styles.paginationWrapper}>
@@ -126,13 +126,14 @@ export const NewProfileMembership = props => {
             </LinearGradient>
           </TouchableOpacity>
         )}
-
         <Text style={styles.text}>
           Limit one free trial per customer. If trial has been{'\n'} used, user
           will be billed immediately upon sign up.{'\n'} When the week trial is
           up, user will be billed $70 a{'\n'} month recurring. Refund policy is
           on our website.
         </Text>
+
+        <PaymentMethod />
 
         {/* <PaymentMethod />
         <SelectPayment />
@@ -184,7 +185,6 @@ const styles = StyleSheet.create({
     lineHeight: 17.64,
     marginTop: 55,
     paddingBottom: 34,
-    alignSelf: 'center',
   },
   paginationDots: {
     height: 13,
@@ -201,11 +201,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginTop: 20,
-  },
-  paginationDots: {
-    height: 13,
-    width: 13,
-    borderRadius: 13 / 2,
-    marginLeft: 23,
   },
 });
